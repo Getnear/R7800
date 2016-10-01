@@ -2912,50 +2912,6 @@ client6_recvreply(ifp, dh6, len, optinfo)
 		client6_script(ifp->scriptpath, state, optinfo);
 	}
 
-	/*
-	 * Set refresh timer for configuration information specified in
-	 * information-request.  If the timer value is specified by the server
-	 * in an information refresh time option, use it; use the protocol
-	 * default otherwise.
-	 */
-	if (state == DHCP6S_INFOREQ) {
-		int64_t refreshtime = DHCP6_IRT_DEFAULT;
-
-		if (optinfo->refreshtime != DH6OPT_REFRESHTIME_UNDEF)
-			refreshtime = optinfo->refreshtime;
-
-		ifp->timer = dhcp6_add_timer(client6_expire_refreshtime, ifp);
-		if (ifp->timer == NULL) {
-			dprintf(LOG_WARNING, FNAME,
-			    "failed to add timer for refresh time");
-		} else {
-			struct timeval tv;
-
-			tv.tv_sec = (long)refreshtime;
-			tv.tv_usec = 0;
-
-			if (tv.tv_sec < 0) {
-				/*
-				 * XXX: tv_sec can overflow for an
-				 * unsigned 32bit value.
-				 */
-				dprintf(LOG_WARNING, FNAME,
-				    "refresh time is too large: %lu",
-				    (u_int32_t)refreshtime);
-				tv.tv_sec = 0x7fffffff;	/* XXX */
-			}
-
-			dhcp6_set_timer(&tv, ifp->timer);
-		}
-	} else if (optinfo->refreshtime != DH6OPT_REFRESHTIME_UNDEF) {
-		/*
-		 * draft-ietf-dhc-lifetime-02 clarifies that refresh time
-		 * is only used for information-request and reply exchanges.
-		 */
-		dprintf(LOG_INFO, FNAME,
-		    "unexpected information refresh time option (ignored)");
-	}
-
 	/* update stateful configuration information */
 	if (state != DHCP6S_RELEASE
 #ifdef NETGEAR_dhcp6c_inforeq

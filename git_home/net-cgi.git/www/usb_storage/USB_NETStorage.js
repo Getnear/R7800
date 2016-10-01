@@ -84,7 +84,19 @@ function clickadvanced()
 		form.enableHvia_value.value = '0';
 	else
 		form.enableHvia_value.value = '1';
-
+	
+	if(form.passwd_samba.checked == true)
+		form.passwdNet.value = "1";
+	else
+		form.passwdNet.value = "0";
+	if(form.passwd_http.checked == true)
+		form.passwdHttp.value = "1";
+	else
+		form.passwdHttp.value = "0";
+	if(form.passwd_http_via.checked == true)
+		form.passwdHvia.value = "1";
+	else
+		form.passwdHvia.value = "0";
 
 	if(form.workGroup.value == ""){
 		alert("$workGroup_NULL");
@@ -121,6 +133,15 @@ function clickadvanced()
                 form.enableFvia_value.value = '0';
         else
                 form.enableFvia_value.value = '1';
+			
+		if(form.passwd_ftp.checked == true)
+			form.passwdFtp.value = "1";
+		else
+			form.passwdFtp.value = "0";
+		if(form.passwd_ftp_via.checked == true)
+			form.passwdFvia.value = "1";
+		else
+			form.passwdFvia.value = "0";
 
 	portvalue2=parseInt(form.ftp_via_port.value,10);
 	if( isNaN(portvalue2) || portvalue2 < 21 || (portvalue2 > 21 & portvalue2 < 1024) || portvalue2 > 65534)

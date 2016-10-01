@@ -284,7 +284,12 @@ static void add_smbd_share_info(FILE *fp, char *displayname, char *reader, char 
 	        if (strcmp(reader, USER_GUEST))
 			fprintf(fp, "  invalid users=%s %s\n", USER_GUEST, invalidlist);
 
-		if (strcmp(writer, USER_GUEST) == 0){
+		if (!strcmp(config_get("usb_passwdNet"), "1")) {
+			fprintf(fp, "  guest ok=no\n");
+			fprintf(fp, "  read only=yes\n");
+			fprintf(fp, "  write list=%s %s\n", USER_ADMIN, writelist);
+		}
+		else if (strcmp(writer, USER_GUEST) == 0){
 			fprintf(fp, "  guest ok=yes\n");
 			fprintf(fp, "  read only=no\n");
 		}
@@ -333,7 +338,12 @@ static void add_smbd_share_info(FILE *fp, char *displayname, char *reader, char 
 			fprintf(fp, "  invalid users=%s\n", USER_GUEST);
 		}
 
-		if(strstr(pwrite_access, USER_ANONYMOUS)){
+		if (!strcmp(config_get("usb_passwdNet"), "1")) {
+			sprintf(writelist + strlen(writelist), "%s ", readycloud_user_value);
+			fprintf(fp, "  read only=yes\n");
+			fprintf(fp, "  write list=%s %s\n", USER_ADMIN, writelist);
+		}
+		else if(strstr(pwrite_access, USER_ANONYMOUS)){
 			fprintf(fp, "  read only=no\n");
 		}
 		else if(strstr(pwrite_access, USER_EVERYONE)){

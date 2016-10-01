@@ -3728,6 +3728,45 @@ NTSTATUS hardlink_internals(connection_struct *conn, char *oldname, char *newnam
 }
 
 /****************************************************************************
+ Deal with setting the dosmode from any of the setfilepathinfo functions.
+****************************************************************************/
+static NTSTATUS smb_set_file_dosmode(connection_struct *conn,
+				const char *fname,
+				SMB_STRUCT_STAT *psbuf,
+				uint32 dosmode)
+{
+	if (!VALID_STAT(*psbuf)) {
+		return NT_STATUS_OBJECT_NAME_NOT_FOUND;
+	}
+
+	if (dosmode) {
+		if (S_ISDIR(psbuf->st_mode)) {
+			dosmode |= aDIR;
+		} else {
+			dosmode &= ~aDIR;
+		}
+	}
+
+	DEBUG(6,("smb_set_file_dosmode: dosmode: 0x%x\n", (unsigned int)dosmode));
+
+	/* check the mode isn't different, before changing it */
+	if ((dosmode != 0) && (dosmode != dos_mode(conn, fname, psbuf))) {
+
+		DEBUG(10,("smb_set_file_dosmode: file %s : setting dos mode 0x%x\n",
+					fname, (unsigned int)dosmode ));
+
+		if(file_set_dosmode(conn, fname, dosmode, psbuf, False)) {
+			DEBUG(2,("smb_set_file_dosmode: file_set_dosmode of %s failed (%s)\n",
+						fname, strerror(errno)));
+			return map_nt_error_from_unix(errno);
+		}
+	}
+	return NT_STATUS_OK;
+}
+
+
+
+/****************************************************************************
  Reply to a TRANS2_SETFILEINFO (set file info by fileid).
 ****************************************************************************/
 
@@ -4658,7 +4697,13 @@ size = %.0f, uid = %u, gid = %u, raw perms = 0%o\n",
 	 */
 
 	/* check the mode isn't different, before changing it */
-	if ((dosmode != 0) && (dosmode != dos_mode(conn, fname, &sbuf))) {
+	status = smb_set_file_dosmode(conn, fname, &sbuf, dosmode); 
+	if (!NT_STATUS_IS_OK(status)) {
+		DEBUG(2,("file_set_dosmode of %s failed (%s)\n", fname, strerror(errno)));
+	//	return ERROR_NT(status);
+	}
+
+/*	if ((dosmode != 0) && (dosmode != dos_mode(conn, fname, &sbuf))) {
 
 		DEBUG(10,("call_trans2setfilepathinfo: file %s : setting dos mode %x\n", fname, dosmode ));
 
@@ -4666,7 +4711,7 @@ size = %.0f, uid = %u, gid = %u, raw perms = 0%o\n",
 			DEBUG(2,("file_set_dosmode of %s failed (%s)\n", fname, strerror(errno)));
 			return(UNIXERROR(ERRDOS,ERRnoaccess));
 		}
-	}
+	}*/
 
 	/* Now the size. */
 	if (size != get_file_size(sbuf)) {

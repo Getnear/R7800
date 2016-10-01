@@ -48,7 +48,7 @@ function loadValue()
 				this.location.href = "BRS_log11_dhcp_ping_success.html";
 		}
 		else
- 	         	this.location.href = "BRS_success.html";
+ 	         	this.location.href = "BRS_security.html";
 	}
 	setTimeout("loadValue();", 1000);
 }

@@ -742,6 +742,13 @@ static int setup_env(pool *p, cmd_rec *cmd, char *user, char *pass) {
     goto auth_failure;
   }
 
+  char *local_addr = pr_netaddr_get_ipstr(session.c->local_addr);
+  struct in_addr lan_ip, wan_ip;
+
+  wan_ip = get_ipaddr((strcmp(config_get("wan_proto"), "dhcp") == 0) ? WAN_IFNAME : PPPOE_IFNAME);
+  lan_ip = get_ipaddr(LAN_IFNAME);
+  pr_log_auth(PR_LOG_NOTICE, "local ipaddr:%s wan ipaddr:%s lan ipaddr:%s", local_addr, inet_ntoa(wan_ip), inet_ntoa(lan_ip));
+
   pw = pr_auth_getpwnam(p, user);
   if (pw == NULL) {
     pr_log_auth(PR_LOG_NOTICE,
@@ -749,7 +756,23 @@ static int setup_env(pool *p, cmd_rec *cmd, char *user, char *pass) {
       user, session.c->remote_name,
       pr_netaddr_get_ipstr(session.c->remote_addr),
       pr_netaddr_get_ipstr(session.c->local_addr), session.c->local_port);
-    goto auth_failure;
+      goto auth_failure;
+  }
+  else if (strcmp(user, "admin") && strstr(local_addr, inet_ntoa(wan_ip)) != NULL && config_match("usb_passwdFvia", "1")) {
+	pr_log_auth(PR_LOG_NOTICE,
+	  "USER %s: no permission from %s [%s] to %s:%i", 
+      user, session.c->remote_name,
+      pr_netaddr_get_ipstr(session.c->remote_addr),
+      pr_netaddr_get_ipstr(session.c->local_addr), session.c->local_port);
+      goto auth_failure;
+  }
+  else if (strcmp(user, "admin") && strstr(local_addr, inet_ntoa(lan_ip)) != NULL && config_match("usb_passwdFtp", "1")) {
+    pr_log_auth(PR_LOG_NOTICE,
+	  "USER %s: no permission from %s [%s] to %s:%i", 
+      user, session.c->remote_name,
+      pr_netaddr_get_ipstr(session.c->remote_addr),
+      pr_netaddr_get_ipstr(session.c->local_addr), session.c->local_port);
+      goto auth_failure;  
   }
 
   /* Security: other functions perform pw lookups, thus we need to make

@@ -19,6 +19,13 @@ start() {
 	[ -d /opt ] && {
 		/opt/xagent/run-xagent.sh
 		/www/cgi-bin/readycloud_control.cgi
+		sleep 2
+		readycloud_enable=$(/bin/config get readycloud_enable)
+		if [ "$readycloud_enable" = "1" ]; then
+			readycloud_user_admim="$(/bin/config get readycloud_user_admin)"
+			readycloud_user_passsword="$(/bin/config get readycloud_user_password)"
+			./opt/rcagent/scripts/register.sh $readycloud_user_admim $readycloud_user_passsword
+		fi
 	}
 }
 
@@ -92,6 +99,7 @@ update() {
 	# add newline "source /etc/profile" in file /opt/rcagent/run_server.sh
 	sed '2s/^/source \/etc\/profile\n/' /opt/rcagent/run_server.sh > /tmp/run_server.sh
 	cp /tmp/run_server.sh /opt/rcagent/run_server.sh
+
 	echo $fullversion | cut -d - -f 3 > /cloud_version
 	echo "install ftp://updates1.netgear.com/sw-apps/ready-genie-cloud/r7800/$fullversion to R/W filesystem successfully"
 	start

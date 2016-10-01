@@ -2,6 +2,8 @@
 <TITLE> Router Password Recovery</TITLE>
 <META http-equiv=content-type content='text/html; charset=UTF-8'>
 <LINK rel="stylesheet" href="/style/form.css">
+<LINK rel="stylesheet" href="/style/hijack_style.css">
+<LINK rel="stylesheet" href="/style/top_style.css">
 <script>
 var quest1_1="$quest1_1";
 var quest1_2="$quest1_2";
@@ -44,6 +46,19 @@ TR{ FONT-FAMILY: Arial;}
 </STYLE>
 </HEAD>
 <BODY onLoad="loadvalue()">
+<div id="page_container">
+
+<div id="header">
+	<div id="header_top">
+		<div class="top_name">
+			<div class="title_div"></div>
+			<% cd_less_top_hardware_version() %>
+		</div>
+	</div>
+</div>
+
+<div class="wizard_body_container">
+<div class="wizard_words_div">
 <form method="post" action="/recover.cgi?/securityquestions.cgi">
 <INPUT type=hidden name=submit_flag value="security_question">
 
@@ -93,6 +108,10 @@ TR{ FONT-FAMILY: Arial;}
 </TD></TR>
 </TABLE>
 </form>
+</div>
+</div>
+<div class="bottom_margin"></div>
+</div>
 </BODY>
 </HTML>
 

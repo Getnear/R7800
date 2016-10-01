@@ -5,11 +5,11 @@ Note: 1) This package has been built successfully on Ubuntu with gcc 4.5.2.
       2) Compiling this package on platforms other than Ubuntu may have unexpected results.
 
 How to build:
-1. unzip R7800-V1.0.1.28_gpl_src.tar.bz2.zip
-2. tar -jxvf R7800-V1.0.1.28_gpl_src.tar.bz2
-3. cd R7800-V1.0.1.28_gpl_src
+1. unzip R7800-V1.0.2.04_gpl_src.tar.bz2.zip
+2. tar -jxvf R7800-V1.0.2.04_gpl_src.tar.bz2
+3. cd R7800-V1.0.2.04_gpl_src
 4. cp configs/defconfig-r7800 .config
 5. make V=99
-6. the final images is './bin/ipq806x/R7800-V1.0.1.28.img'
+6. the final images is './bin/ipq806x/R7800-V1.0.2.04.img'
 
 User may upgrade to this image using the R7800 GUI "Router Upgrade" page.

@@ -7,7 +7,6 @@
 <script language="javascript" type="text/javascript" src="script/brs_hijack.js"></script>
 <script language="javascript" type="text/javascript" src="script/brs_check_manulConfig.js"></script>
 <% hijack_language() %>
-<% hijack_netDetecting() %>
 <script language="javascript" type="text/javascript">
 var checking_result = "<% hijack_apply_result("/tmp/ping_result") %>";
 var toBasic="<% cfg_get("after_welcome") %>";

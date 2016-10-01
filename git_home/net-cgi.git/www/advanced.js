@@ -348,7 +348,7 @@ function click_adv_action(id)
 			else
 				goto_formframe('RST_status.htm');	
 		}
-                else if( id == "adv_setup_wizard" && master == "admin" && top.enable_ap_flag != "1" && top.device_mode != "1")
+                else if( id == "adv_setup_wizard" && master == "admin" && top.enable_ap_flag != "1" && top.enabled_wds != "1" && top.enable_bridge_flag != "1" && top.enable_extender_flag != "1" && top.device_mode != "1")
                 {
 			menu_color_change('adv_setup_wizard');
 			if(top.dsl_enable_flag == "1")
@@ -360,7 +360,7 @@ function click_adv_action(id)
 				goto_formframe('WIZ_sel.htm');
 		}
                 
-                else if( id == "adv_wps" && top.enabled_wps == 1 && top.device_mode != "1" )
+		else if( id == "adv_wps" && top.enabled_wps == "1" && top.enabled_wds != "1" && top.enable_bridge_flag != "1" && top.device_mode != "1" )
                 {
 			goto_formframe('Add_WPS_Client.htm');
 			menu_color_change('adv_wps');
@@ -600,9 +600,7 @@ function click_adv_action(id)
 		}
 		else if( id == "green_manager")
 		{
-			if( download_type == "bt" )
-				goto_formframe("GREEN_bt_basic.htm");
-			else if( download_type == "emule" )
+			if( download_type == "emule" )
 				goto_formframe("GREEN_emule_basic.htm");
 			else if( download_type == "http" )
 				goto_formframe("GREEN_http_basic.htm");

@@ -1,4 +1,4 @@
-CC=gcc
+CC=arm-openwrt-linux-gcc
 
 
 top_builddir=..

@@ -287,6 +287,16 @@ sw_configvlan_vlan()
 	esac
 }
 
+sw_flowctrl()
+{
+	# QCA request to run below commands to fix the issue that upload throughput is too low.
+	$ssdk_sh port flowctrlforcemode set 5 enable
+	$ssdk_sh port flowctrl set 5 enable
+	$ssdk_sh debug reg set 0x7c 0x17e 4
+	$ssdk_sh debug reg set 0x94 0x17e 4
+	$ssdk_sh debug reg set 0x808 0x7f004e 4
+}
+
 sw_configvlan() # $1 : normal/iptv/vlan/apmode/brmode
 {
 	local opmode=$1
@@ -300,6 +310,7 @@ sw_configvlan() # $1 : normal/iptv/vlan/apmode/brmode
 	factory) sw_configvlan_factory "$@" ;;
 	*) sw_configvlan_normal "$@" ;;
 	esac
+	sw_flowctrl
 }
 
 fi #-------------------- this must be the last line -----------------------------

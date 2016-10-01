@@ -9,6 +9,7 @@ start ()
 	echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
 	echo 1 > /proc/sys/dni_netfilter/ipv6_ip6frag_not_check_icmp
 
+	echo 0 > /proc/sys/net/ipv6/conf/${WAN}/autoconf
 	if [ "x$logo_test" = "x1" -a "x$wan6_type" = "xfixed" ]; then
 		echo 1 > /proc/sys/net/ipv6/ipv6_srcrt_type_2
 		echo 1 > /proc/sys/net/ipv6/ipv6_ping6_interface

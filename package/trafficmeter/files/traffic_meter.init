@@ -2,6 +2,10 @@
 START=85
 
 start() {
+	if [ "$($CONFIG get i_opmode)" = "apmode" -o "$($CONFIG get i_opmode)" = "brmode" ]; then
+		echo "traffic_meter do not need start in AP/Bridge mode"
+		exit 0
+	fi
 	/sbin/cmd_traffic_meter start
 }
 

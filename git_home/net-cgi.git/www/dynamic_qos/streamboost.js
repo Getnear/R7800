@@ -99,6 +99,23 @@ function clearNoNum(obj)
 	obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d)(\d).*$/,'$$1$$2.$$3');
 }
 
+function qos_click_apply()
+{
+	$$.ajax({
+		url: "QOS_wan_status.html",
+                type: "GET",
+                success: function(data, textStatus){
+			var wan_sta = parseInt(data)
+                        if(wan_sta == 0 || wan_sta == 1)
+				internet_status = wan_sta;
+			else
+				internet_status = "0";
+
+			check_qos_apply(document.forms[0]);
+                }
+        });
+}
+
 function check_qos_apply(cf)
 {
 	var cf=document.forms[0];

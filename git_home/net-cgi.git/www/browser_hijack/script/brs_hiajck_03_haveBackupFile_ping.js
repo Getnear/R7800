@@ -6,7 +6,7 @@ function loadValue()
 	if(ping_result == "failed")     //failed
 		this.location.href = "BRS_05_networkIssue.html";
 	else if(ping_result == "success") //success
-		this.location.href = "BRS_success.html";
+		this.location.href = "BRS_security.html";
 	setTimeout("loadValue();", 1000);
 }
 

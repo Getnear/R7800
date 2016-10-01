@@ -108,7 +108,7 @@ function preSecurityInit()
 function noPreSecurityInit()
 {
 	//head text
-	var head_tag = document.getElementsByTagName("h1");
+	var head_tag = document.getElementsByTagName("h2");
 	var head_text = document.createTextNode(bh_congratulations);
 	head_tag[0].appendChild(head_text);
 

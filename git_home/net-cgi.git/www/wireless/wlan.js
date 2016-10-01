@@ -1014,7 +1014,7 @@ function check_wlan()
 			alert("$ssid_null");
 			return false;
 		}
-		if(ssid_bgn == wlg1_ssid || ssid_bgn == wla1_ssid || ssid_an == wlg1_ssid || ssid_an == wla1_ssid || ssid_bgn == ssid_an)
+		if(ssid_bgn == wlg1_ssid || ssid_bgn == wla1_ssid || ssid_an == wlg1_ssid || ssid_an == wla1_ssid)
 		{
 			alert("$ssid_not_allowed_same");
 			return false;
@@ -1387,7 +1387,7 @@ function check_wlan_guest(type)
 		alert("$ssid_null");
 		return false;
 	}
-        if(ssid == wl_ssid || ssid == wla_ssid || ssid == ssid_an)
+        if(ssid == wl_ssid || ssid == wla_ssid)
         {
                 alert("$ssid_not_allowed_same");
                 return false;

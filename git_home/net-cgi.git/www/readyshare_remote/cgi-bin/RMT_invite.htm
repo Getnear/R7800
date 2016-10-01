@@ -88,6 +88,8 @@ function register_check()
 		}
 	}
 	show_wait_msg();
+	hide_text();
+	form.TXT_remote_password.value = hid_passwd.join("");
 	form.submit();
 }
 
@@ -99,6 +101,7 @@ function show_wait_msg()
 
 function hide_text(cf)
 {
+	var cf = document.forms[0];
 	var passwd = cf.TXT_remote_password.value.split("");
 	if(passwd.length < hid_passwd.length)
 	{
@@ -167,7 +170,7 @@ EOF
                 <b><script>document.write(username)</script>:</b>
             </td>
             <td>
-                <input type="text" value="" name="TXT_remote_login" id="txt_remote_login" maxlength="25" size="28">
+                <input type="text" value="" name="TXT_remote_login" id="txt_remote_login" maxlength="64" size="28">
             </td>
         </tr>
         <tr>
@@ -175,7 +178,7 @@ EOF
                 <b><script>document.write(key_passphrase)</script>:</b>
             </td>
             <td>
-                <input type="text" value="" name="TXT_remote_password" id="txt_remote_password" maxlength="25" size="28" onkeyup="hide_text(document.forms[0]);" onmouseout="hide_text(document.forms[0]);" >
+                <input type="text" value="" name="TXT_remote_password" id="txt_remote_password" maxlength="64" size="28" onkeyup="hide_text();" onmouseout="hide_text();" oninput="hide_text();">
             	<input type="hidden" value="" name="TXT_remote_passwd" id="txt_remote_passwd">
 	    </td>
         </tr>

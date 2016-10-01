@@ -595,7 +595,10 @@ static void uh_mainloop(struct config *conf, fd_set serv_fds, int max_fd)
                                                         && config_invmatch("hijack_process", "3")
                                                         && is_router_domain_addr(httphost)==1)
                                                 {
-                                                        req->url="/change_domain.htm";
+							if( (strcmp(httphost, "clients3.google.com") || strncmp(req->url, "/generate_204",13))
+								&& (strcmp(httphost, "www.google.com") || strncmp(req->url, "/blank.html", 11)) ){
+									req->url="/change_domain.htm";
+								}
 						}	
 						
 						/* RFC1918 filtering required? */
