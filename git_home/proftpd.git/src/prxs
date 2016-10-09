@@ -29,8 +29,8 @@ Getopt::Long::Configure("no_ignorecase");
 
 my $prog = basename($0);
 
-my $compiler = q(gcc);
-my $cflags = q( -DLINUX -O2 -Wall -DPR_SHARED_MODULE);
+my $compiler = q(arm-openwrt-linux-gcc);
+my $cflags = q( -DLINUX  -Wall -DPR_SHARED_MODULE);
 my $cppflags = q();
 my $ltdl_ldflags = q();
 my $sbindir = q(/usr/local/sbin);
@@ -49,7 +49,7 @@ if (!defined($ENV{LIBTOOL})) {
   $libtool = $ENV{LIBTOOL};
 }
 
-my $shell = q(/bin/bash);
+my $shell = q(/bin/sh);
 
 my $opts = {};
 GetOptions($opts, 'c|compile', 'i|install', 'd|clean', 'h|help', 'name=s',

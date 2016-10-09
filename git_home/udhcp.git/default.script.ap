@@ -68,6 +68,11 @@ case "$1" in
 			# restart samba if IP changes
 			/usr/bin/killall smbd
 			/usr/sbin/update_smb
+			
+			# restart net-scan if IP changes
+			killall net-scan
+			/usr/sbin/net-scan
+
 		fi
 
 		# restart net-wall to update the br0 address in the rule.

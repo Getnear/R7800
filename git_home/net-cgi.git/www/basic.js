@@ -417,12 +417,12 @@ function click_action(id)
 		}
 		else if( id == "green" && top.have_green_download ==1 && top.device_mode != "1" )
 		{
-			if( download_type == "bt" )
-				goto_formframe("GREEN_bt_basic.htm");
+			if( download_type == "http" )
+				goto_formframe("GREEN_http_basic.htm");
 			else if( download_type == "emule" )
 				goto_formframe("GREEN_emule_basic.htm");
 			else
-				goto_formframe("GREEN_http_basic.htm");
+				goto_formframe("GREEN_bt_basic.htm");
 			basic_menu_color_change('green');
 		}
 		else if( id == "fastlane")

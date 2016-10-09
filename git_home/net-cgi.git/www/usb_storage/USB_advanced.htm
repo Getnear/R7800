@@ -48,6 +48,12 @@ var old_endis_ddns="<% cfg_get("endis_ddns") %>";
 var cur_wan_ip="<% wan_ip() %>";
 var old_sysDNSHost=cur_wan_ip;
 
+var password_samba = "<% cfg_get("usb_passwdNet") %>";
+var password_http = "<% cfg_get("usb_passwdHttp") %>";
+var password_http_via = "<% cfg_get("usb_passwdHvia") %>";
+var password_ftp = "<% cfg_get("usb_passwdFtp") %>";
+var password_ftp_via = "<% cfg_get("usb_passwdFvia") %>";
+
 if( old_endis_ddns == "1" )
 {
 	var dnsstatus="<% cat_file("/tmp/ez-ipupd.status") %>";
@@ -229,6 +235,11 @@ function loadvalue()
 <input type="hidden" name="enableHvia_value">
 <input type="hidden" name="enableFTP_value">
 <input type="hidden" name="enableFvia_value">
+<input type="hidden" name="passwdNet">
+<input type="hidden" name="passwdHttp">
+<input type="hidden" name="passwdHvia">
+<input type="hidden" name="passwdFtp">
+<input type="hidden" name="passwdFvia">
 <input type=hidden name=volumeName>
 <input type=hidden name=usb_device_name>
 <input type="hidden" name="device_name_change_flag">
@@ -255,6 +266,7 @@ else
 		<TD nowrap ><span class="thead">$access_method</span></TD>
 		<TD nowrap ><span class="thead">$link_mark</span></TD>
 		<TD nowrap ><span class="thead">$port_mark</span></TD>
+		<TD nowrap align="center"><span class="thead">$passwd_protect</span></TD>
 	</TR>
 	<TR class="odd_line">
 		<TD><input type="checkbox" name="enable_samba" id="enable_net" ></TD>
@@ -267,8 +279,12 @@ else
 		document.write('<TD><a class="linktype" href="smb://'+show_lanip+'" >\\\\'+show_deviceName+'</a></TD>');
 	else
 		document.write('<TD>\\\\'+show_deviceName+'</TD>');
+	document.write('<TD nowrap>-</TD>');
+	if(password_samba == "1")
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_samba" id="passwd_samba" checked></TD>');
+	else
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_samba" id="passwd_samba"></TD>');
 </script>
-		<TD nowrap>-</TD>
 	</TR>
 	<TR class="even_line">
 		<TD><input type="checkbox" name="enable_http" id="enable_http"></TD>
@@ -280,6 +296,12 @@ else
 				document.write('<TD><a class="linktype" href="http://readyshare.routerlogin.net/shares" target="_blank">http://readyshare.routerlogin.net/shares</a></TD>'); 
 		</script>
 		<TD nowrap>80</TD>
+		<script>
+		if(password_http == "1")
+			document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_http" id="passwd_http" checked></TD>');
+		else
+			document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_http" id="passwd_http"></TD>');
+		</script>
 	</TR>
 	<TR class="odd_line">
 		<TD><input type="checkbox" name="enable_wan_http" id="enable_http_via"></TD>
@@ -301,6 +323,12 @@ else
 	}
 </script>
 		<TD nowrap><input type="text" name="http_via_port" id="http_via_port" size="5" maxlength="5" value="<% cfg_sed_xss("usb_HTTP_via_port") %>" onKeyPress="return getkey('num', event)"></TD>
+		<script>
+		if(password_http_via == "1")
+			document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_http_via" id="passwd_http_via" checked></TD>');
+		else
+			document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_http_via" id="passwd_http_via"></TD>');
+		</script>
 	</TR>
 <script>
 if( is_ftp == 1 )
@@ -317,6 +345,10 @@ if( is_ftp == 1 )
 		document.write('<TD><a class=\'linktype\' href=\'ftp://readyshare.routerlogin.net/shares\' target=\'_blank\'>ftp://readyshare.routerlogin.net/shares</a></TD>');
 
 	document.write("<TD nowrap >21</TD>");
+	if(password_ftp == "1")
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_ftp" id="passwd_ftp" checked></TD>');
+	else
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_ftp" id="passwd_ftp"></TD>');
 	document.write("</TR>");
 	document.write("<TR class=odd_line>");
 	document.write("<TD><input type='checkbox' name='enable_wan_ftp' id='enable_ftp_via'></TD>");
@@ -344,12 +376,17 @@ if( is_ftp == 1 )
 				document.write("<TD><a class='linktype' href='ftp://"+old_sysDNSHost+":"+show_FTP_via_port+"/shares' target='_blank'>ftp://"+old_sysDNSHost+":"+show_FTP_via_port+"/shares</a></TD>");
 	}
 	document.write("<TD nowrap><input type='text' name='ftp_via_port' id='ftp_via_port' size='5' maxlength='5' value='<% cfg_sed_xss("usb_FTP_via_port") %>' onKeyPress=\"return getkey('num', event)\"></TD>");
-	document.write("</TR>");	
+	if(password_ftp_via == "1")
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_ftp_via" id="passwd_ftp_via" checked></TD>');
+	else
+		document.write('<TD nowrap align="center"><input type="checkbox" name="passwd_ftp_via" id="passwd_ftp_via"></TD>');
+	document.write("</TR>");
 }
 </script>		
 
 	</TABLE>
 </TD></TR>
+<TR><TD><span style="font-size:14px;">$passwd_recommend</span></TD></TR>
 <TR><TD colspan=2><img src=/liteblue.gif width=100%% height=12></TD></TR>
 <TR><TD colspan=2><a tabindex=-1 href="javascript:loadhelp('_USB_advance','available')"><b>$available_folder</b></a></TD></TR>
 <TR><TD colspan=2>

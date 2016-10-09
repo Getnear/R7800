@@ -1123,7 +1123,7 @@ static inline int accept_ra(struct inet6_dev *in6_dev)
 	 * If forwarding is enabled, RA are not accepted unless the special
 	 * hybrid mode (accept_ra=2) is enabled.
 	 */
-	if (in6_dev->cnf.forwarding && in6_dev->cnf.accept_ra < 2)
+	if (!in6_dev->cnf.autoconf && in6_dev->cnf.accept_ra < 2)
 		return 0;
 
 	return in6_dev->cnf.accept_ra;

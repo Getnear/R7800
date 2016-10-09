@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=qca-wifi-fw
-PKG_VERSION:=CNSS.BL.3.0.2-00043-S-1
+PKG_VERSION:=CNSS.BL.3.0.2-00068-S-1.59256.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)$(BUILD_VARIANT)-$(PKG_VERSION).tar.bz2
@@ -51,7 +51,6 @@ define WifiFirmware
 	$(INSTALL_BIN) ./files/boardData_QCA9984_CUS239_5G_v1_NEW_FCC_001.bin $$(1)/lib/firmware/$(3)
 	$(INSTALL_BIN) ./files/boardData_QCA9984_CUS260_2G_v1_PR_002.bin $$(1)/lib/firmware/$(3)
 	$(INSTALL_BIN) ./files/boardData_QCA9984_CUS239_5G_v1_PR_001.bin $$(1)/lib/firmware/$(3)
-	$(INSTALL_BIN) ./files/{athwlan.bin,athwlan.codeswap.bin,utf.bin,utf.codeswap.bin} $$(1)/lib/firmware/$(3)
   endef
 
   $$(eval $$(call BuildPackage,$(PKG_NAME)$(1)))

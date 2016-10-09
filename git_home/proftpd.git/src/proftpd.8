@@ -30,7 +30,7 @@ configuration file.  When run in standalone mode without the
 option, the main
 .B proftpd
 daemon writes its process ID to
-.B /usr/local/var/proftpd.pid
+.B /var/run/proftpd.pid
 to make it easy to know which process to SIGHUP.
 .SH OPTIONS
 .TP 12
@@ -66,7 +66,7 @@ output is sent to stderr.
 .BI \-c,\--config " config\-file"
 Specifies an alternate \fIconfig\-file\fP to be parsed at startup, rather
 than the default configuration file.  The default configuration file is
-.B /usr/local/etc/proftpd.conf
+.B /etc/proftpd.conf
 .br
 .TP
 .BI \-N,\--nocollision
@@ -102,7 +102,7 @@ used.
 .PD 0
 .B /usr/local/sbin/proftpd
 .br
-.B /usr/local/etc/proftpd.conf
+.B /etc/proftpd.conf
 .br
 .B /usr/local/bin/ftpwho
 .br
@@ -114,9 +114,9 @@ used.
 .br
 .B /var/log/xferlog
 .br
-.B /usr/local/var/proftpd.pid
+.B /var/run/proftpd.pid
 .br
-.B /usr/local/var/proftpd.scoreboard
+.B /var/run/proftpd.scoreboard
 .PD
 .SH AUTHORS
 .PP

@@ -911,12 +911,14 @@ $bluebar
 $bluebar
 <TR id='wladv_beamforming'>
 	<TD nowrap colspan=2 >
-		<input type="checkbox" name="enable_implicit_beamforming" id="enable_implicit_beamforming" onclick="power_display();" value=0>$enable_beamform1
+		<input type="checkbox" name="enable_implicit_beamforming" id="enable_implicit_beamforming" onclick="power_display();" value=0>
+		<A tabindex=-1 href="javascript:loadhelp('_wladv','beamforming')">$enable_beamform1</A>
 	</TD>
 </TR>
 <TR id='wladv_mu'>
 	<TD nowrap colspan=2 >
-	<input type="checkbox" name="enable_mu" value="">$enable_mu
+		<input type="checkbox" name="enable_mu" value="">
+		<A tabindex=-1 href="javascript:loadhelp('_wladv','mu_mimo')">$enable_mu</A>
 	</TD>
 </TR>
 <TR id="wladv_atf">
@@ -926,7 +928,8 @@ $bluebar
 </TR>
 <TR id='wladv_ht160'>
         <TD nowrap colspan=2 >
-        <input type="checkbox" name="enable_ht160" value="">$enable_ht160
+        	<input type="checkbox" name="enable_ht160" value="">
+		<A tabindex=-1 href="javascript:loadhelp('_wladv','ht160')">$enable_ht160</A>
         </TD>
 </TR>
 <TR id=ap_bluebar><TD colspan=2><img src=/liteblue.gif width=100% height=12></TD></TR>

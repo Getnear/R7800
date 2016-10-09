@@ -29,7 +29,7 @@ function loadValue()
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_vdsl_Gemany_pppoe_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 
 	   }
 	   else  if(country == "Germany" && isp == "1&1")
@@ -38,14 +38,14 @@ function loadValue()
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_vdsl_Gemany11_pppoe_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 
 	   }
 	   else{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_vdsl_pppoe_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
           }
 	}
 	else if(select_basic == "0" && select_type == "5")//pppoa
@@ -53,28 +53,28 @@ function loadValue()
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_pppoa_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
 	else if(select_basic == "0" && select_type == "0")//pppoe
 	{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_pppoe_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
 	else if(select_basic == "0" && select_type == "1")//pptp
 	{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_C_pptp_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
 	else if(select_basic == "0" && select_type == "4")//l2tp
 	{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_F_l2tp_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
    
    }else{
@@ -83,21 +83,21 @@ function loadValue()
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_B_pppoe_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
 	else if(select_basic == "0" && select_type == "1")//pptp
 	{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_C_pptp_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
 	else if(select_basic == "0" && select_type == "4")//l2tp
 	{
 		if(wget_result == "failed")
 			this.location.href = "BRS_03A_F_l2tp_reenter.html";
 		else if(wget_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 	}
    }
 }

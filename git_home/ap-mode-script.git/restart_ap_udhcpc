@@ -1,9 +1,0 @@
-#!/bin/sh
-
-BR_IF=br0
-CONFIG=/bin/config
-
-if [ "$($CONFIG get ap_ether_ip_assign)" != "0" ]; then
-	killall udhcpc
-	/sbin/udhcpc -a -f -i $BR_IF -h "$($CONFIG get ap_netbiosname)" -r $($CONFIG get ap_dhcp_ipaddr) &
-fi

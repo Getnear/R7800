@@ -82,7 +82,7 @@ cat <<EOF
 EOF
 print_language_js
 cat <<EOF
-<link rel="stylesheet" type="text/css" href="style/hijack_style.css">
+<link rel="stylesheet" type="text/css" href="../style/hijack_style.css">
 </head>
 <body bgcolor=#ffffff>
 <div  align="center"><br /><br /><b><script>document.write(bh_plz_wait_moment)</script></b><br /><br /></div>

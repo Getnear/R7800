@@ -12,7 +12,7 @@ WEB_PATH:=www
 
 include $(INCLUDE_DIR)/package.mk
 
-PKG_GIT_TREEISH:=net-cgi-dni227
+PKG_GIT_TREEISH:=net-cgi-dni239
 
 define Package/net-cgi
   SECTION:=utils
@@ -23,22 +23,13 @@ endef
 
 define Build/Prepare
 	$(CP) $(GIT_HOME)/net-cgi.git/* $(PKG_BUILD_DIR)/
-	$(INSTALL_DIR) $(PKG_BUILD_DIR)/$(WEB_PATH)/cgi-bin
-	chmod a+x $(PKG_BUILD_DIR)/sh/*
-endef
-
-define Build/Configure
-	(cd $(PKG_BUILD_DIR) && \
-		./configure \
-	)
 endef
 
 define Build/Compile
-	(cd $(PKG_BUILD_DIR) && \
-		make www \
-	)
 endef
 
+define Build/Configure
+endef
 define Package/net-cgi/install
 	$(MAKE) -C $(PKG_BUILD_DIR) install INS_DIR_PRE=$(1)
 

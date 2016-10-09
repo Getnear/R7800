@@ -1601,6 +1601,7 @@ size_t answer_request(HEADER *header, char *limit, size_t qlen, struct daemon *d
 		"macs.xboxlive.com.local",
 
 		"updates1.netgear.com",
+		"captive.apple.com",
 
 		NULL	/* The End One */
 	};

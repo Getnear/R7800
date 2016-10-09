@@ -12,7 +12,7 @@ uhttpd_stop()
 
 uhttpd_start()
 {
-        $UHTTPD_BIN -h /www -r ${REALM}  -x /cgi-bin -t 30 -p 0.0.0.0:80 -C /etc/uhttpd.crt -K /etc/uhttpd.key -s 0.0.0.0:443
+        $UHTTPD_BIN -h /www -r ${REALM}  -x /cgi-bin -t 40 -p 0.0.0.0:80 -C /etc/uhttpd.crt -K /etc/uhttpd.key -s 0.0.0.0:443
 }
 
 case "$1" in

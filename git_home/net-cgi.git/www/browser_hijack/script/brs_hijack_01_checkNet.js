@@ -37,13 +37,13 @@ function loadValue()
 			if(hijack_process == 2 && parent.first_hdd_nofind == 0)
 				cf.submit();
 			else
-				this.location.href = "BRS_success.html";
+				this.location.href = "BRS_security.html";
 		}
 		else{
 			if(hijack_process == 2)
 				cf.submit();
 			else
-				this.location.href = "BRS_success.html";		
+				this.location.href = "BRS_security.html";		
 		}
 		finish=1;
 	  }

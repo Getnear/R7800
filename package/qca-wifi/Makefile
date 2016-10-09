@@ -13,7 +13,7 @@ PKG_NAME:=qca-wifi
 # This value is custom to this package
 # The first version will be used as a default and the other selectable
 # in the menuconfig
-PKG_VERSION:=10.4-4.0.1756.225
+PKG_VERSION:=10.4-4.0.1756.382
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
@@ -110,7 +110,7 @@ QCAWLAN_MODULE_LIST+=$(strip $(call if_opt_set, ATH_SW_WOW_SUPPORT, \
 
 ifneq ($(CONFIG_QCA_WIFI_USE_DNI_GIT),)
 PKG_GIT_DIR=madwifi-11n.git
-QCA_WIRELESS_GIT_TREEISH=3c1827c69ae031f8ab8f62221236ea961a2f562f
+QCA_WIRELESS_GIT_TREEISH=03b27f4e1f6d7256a520cac9da392f86a727ed5e
 
 ifneq ($(CONFIG_QCA_WIFI_USE_CLIENT_BRIDGE),)
   DNI_EXTRA_FLAGS+=-DENABLE_CLIENT_BRIDGE
@@ -167,6 +167,9 @@ $(call Package/$(PKG_NAME)/override_version,kmod-$(PKG_NAME),$(PKG_SUPPORTED_VER
 endef
 
 #########################################################
+################### INSTALLDEV RULES ####################
+#########################################################
+
 ################# BUILD/INSTALL RULES ###################
 #########################################################
 

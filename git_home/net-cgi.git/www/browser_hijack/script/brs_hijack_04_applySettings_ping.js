@@ -23,14 +23,14 @@ function loadValue()
 	if( apmode_flag == "1" && ap_mode == "1" && ap_mode_detection_flag == "1" )
 	{
 		if(ping_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 		else if(ping_result == "failed")
 			this.location.href = "BRS_05_networkIssue.html";
 	}
 	if(wan_proto == "3g") //3g
 	{
 		if(ping_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 		else if(ping_result == "failed")
 			this.location.href = "BRS_05_networkIssue.html";
 	}
@@ -58,7 +58,7 @@ function loadValue()
 	else
 	{
 		if(ping_result == "success")
-			this.location.href = "BRS_success.html";
+			this.location.href = "BRS_security.html";
 		else if(ping_result == "failed")
 			this.location.href = "BRS_05_networkIssue.html";
 	}

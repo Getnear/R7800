@@ -79,6 +79,10 @@ start0() # $1: boot/start
 {
 	local opmode=$($CONFIG get i_opmode)
 
+	# Stop Traffic Meter
+	/sbin/cmd_traffic_meter stop
+	/usr/bin/killall tfm_led
+
 	setup_hostname $opmode
 
 	ifconfig ethlan up

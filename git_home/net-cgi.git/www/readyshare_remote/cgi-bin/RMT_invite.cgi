@@ -6,6 +6,7 @@ refreshed_page="/cgi-bin/RMT_invite.htm"
 #SYS_PREFIX=$(${nvram} get leafp2p_sys_prefix)
 
 EXEC_RESULT="register_fail"
+eval ${nvram} set readycloud_user_password="$FORM_TXT_remote_passwd"
 
 #cd "${SYS_PREFIX}/bin"
 #. "/opt/rcagent/scripts/comm.sh"
@@ -26,6 +27,7 @@ case "$FORM_submit_flag" in
 		else
 			OLD_USER_NAME=$(${nvram} get readycloud_user_admin)
 			${nvram} set readycloud_enable=1
+			/usr/sbin/update_user
 			if [ "x$FORM_TXT_remote_login" != "x$OLD_USER_NAME" ]; then
 				${nvram} set readycloud_user_admin=$FORM_TXT_remote_login
 			fi
@@ -51,6 +53,7 @@ case "$FORM_submit_flag" in
 		RESULT=$(${nvram} get readycloud_registration_owner)
 		if [ "x$RESULT" = "x" ]; then
 			${nvram} set readycloud_enable=0
+			/usr/sbin/update_user
 			EXEC_RESULT="unreg_ok"
 		else
 			EXEC_RESULT="unreg_fail"

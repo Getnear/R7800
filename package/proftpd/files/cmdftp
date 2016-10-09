@@ -8,6 +8,9 @@ proftpd_anony=/tmp/ftp_anony.conf
 TMP_DEVICE_NAME=/tmp/tmp_device_name_xyz
 TMP_LOCK_FILE=/tmp/tmp_lock_abc123xyz
 
+# ftp_passwd_enable=`${config} get usb_passwdFvia`
+ftp_passwd_enable=0
+
 check_all_folder_limit()
 {
 	if [ -f /tmp/shared_usb_folder ]; then rm -f /tmp/shared_usb_folder; fi
@@ -91,36 +94,61 @@ checkout_other_user_read()
 
 append_read_allowuser()
 {
-	case "$1" in
-		0) echo "			AllowUser admin"
-		   echo "			AllowUser guest";;
-        	1) echo "			AllowUser guest";;
-        	2) echo "			AllowUser admin";;
-		*);;
-	esac
+
+	if [ "x$ftp_passwd_enable" = "x0" ];then
+		case "$1" in
+			0) echo "			AllowUser admin"
+			   echo "			AllowUser guest";;
+		    1) echo "			AllowUser guest";;
+			2) echo "			AllowUser admin";;
+			*);;
+		esac
+	else 
+		case "$1" in
+			0 | 1 | 2) 
+				echo "			AllowUser admin";;
+			*);;
+		esac
+	fi
 	checkout_other_user_read $2
 }
 
 append_write_allowuser()
 {
-	case "$1" in
-		0) echo "			AllowUser admin"
-		   echo "			AllowUser guest";;
-        	1) echo "			AllowUser admin";;
-        	2) echo "			AllowUser admin";;
-		*);;
-	esac
+	if [ "x$ftp_passwd_enable" = "x0" ];then
+		case "$1" in
+			0) echo "			AllowUser admin"
+			   echo "			AllowUser guest";;
+		    1) echo "			AllowUser admin";;
+			2) echo "			AllowUser admin";;
+			*);;
+		esac
+	else 
+		case "$1" in
+			0 | 1 | 2) 
+				echo "			AllowUser admin";;
+			*);;
+		esac
+	fi
 	checkout_other_user_write $2
 }
 
 append_display_allowuser()
 {
-	case "$1" in
-		0 | 1) echo "			AllowUser admin"
-		   echo "			AllowUser guest";;
-        	2) echo "			AllowUser admin";;
-		*);;
-	esac
+	if [ "x$ftp_passwd_enable" = "x0" ];then
+		case "$1" in
+			0 | 1) echo "			AllowUser admin"
+			   echo "			AllowUser guest";;
+		    2) echo "			AllowUser admin";;
+			*);;
+		esac
+	else 
+		case "$1" in
+			0 | 1 | 2) 
+				echo "			AllowUser admin";;
+			*);;
+		esac
+	fi
 	checkout_other_user_display $2
 }
 
@@ -235,8 +263,14 @@ print_common_tail()
 {
 	cat <<EOF
 </Global>
-Include $proftpd_anony
+
 EOF
+
+if [ "x$ftp_passwd_enable" = "x0" ];then
+	cat <<EOF
+	Include $proftpd_anony
+EOF
+fi
 }
 
 umount_all()
@@ -669,8 +703,10 @@ scan_sharefoler_in_this_disk() #$1: dev $2: vendor $3: volume $4:label $5:disk_i
 	                	if [ "$relative_path" = "/" ];then
 	                		root_share="$sharename"
 	                	fi
-	                        print_onesharefolder_config "$sharename" "$access" "$j"
-				print_share_anonymous_config "$sharename" "$access" "$j" "$relative_path" "$root_share"
+                            print_onesharefolder_config "$sharename" "$access" "$j"
+							if [ "x$ftp_passwd_enable" = "x0" ];then
+	                            print_share_anonymous_config "$sharename" "$access" "$j" "$relative_path" "$root_share"
+							fi
 	                        #map_usb_to_ftp "$1" "$relative_path" "$sharename" "$access" "$j"
 				mount1 "$1" "$relative_path" "$sharename" ftpadmin 0 
 	                fi

@@ -18,7 +18,7 @@ if(parent.type == "basic")
 	<script>
 		var master="<% cfg_get("http_loginname") %>";
 		if( master == "admin" )
-			document.write('<input class="new_cancel_bt ui-corner-all" type="button" name="Cancel" id="cancel" value="$cancel_mark" onClick="qos_advanced();"> &nbsp;&nbsp;<input class="new_apply_bt ui-corner-all" type="button" id="apply" name="Apply" value="$apply_mark" onClick="check_qos_apply(document.forms[0]); return false;">');
+			document.write('<input class="new_cancel_bt ui-corner-all" type="button" name="Cancel" id="cancel" value="$cancel_mark" onClick="qos_advanced();"> &nbsp;&nbsp;<input class="new_apply_bt ui-corner-all" type="button" id="apply" name="Apply" value="$apply_mark" onClick="qos_click_apply();">');
 		else
 			document.write('<input class="new_greycancel_bt ui-corner-all" type="button" name="Cancel" id="cancel" value="$cancel_mark" disabled> &nbsp;&nbsp;<input class="new_greyapply_bt ui-corner-all" type="button" id="apply" name="Apply" value="$apply_mark" disabled>');
 	</script>

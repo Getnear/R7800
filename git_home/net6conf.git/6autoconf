@@ -44,7 +44,7 @@ dhcpv6c_is_running() {
 
 autoconf_wan() {
 	# Change the WAN(eth0) interface to send the IPv6 Router Solicitation
-	echo 0 > /proc/sys/net/ipv6/conf/${WAN}/forwarding
+	echo 1 > /proc/sys/net/ipv6/conf/${WAN}/autoconf
 	echo 1 > /proc/sys/net/ipv6/icmp/ra_sel_flag
 	rs_send -i $WAN -c 3 -t 4 &
 #	ifconfig $WAN down && ifconfig $WAN up

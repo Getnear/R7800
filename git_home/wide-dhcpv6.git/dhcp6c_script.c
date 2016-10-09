@@ -480,7 +480,7 @@ client6_script(scriptpath, state, optinfo)
 					continue;
 
 				memset(dhcp6c_iapd, 0, 256);
-				sprintf(dhcp6c_iapd, "%d %d %s %d",siav->val_prefix6.vltime,
+				sprintf(dhcp6c_iapd, "%lu %lu %s %d",siav->val_prefix6.vltime,
 				    siav->val_prefix6.pltime,
 			            in6addr2str(&siav->val_prefix6.addr, 0),siav->val_prefix6.plen);
 				strlcat(s, dhcp6c_iapd, elen);
@@ -543,7 +543,7 @@ int prefix_timeout_script(vltime, pltime, prefix, prefixlen)
 			goto clean;
 		}
 		memset(s, 0, elen);
-		sprintf(prefixinfo, "%d %d %s %d", vltime, pltime, prefix, prefixlen);
+		sprintf(prefixinfo, "%lu %lu %s %d", vltime, pltime, prefix, prefixlen);
 		snprintf(s, elen, "%s=", prefixinfo_str);
 		strlcat(s, prefixinfo, elen);
 	}

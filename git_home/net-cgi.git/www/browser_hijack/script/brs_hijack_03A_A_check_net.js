@@ -25,7 +25,7 @@ function loadValue()
 	if(checking_result == "failed")	//failed
 		cf.submit();
 	else if(checking_result == "success") //success
-		this.location.href = "BRS_success.html";
+		this.location.href = "BRS_security.html";
 }
 
 addLoadEvent(initPage);

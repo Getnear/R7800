@@ -1367,6 +1367,12 @@ enable_qcawifi() {
 		# Force assocwar160 enabled when HT80_80 or HT160 is selected
 		[ "$htmode" = "HT80_80" -o "$htmode" = "HT160" ] && iwpriv "$ifname" assocwar160 1
 
+		config_get rawdwepind "$vif" rawdwepind
+		[ -n "$rawdwepind" ] && iwpriv "$ifname" rawdwepind "$rawdwepind"
+
+		config_get revsig160  "$vif" revsig160
+		[ -n "$revsig160" ] && iwpriv "$ifname" revsig160 "$revsig160"
+
 		if [ "$ODM" != "dni" ]; then
 			local net_cfg bridge
 			net_cfg="$(find_net_config "$vif")"

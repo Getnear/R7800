@@ -21,7 +21,6 @@ endef
 
 define Build/Prepare
 	$(CP) $(GIT_HOME)/qsdk-wifi-script.git/* $(PKG_BUILD_DIR)/
-	$(call Build/Patch/Default)
 endef
 
 define Build/Compile

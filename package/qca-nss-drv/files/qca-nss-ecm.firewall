@@ -1,6 +1,0 @@
-#!/bin/sh
-
-. /lib/functions.sh
-include /lib/firewall
-
-fw add i f forwarding_rule ACCEPT { -m physdev --physdev-is-bridged }
