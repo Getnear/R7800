@@ -485,6 +485,12 @@ bh_ap_mode_tips="Ak sa chcete vyhnúť rušeniu, ktoré by mohlo mať negatívny
 bh_mode_query="Mohli by ste vypnúť sieť WiFi vašej existujúcej brány?"
 bh_mode_yes_tips="Skopírujte aktuálne nastavenia siete WiFi z existujúcej brány a zadajte ich sem. Potom vypnite sieť WiFi vašej existujúcej brány."
 bh_mode_no_tips="Ak chcete zabrániť pripájaniu bezdrôtových zariadení k existujúcej bráne, použite nasledujúci názov (SSID) a heslo (sieťový kľúč) na pripojenie všetkých bezdrôtových zariadení k tomuto smerovaču."
+ssid_null="Identifikátor SSID nesmie byť prázdny."
+ssid_not_allowed="Znak nie je povolený v SSID"
+notallowpassps="Heslo pozostáva z 8 až 63 znakov ASCII alebo presne 64 hexadecimálnych znakov. Hexadecimálne znaky sú tieto znaky: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Heslo je príliš krátke. Minimálna dĺžka hesla je 8 znakov."
+passphrase_long63="Heslo je príliš dlhé. Maximálna dĺžka je 63 znakov."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="Spoločnosť NETGEAR odporúča, aby ste tento nový smerovač nastavili v režime smerovača."
 bh_router_suggest_str_2="Režim smerovača umožňuje využívanie všetkých rozšírených funkcií smerovača NETGEAR. V prípade potreby môžete znova spustiť Sprievodcu nastavením a zmeniť režim neskôr."

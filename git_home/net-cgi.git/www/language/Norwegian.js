@@ -485,6 +485,12 @@ bh_ap_mode_tips="For å unngå WiFi-forstyrrelser som kan redusere WiFi-ytelsen,
 bh_mode_query="Kan du deaktivere WiFi-funksjonen til den eksisterende gatewayen?"
 bh_mode_yes_tips="Kopier dine nåværende WiFi-innstillinger fra den eksisterende gatewayen, og angi dem her. Deretter deaktiverer du WiFi-funksjonen til den eksisterende gatewayen."
 bh_mode_no_tips="Du kan hindre at de trådløse enhetene dine kobler seg til den eksisterende gatewayen, ved å bruke følgende navn (SSID) og passord (nettverksnøkkel) til å koble alle de trådløse enhetene dine til denne ruteren."
+ssid_null="SSID kan ikke være tom."
+ssid_not_allowed="Tegnet er ikke tillatt i SSID"
+notallowpassps="Et passord består av enten 8–63 ASCII-tegn eller nøyaktig 64 heksadesimale sifre. Et heksadesimalt siffer er ett av følgende tegns: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Passordet er for kort. Det må bestå av minst 8 tegn."
+passphrase_long63="Passordet er for langt. Det kan ikke bestå av mer enn 63 tegn."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR anbefaler at du konfigurerer denne nye ruteren i rutermodus."
 bh_router_suggest_str_2="Med rutermodus kan du bruke alle de avanserte funksjonene til NETGEAR-ruteren. Du kan alltid kjøre konfigureringsveiviseren på nytt for å endre modus senere."

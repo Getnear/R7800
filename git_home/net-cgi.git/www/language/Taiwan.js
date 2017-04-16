@@ -485,6 +485,12 @@ bh_ap_mode_tips="如要避免 WiFi 干擾影響 Wifi 效能，NETGEAR 建議您�
 bh_mode_query="您可以停用現有閘道的 WiFi 嗎？"
 bh_mode_yes_tips="從現有閘道複製您目前的 WiFi 設定並將其輸入到這裡。 然後停用現有的閘道 WiFi。"
 bh_mode_no_tips="如要預防您的 WiFi 裝置連線至現有閘道，請使用下列名稱 (SSID) 及密碼（網路金鑰）將您所有的 WiFi 裝置連線至此路由器。"
+ssid_null="SSID 不能為空白。"
+ssid_not_allowed="該字元不允許用於 SSID。"
+notallowpassps="密碼由 8 到 63 個 ASCII 字元組成，或為精確的 64 個十六進位數字。十六進位數字為以下字元之一：0、1、2、...、8、9、A、B、C、D、E、F。"
+passphrase_short8="密碼長度不足。至少應為 8 個字元。"
+passphrase_long63="密碼過長。最大長度為 63 個字元。"
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR 建議您將此新路由器設到「路由器模式」。"
 bh_router_suggest_str_2="「路由器模式」能讓您使用 NETGEAR 路由器所有的進階功能。 您之後可以隨時再次執行設定精靈來變更模式。"

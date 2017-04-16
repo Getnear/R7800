@@ -485,6 +485,12 @@ bh_ap_mode_tips="Firma NETGEAR zaleca wyłączenie funkcji WiFi w istniejącym u
 bh_mode_query="Czy możesz wyłączyć funkcję WiFi w istniejącym urządzeniu bramy?"
 bh_mode_yes_tips="Skopiuj bieżące ustawienia sieci WiFi z istniejącego urządzenia bramy i wprowadź je w tym miejscu. Następnie wyłącz funkcję WiFi w istniejącym urządzeniu bramy."
 bh_mode_no_tips="Aby uniemożliwić urządzeniom nawiązywanie połączeń z istniejącym urządzeniem bramy, połącz wszystkie urządzenia WiFi z routerem za pomocą następującego identyfikatora SSID i hasła (klucza sieciowego)."
+ssid_null="Identyfikator SSID nie może być wartością pustą!"
+ssid_not_allowed="Identyfikator SSID nie może zawierać tego znaku"
+notallowpassps="Hasło zawiera od 8 do 63 znaków ASCII lub dokładnie 64 cyfry szesnastkowe. Cyfra szesnastkowa to jeden z następujących znaków: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Hasło jest zbyt krótkie. Musi ono zawierać co najmniej 8 znaków."
+passphrase_long63="Hasło jest zbyt długie. Maksymalna długość wynosi 63 znaki."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="Firma NETGEAR zaleca przestawienie nowego urządzenia w tryb routera"
 bh_router_suggest_str_2="Tryb routera zapewnia dostęp do wszystkich zaawansowanych funkcji routera NETGEAR. Zawsze możesz zmienić tryb pracy urządzenia później, uruchamiając ponownie kreatora instalacji."

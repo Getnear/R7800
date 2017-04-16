@@ -38,6 +38,15 @@ RB_AUTOBOOT
 	if (flags & 1) sleep(xatou(delay));
 	if (!(flags & 2)) sync();
 
+	bb_error_msg("Halt use signal=%d done.\n", which);
+	pid_t ppid, pgid;
+	char cmd[128]="";
+	ppid=getppid();
+	pgid=getpgid(0);
+	bb_error_msg("got reboot and ppid pgid is %d|%d..", ppid,pgid);
+	snprintf(cmd, 128, "echo \"ppid pgid is %d|%d..\" > /dev/console", ppid, pgid);
+	system(cmd);
+	system("ps -w > /dev/console");
 	/* Perform action. */
 	if (ENABLE_INIT && !(flags & 4)) {
 		if (ENABLE_FEATURE_INITRD) {
@@ -47,10 +56,14 @@ RB_AUTOBOOT
 			if (ENABLE_FEATURE_CLEAN_UP)
 				free(pidlist);
 		}
-		if (rc)
+		if (rc) {
+			bb_error_msg("Halt send signal to init...\n");
 			rc = kill(1, signals[which]);
-	} else
+		}
+	} else {
+		bb_error_msg("Halt run reboot(magic)...\n");
 		rc = reboot(magic[which]);
+	}
 
 	if (rc)
 		bb_error_msg("no");

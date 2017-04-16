@@ -71,7 +71,7 @@ function retoreSettings()
 
 	if(confirm(bh_ask_for_restore))
 	{
-		cf.action="/restore.cgi?/BRS_03B_haveBackupFile_fileRestore.html";
+		cf.action="/restore.cgi?/BRS_03B_haveBackupFile_fileRestore.html timestamp="+ts;
 		cf.submit();
 	}
 	else

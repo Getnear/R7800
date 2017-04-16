@@ -485,6 +485,12 @@ bh_ap_mode_tips="Om te voorkomen dat WiFi-interferentie de prestaties belemmert,
 bh_mode_query="Kunt u de WiFi van uw bestaande gateway uitschakelen?"
 bh_mode_yes_tips="Kopieer uw huidige WiFi-instellingen van de bestaande gateway en voer ze hier in. Schakel vervolgens de WiFi van uw bestaande gateway uit."
 bh_mode_no_tips="Om te voorkomen dat uw WiFi-apparaten verbinding maken met de bestaande gateway, gebruikt u de volgende naam (SSID) en het volgende wachtwoord (netwerksleutel) om al uw WiFi-apparaten te verbinden met deze router."
+ssid_null="SSID mag niet leeg zijn."
+ssid_not_allowed="Teken mag niet in SSID worden gebruikt"
+notallowpassps="Een password bestaat uit 8 tot 63 ASCII-tekens of uit exact 64 hexadecimale tekens. Een hexadecimaal teken is een van de volgende tekens: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Password is niet lang genoeg. Het password dient uit minimaal 8 tekens te bestaan."
+passphrase_long63="Het password is te lang. Het password mag uit maximaal 63 tekens bestaan."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR raadt u aan om deze nieuwe router in de routermodus te configureren."
 bh_router_suggest_str_2="In de routermodus kunt u alle geavanceerde functies van uw NETGEAR-router gebruiken. U kunt de installatiewizard later altijd nogmaals uitvoeren om de modus te wijzigen."

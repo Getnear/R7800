@@ -59,6 +59,7 @@ start() {
 	# start SIP ALG module
 	/sbin/cmd_sipalg
 
+	insmod /lib/ufsd/jnl.ko
 	insmod /lib/ufsd/ufsd.ko
 
 	# disable wifi under factory_mode

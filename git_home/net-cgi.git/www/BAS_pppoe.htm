@@ -8,6 +8,7 @@ var in_hijack=( "<% cfg_get("dns_hijack") %>" == "1" && "<% cfg_get("hijack_proc
 <% cfg_set("run_test", "no") %>
 <% commit() %>
 var ipv6_type = "<% cfg_get("ipv6_type") %>";
+var ipv6_sameinfo = "<% cfg_get("ipv6_sameinfo") %>";
 var connection_type = "<% cat_file("/tmp/ipv6_auto_output") %>";
 var lan_ip="<% cfg_get("lan_ipaddr") %>";
 var lan_subnet="<% cfg_get("lan_netmask") %>";
@@ -125,7 +126,7 @@ function loadvalue()
 	init_passwd();
 	form.pppoe_dod.value = '<% cfg_get("wan_pppoe_demand") %>';
 	show_idleout(form,form.pppoe_dod.value);
-	if(ipv6_type=="6to4" || (ipv6_type=="autoDetect"&&connection_type=="6to4 Tunnel"))
+	if(ipv6_type=="6to4" || (ipv6_type=="autoDetect"&&connection_type=="6to4 Tunnel") || (ipv6_type=="pppoe" && ipv6_sameinfo=="1"))
 	{
 		form.pppoe_dod.value = '0';	//bug 31125
 		form.pppoe_dod.disabled = true;

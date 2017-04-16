@@ -485,6 +485,12 @@ bh_ap_mode_tips="Pour éviter toute interférence pouvant compromettre les perfo
 bh_mode_query="Pouvez-vous désactiver le WiFi sur votre passerelle existante ?"
 bh_mode_yes_tips="Copiez les paramètres WiFi actuels de votre passerelle existante et saisissez-les ici. Désactivez ensuite le WiFi sur votre passerelle existante."
 bh_mode_no_tips="Pour éviter que les appareils WiFi ne se connectent à la passerelle existante, utilisez le nom de réseau (SSID) et le mot de passe (clé réseau) pour connecter tous les appareils WiFi à ce routeur."
+ssid_null="Le SSID ne peut pas être vide."
+ssid_not_allowed="Ce caractère n'est pas autorisé dans le SSID."
+notallowpassps="Un mot de passe comprend entre 8 et 63 caractères ASCII ou exactement 64 caractères hexadécimaux. Exemple de valeurs hexadécimales : 0, 1, 2, ..., 8, 9, A, B, C, D, E et F."
+passphrase_short8="Mot de passe trop court. Le minimum est de 8 caractères."
+passphrase_long63="Le mot de passe est trop long. Le maximum est de 63 caractères."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR vous recommande de configurer ce nouveau routeur en mode Routeur."
 bh_router_suggest_str_2="Le mode Routeur vous permet d'utiliser toutes les fonctionnalités avancées de votre routeur NETGEAR. Vous pouvez toujours changer de mode en relançant l'assistant de configuration."

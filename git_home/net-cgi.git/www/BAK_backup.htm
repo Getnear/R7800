@@ -13,7 +13,8 @@ var endis_wl_radio='<% enable_ap_orNot("bgn") %>';
 var endis_wla_radio='<% enable_ap_orNot("an") %>';
 
 var master="<% cfg_get("http_loginname") %>";
-
+<% refresh_timestamp("backup_save", "backup_restore") %>
+var ts = "<% cfg_get("backup_save") %>";
 </script>
 <% table_header() %>
 $bluebar

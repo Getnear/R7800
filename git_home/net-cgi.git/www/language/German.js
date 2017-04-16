@@ -485,6 +485,12 @@ bh_ap_mode_tips="Zur Vermeidung von WLAN-Interferenzen, die möglicherweise die 
 bh_mode_query="Können Sie das WLAN Ihres vorhandenen Gateway deaktivieren?"
 bh_mode_yes_tips="Kopieren Sie Ihre aktuellen WLAN-Einstellungen vom vorhandenen Gateway und geben Sie sie hier ein. Dann deaktivieren Sie das WLAN Ihres vorhandenen Gateway."
 bh_mode_no_tips="Um zu verhindern, dass die WLAN-Geräte eine Verbindung mit dem vorhandenen Gateway herstellen, verwenden Sie den folgenden Namen (SSID) und das Passwort (Netzwerkschlüssel), um alle Ihre WLAN-Geräte mit diesem Router zu verbinden."
+ssid_null="SSID darf nicht leer sein."
+ssid_not_allowed="Dieses Zeichen ist in der SSID nicht zulässig."
+notallowpassps="Ein Passwort besteht entweder aus 8 bis 63 ASCII-Zeichen oder aus genau 64 Hexziffern. Eine Hexziffer entspricht einem der folgenden Zeichen: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Passwort ist zu kurz. Es muss aus mindestens 8 Zeichen bestehen."
+passphrase_long63="Das Passwort ist zu lang. Es darf höchstens 63 Zeichen lang sein."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR empfiehlt, dass Sie diesen neuen Router im Router-Modus einrichten."
 bh_router_suggest_str_2="Der Router-Modus ermöglicht die Verwendung aller erweiterten Funktionen Ihres NETGEAR-Routers. Sie können immer noch den Setup-Assistenten erneut ausführen, um später den Modus zu ändern."

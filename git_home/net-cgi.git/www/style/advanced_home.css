@@ -9,7 +9,7 @@ body{background-color: #e5e5e5; width: 660px;}
 
 .adv_icon .title_doubleline { width: 328px; height: 34px;background:url(../image/adv_home_icon.gif) no-repeat 0 0;}
 .adv_icon .title_doubleline img {margin: 7px 4px auto 4px; float:left;}
-.adv_icon .title_doubleline b{position:relative;float:left;width:260px; top: 1px; font-family: Arial; font-size: 14px; color: #e5e5e5; text-decoration: underline;}
+.adv_icon .title_doubleline b{position:relative;float:left;width:260px; top: 8px; font-family: Arial; font-size: 14px; color: #e5e5e5; text-decoration: underline;}
 .icon_table{ table-layout:fixed; word-wrap:break-word; }
 .adv_icon tr td{font:12px arial; color: #404040; line-height: 13px;}
 .adv_icon tr td b{font: bold 12px arial; position:relative; left: 5px; line-height: 13px;}

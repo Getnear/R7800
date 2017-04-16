@@ -54,7 +54,18 @@ restore() {
 	rm -rf /tmp/clouddir
 }
 
+install_local(){
+	tar -zxvf /lib/readygeniecloud-r7800new-20161026-01.tar.gz -C /
+	echo 20161026 > /opt/version
+	sed '2s/^/source \/etc\/profile\n/' /opt/rcagent/run_server.sh > /tmp/run_server.sh
+	cp /tmp/run_server.sh /opt/rcagent/run_server.sh
+
+	start
+}
+
 update() {
+	local cloud_binary_install=$(/bin/config get cloud_binary_install)
+	install_local
 	[ -f /tmp/.cloud_updated ] && return 1
 	PID_file=/var/run/cloud.pid
 	[ -f $PID_file ] && return 1
@@ -62,7 +73,7 @@ update() {
 	echo "start to get info from ftp://updates1.netgear.com/sw-apps/ready-genie-cloud/r7800/"
 	retry_count=0
 	while [ 1 ]; do
-		curl ftp://updates1.netgear.com/sw-apps/ready-genie-cloud/r7800/ 2>/dev/null | grep readygeniecloud-r7800-*-.*.tar.gz > /tmp/cloud_info
+		curl ftp://updates1.netgear.com/sw-apps/ready-genie-cloud/r7800/ 2>/dev/null | grep readygeniecloud-r7800new-*-.*.tar.gz > /tmp/cloud_info
 		[ -s /tmp/cloud_info ] && break
 		echo "cannot access ftp://updates1.netgear.com/sw-apps/ready-genie-cloud/r7800/ or don't find readygeniecloud tarball with version $version"
 		dynamic_sleep

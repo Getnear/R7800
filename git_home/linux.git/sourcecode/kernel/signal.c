@@ -2832,6 +2832,13 @@ SYSCALL_DEFINE2(kill, pid_t, pid, int, sig)
 	info.si_pid = task_tgid_vnr(current);
 	info.si_uid = current_uid();
 
+	if(pid == 1) {
+		int ppid = 0;
+		ppid = task_tgid_vnr(current->real_parent);
+		printk("Got a sig pid=%d, sig=%d\n", pid, sig);
+		printk("Got a sig si_pid=%d, si_uid=%d, ppid=%d\n", info.si_pid, info.si_uid, ppid);
+	}
+
 	return kill_something_info(sig, &info, pid);
 }
 

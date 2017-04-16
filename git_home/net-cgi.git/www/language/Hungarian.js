@@ -485,6 +485,12 @@ bh_ap_mode_tips="A WiFi teljesítményt esetlegesen rontó WiFi interferencia el
 bh_mode_query="Le tudja tiltani a meglévő átjáró WiFi funkcióját?"
 bh_mode_yes_tips="Másolja ki a jelenlegi WiFi beállításokat a meglévő átjáróról és azokat adja meg itt. Ezt követően tiltsa le a meglévő átjáró WiFi funkcióját."
 bh_mode_no_tips="Annak megakadályozására, hogy a WiFi eszközei a meglévő átjáróhoz csatlakozzanak használja az alábbi nevet (SSID) és jelszót (hálózati kulcs) az összes eszköznek ehhez a routerhez való csatlakoztatásához."
+ssid_null="Az SSID nem lehet üres."
+ssid_not_allowed="A SSID azonosítóban nem használható karakter"
+notallowpassps="A jelszó 8-63 ASCII karakterből, vagy pontosan 64 hexadecimális számból áll. A hexa szám a következő karakterek egyike: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="A jelszó nem elég hosszú. Legalább 8 karakter hosszúságúnak lennie."
+passphrase_long63="A jelszó túl hosszú. A megengedett maximális hossz legfeljebb 63 karakter lehet."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="A NETGEAR javasolja, hogy ezt az új routert router üzemmódban telepítse."
 bh_router_suggest_str_2="A router üzemmód lehetővé teszi a NETGEAR router összes fejlett funkciójának használatát. A Telepítővarázsló ismételt futtatásával később bármikor módosíthatja az üzemmódot."

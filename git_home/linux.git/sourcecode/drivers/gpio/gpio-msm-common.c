@@ -1546,6 +1546,7 @@ static void reset_gpio_work_func(struct work_struct *work)
 			msm_gpio_set(r7500_gpio_chip, R7500_GPIO_LED_PWR, R7500_LED_OFF);
 			msm_gpio_set(r7500_gpio_chip, R7500_GPIO_LED_TEST, R7500_LED_OFF);
 
+			printk("Reset-Button  Reboot");
 			kobject_uevent_env(r7500_button_obj, KOBJ_CHANGE,
 					time_before(jiffies, (time_when_press + RESET2DEF_TIMEVAL)) ? envp_reboot : envp_default);
 		}

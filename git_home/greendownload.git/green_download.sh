@@ -4,6 +4,7 @@ user_name=admin
 user_home=/tmp/greendownload
 
 green_dl_path="$(/bin/config get green_download_path)"
+green_volume_uuid="$(/bin/config get green_volume_uuid)"
 mount_point=/tmp/jffs2_green_download
 
 work_dir=$user_home/work_dir
@@ -43,6 +44,31 @@ is_prru() {
 	fi
 }
 
+is_dafake(){
+	local curr_uuid
+	[ "x$(ls /tmp/mnt)" = "x" ] && echo "No USB Drive for greendownlaod,exit" && exit
+	sd=$(echo $1 |awk -F"/" '{print $3}')
+	curr_uuid=$(vol_id -u /dev/$sd 2>/dev/null)
+	#both Drive and mount point not changed
+	if [ "x$curr_uuid" = "x$2" ];then
+		[ -d $1 ] && return 0
+	fi
+	#modify download path
+	[ -d $1 -a "x$curr_uuid" != "x" ] && green_volume_uuid=$curr_uuid && return 0 
+	for sdx in $(ls /tmp/mnt)
+	do
+		curr_uuid=$(vol_id -u /dev/$sdx 2>/dev/null)
+		[ "x$curr_uuid" = "x" ] && continue
+		#Drive not change,but mount point changed
+		if [ "x$2" = "x$curr_uuid" ];then
+			folder=$(echo $1 |cut -d'/' -f4-)
+			green_dl_path="/mnt/$sdx/$folder"
+			[ -d $green_dl_path ] && return 0
+		fi
+	done
+	return 1
+}
+
 start() {
 	local download_state="$(/bin/config get green_download_enable)"
 	[ "x$download_state" != "x1" ] && exit
@@ -53,13 +79,51 @@ start() {
 #	/bin/config set green_download_enable=0
 	sync
 #	echo 3 > /proc/sys/vm/drop_caches
+
+	if [ "x$green_volume_uuid" = "x" ];then
+		[ "x$green_dl_path" = "x" ] && green_dl_path="/mnt/sda1"
+		if [ -d $green_dl_path -a "x$(vol_id -u /dev/sda1 2>/dev/null)" != "x" ];then
+			green_volume_uuid=$(vol_id -u /dev/sda1 2>/dev/null)
+			/bin/config set green_download_path=$green_dl_path 
+			/bin/config set green_volume_uuid=$green_volume_uuid
+		else
+			[ "x$(ls /tmp/mnt)" = "x" ] && echo "No USB Drive for greendownlaod,exit" && exit
+			for sdx in $(ls /tmp/mnt)
+			do
+				[ ! -d "$sdx" ] && continue
+				current_uuid=$(vol_id -u /dev/$sdx 2>/dev/null)
+				[ "x$current_uuid" = "x" ] && continue
+				green_dl_path="/mnt/$sdx"
+				green_volume_uuid=$current_uuid
+				/bin/config set green_download_path=$green_dl_path 
+				/bin/config set green_volume_uuid=$green_volume_uuid
+				break
+			done
+		fi
+	else
+		if is_dafake $green_dl_path $green_volume_uuid  ;then
+			/bin/config set green_download_path=$green_dl_path 
+			/bin/config set green_volume_uuid=$green_volume_uuid
+		fi
+	fi
 	dev=$green_dl_path
 	#prepare download directory and check if it can be accessable
 	[ ! -d "$green_dl_path" ] && {
 		#[ $start_from_GUI -eq 1 ] && /bin/config set green_download_status=2
-		green_dl_path=/mnt/sda1
-		dev=/mnt/sda1
-		/bin/config set green_download_path=/mnt/sda1
+		[ "x$(ls /tmp/mnt)" = "x" ] && echo "No USB Drive for greendownlaod,exit" && exit
+		for sdx in $(ls /tmp/mnt)
+		do
+			[ ! -d "/mnt/$sdx" ] && continue
+			current_uuid=$(vol_id -u /dev/$sdx 2>/dev/null)
+			[ "x$current_uuid" = "x" ] && continue
+			green_dl_path="/mnt/$sdx"
+			green_volume_uuid=$current_uuid
+			/bin/config set green_download_path=$green_dl_path 
+			/bin/config set green_volume_uuid=$green_volume_uuid
+			/bin/config set green_disk_lable="U:/"
+			break
+		done		
+		dev=$green_dl_path
 	}
 
 	#test filesystem can write ?

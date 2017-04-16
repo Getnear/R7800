@@ -12,6 +12,8 @@
 <% hijack_language() %>
 </head>
 <script>
+<% refresh_timestamp("backup_restore") %>
+var ts = "<% cfg_get("backup_restore") %>";
 var master="<% cfg_get("http_loginname") %>";
 </script>
 

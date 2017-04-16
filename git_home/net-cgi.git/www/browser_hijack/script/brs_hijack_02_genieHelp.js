@@ -48,10 +48,7 @@ function genieHelpChecking()
 		if(confirm(bh_no_genie_help_confirm) == false)
 			return false;
 
-		cf.action = "/apply.cgi?/index.htm timestamp=" + ts;
-		cf.target = "_top";
-		cf.submit_flag.value = "hijack_toBasic";
-		cf.submit();
+		this.location.href = "BRS_security.html";
 	}
 	else if(choices[2].checked)
 	{

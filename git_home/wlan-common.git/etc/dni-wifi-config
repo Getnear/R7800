@@ -274,13 +274,15 @@ if [ -n "$DNI_CONFIG" ]; then
                 ;;
             10)
                 wla_hwmode=11ac;
-                wla_htmode=HT80_80;
+                wla_htmode=HT160;
                 case "$wla_channel" in
-                    36|40|44|48)
+                    132|136|140|144)
+			wla_htmode=HT80_80
                         wla_cfreq2=5775;
                         ;;
                     149|153|157|161)
-                        wla_cfreq2=5210;
+			wla_htmode=HT80_80
+                        wla_cfreq2=5690;
                         ;;
                 esac
                 ;;

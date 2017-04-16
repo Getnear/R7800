@@ -64,13 +64,13 @@ function preSecurityInit()
 	if(an_router_flag == "0")
 	 	networkName_text = document.createTextNode(bh_wirless_name);
 	else if(an_router_flag == "1")
-		networkName_text = document.createTextNode("2.4GHz " + bh_wirless_name);
+		networkName_text = document.createTextNode(bh_wl_ssid_name);
 
 	networkName_div.appendChild(networkName_text);
 
 	//5GHz
 	networkName_div = document.getElementById("network_name_5G");
-	networkName_text = document.createTextNode("5GHz " + bh_wirless_name);
+	networkName_text = document.createTextNode(bh_wla_ssid_name);
 	networkName_div.appendChild(networkName_text);
 
 	var div_5G = document.getElementById("div_5G");

@@ -485,6 +485,12 @@ bh_ap_mode_tips="为避免可能有损 WiFi 性能的 WiFi 干扰，NETGEAR（�
 bh_mode_query="您能禁用现有网关的 WiFi 吗？"
 bh_mode_yes_tips="复制现有网关的当前 WiFi 设置，然后在此输入。 然后禁用现有网关的 WiFi。"
 bh_mode_no_tips="为防止您的 WiFi 设备连接到现有网关，使用以下名称 (SSID) 和密码（网络密钥）将您的所有 WiFi 设备连接到此路由器。"
+ssid_null="无线网络标识(SSID)不能为空！"
+ssid_not_allowed="使用了不允许用于无线网络标识(SSID)的字符。"
+notallowpassps="密码由 8 至 63 个 ASCII 字符组成，或为精确的 64 位十六进制数字。 十六进制数字为以下字符之一：0、1、2、...、8、9、A、B、C、D、E、F。"
+passphrase_short8="密码长度不足。 至少应为 8 个字符。"
+passphrase_long63="密码过长。 最大长度为 63 个字符。"
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR（美国网件公司）建议您采用路由器模式设置这台新路由器。"
 bh_router_suggest_str_2="路由器模式允许您使用 NETGEAR 路由器的所有高级功能。 您以后随时可以重新运行设置向导来更改模式。"

@@ -1,6 +1,6 @@
 function click_backup()
 {
-	document.forms[0].action="/backup.cgi";
+	document.forms[0].action="/backup.cgi?/BAK_backup.htm timestamp="+ts;
 	document.forms[0].submit();
 }
 
@@ -22,7 +22,7 @@ function check_restore()
 
 	if (confirm("$ask_for_restore"))
 	{	
-		cf.action="/restore.cgi?/restore_process.htm";
+		cf.action="/restore.cgi?/restore_process.htm timestamp="+ts;
 		top_left_nolink();
 		top.enable_action=0;
 		cf.submit();

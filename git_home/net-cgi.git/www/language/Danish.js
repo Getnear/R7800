@@ -485,6 +485,12 @@ bh_ap_mode_tips="For at undgå trådløs interferens, som kan forringe WiFi-ydel
 bh_mode_query="Kan du deaktivere din eksisterende gateways WiFi?"
 bh_mode_yes_tips="Kopier dine aktuelle trådløse indstillinger fra den eksisterende gateway, og indtast dem her. Deaktiver derefter din eksisterende gateways WiFi."
 bh_mode_no_tips="For at undgå, at dine WiFi-enheder opretter forbindelse til den eksisterende gateway, skal du bruge følgende navn (SSID) og adgangskode (netværksnøgle) til at tilslutte alle dine WiFi-enheder til routeren."
+ssid_null="SSID må ikke være tom."
+ssid_not_allowed="Tegnet er ikke tilladt i SSID"
+notallowpassps="En adgangskode består af enten 8 til 63 ASCII-tegn eller nøjagtigt 64 hex-cifre. Et hex-ciffer er et af de følgende tegn: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Utilstrækkelig længde på adgangskode. Den skal være på mindst 8 tegn."
+passphrase_long63="Adgangskoden er for lang. Den må maks. være på 63 tegn."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR anbefaler, at du konfigurerer denne nye router i router-tilstand."
 bh_router_suggest_str_2="Router-tilstand giver dig mulighed for at bruge alle de avancerede funktioner i din NETGEAR-router. Du kan altid køre installationsguiden igen for at ændre tilstanden senere."

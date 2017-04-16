@@ -37,6 +37,8 @@ var gui_region = "<% cfg_get("GUI_Region") %>";
 var browser_lang="<% get_browser_language() %>";
 var is_Mac_Win = detectOS();
 var have_wifi_flag = "<% get_have_wifi_flag() %>";
+if(have_wifi_flag != "0" && have_wifi_flag != "1")
+	have_wifi_flag = "1";
 
 function to_success()
 {
@@ -156,18 +158,18 @@ function location_to_OS()
 			<div class="right_div"><% passphrase_ag_msg() %></div>
 			</div>
 			
-			<div id="admin_passwd">
+			<div style="clear:both"></div>
+		</div>
+
+		<div id="admin_passwd">
 			<div class="left_div"><span style="font-weight:bold; text-decoration:underline;"><script>document.write(bh_router_admin)</script></span></div>
 			<div class="right_div"></div>
 			<div class="left_div"><script>document.write(bh_admin_user_name)</script></div>
 			<div class="right_div"><% cfg_get("http_username") %></div>
 			<div class="left_div"><script>document.write(bh_new_admin_passwd)</script></div>
 			<div class="right_div"><% cfg_get("http_passwd") %></div>
-			</div>
-
-			<div style="clear:both"></div>
 		</div>
-	
+
 	</div>
 	
 	<div id="buttons_div_02" class="wizard_buttons_div" align="center">

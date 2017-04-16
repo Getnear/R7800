@@ -89,11 +89,7 @@ function manuallyConfig()
 	  var cf = forms[0];
 
 	  if( hijack_process == "1" )
-	  {
-        	cf.action = "/apply.cgi?/welcomeok.htm timestamp=" + ts;
-		cf.submit_flag.value = "hijack_toBasic";
-		cf.submit();
-	  }
+	  	location.href = "BRS_security.html";
 	  else
 		location.href="BAS_basic.htm";
 	}
