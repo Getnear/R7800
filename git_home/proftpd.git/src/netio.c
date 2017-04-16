@@ -1100,6 +1100,9 @@ char *pr_netio_telnet_gets(char *buf, size_t buflen,
         }
       }
 
+      if(buflen == 0){
+        break;
+      }
       *bp++ = cp;
       buflen--;
     }
