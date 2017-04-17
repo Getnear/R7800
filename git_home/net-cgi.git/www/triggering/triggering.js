@@ -92,12 +92,12 @@ function check_triggering_add(cf,flag)
 			return false;
 		}
 	}
-	cf.pt_name.value=cf.pt_name.value.replace(/ /g, "&harr;");	
+
 	for(i=1;i<=trigger_array_num;i++)
 	{
-		var str = eval ( 'triggeringArray' + i ).replace(/&#92;/g, "\\").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#40;/g,"(").replace(/&#41;/g,")").replace(/&#34;/g,'\"').replace(/&#39;/g,"'").replace(/&#35;/g,"#").replace(/&#38;/g,"&");;
+		var str = eval ( 'triggeringArray' + i );
 		var each_info=str.split(' ');
-		each_info[0] = each_info[0].replace(/&harr;/g, " ");
+		each_info[0] = each_info[0].replace(/&harr;/g, " ").replace(/&#92;/g, "\\").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#40;/g,"(").replace(/&#41;/g,")").replace(/&#34;/g,'\"').replace(/&#39;/g,"'").replace(/&#35;/g,"#").replace(/&#38;/g,"&");
 		if(flag == 'edit')
 		{
 			if( cf.pt_name.value == each_info[0] && select_editnum!=i )
@@ -115,6 +115,8 @@ function check_triggering_add(cf,flag)
 			}
 		}
 	}
+	cf.pt_name.value=cf.pt_name.value.replace(/&/g, "&#38;").replace(/ /g, "&harr;");
+
 	var type = cf.src_ip_type.selectedIndex;
 	if (type == 0)
 		cf.service_ip.value="any";

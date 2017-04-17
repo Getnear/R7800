@@ -193,6 +193,7 @@ static void add_smbd_global(FILE *fp)
       			"  max xmit = 131072\n"
 			"  server signing = disabled\n"
 			"  follow symlinks = no\n"
+			"  wide links = no\n"
 			"  socket options = IPTOS_LOWDELAY TCP_NODELAY\n"
 			"\n");
 }
@@ -1046,6 +1047,7 @@ static void load_share_info(FILE *fp, char *diskname)
 					perror("popen");
 					return;
 				}
+				memset(result, 0, sizeof(result));
 				fgets(result, sizeof(result), fp);
 				pclose(fp);
 				printf("result:%s\n", result);

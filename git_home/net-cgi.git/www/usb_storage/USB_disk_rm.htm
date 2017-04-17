@@ -3,16 +3,22 @@
 <script>
 var result="<% cat_rm_file("/tmp/umount_result") %>";
 
-getDevName=location.href.indexOf("dev_name=",0);
-getOpenerUrl=location.href.indexOf("opener=",0);
-len=location.href.length-getDevName-9;
+try {
+	var dec_href = decodeURI(location.href);
+}
+catch(e) {
+	var dec_href = location.href;
+}
+getDevName=dec_href.indexOf("dev_name=",0);
+getOpenerUrl=dec_href.indexOf("opener=",0);
+len=dec_href.length-getDevName-9;
 opener_len=getDevName-getOpenerUrl-8;
-dev_name=location.href.substr(getDevName+9,len);
-opener_url=location.href.substr(getOpenerUrl+7,opener_len);
-dev_name=dev_name.replace(/%20/g,"&nbsp;").replace(/%A0/g,"&nbsp;");
+dev_name=dec_href.substr(getDevName+9,len);
+opener_url=dec_href.substr(getOpenerUrl+7,opener_len);
+//dev_name=dev_name.replace(/%20/g,"&nbsp;").replace(/%A0/g,"&nbsp;");
 
 if (result == "") {
-	setTimeout('location.href="USB_disk_rm.htm?opener='+opener_url+'&dev_name='+dev_name+'"', 3000);
+	setTimeout('refresh_page()', 3000);
 	document.write('<div  align="center"><BR><BR><B>$wait_serv</B><BR><BR></div>');
 	document.write('<div class="waiting_img_div" align="center"><img src="image/wait30.gif" /></div>');
 } else if (result == "0") {
@@ -25,7 +31,12 @@ if (result == "") {
 	opener.parent.formframe.location.href=opener_url;
 }
 
-
+function refresh_page()
+{
+	refresh_url = "USB_disk_rm.htm?opener=" + opener_url + "&dev_name=" + dev_name;
+	encodeURI(refresh_url);
+	location.href = refresh_url;
+}
 </script>
 </BODY>
 </HTML>

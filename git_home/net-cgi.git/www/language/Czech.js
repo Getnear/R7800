@@ -485,6 +485,12 @@ bh_ap_mode_tips="Chcete-li rušení sítě WiFi a následnému omezení jejího
 bh_mode_query="Můžete zakázat síť WiFi své stávající brány?"
 bh_mode_yes_tips="Zkopírujte aktuální nastavení sítě WiFi ze stávající brány a zadejte je sem. Poté síť WiFi své stávající brány zakažte."
 bh_mode_no_tips="Chcete-li zařízením WiFi zamezit v připojení ke stávající bráně, použijte následující název (SSID) a heslo (síťový klíč) k připojení všech zařízení WiFi k danému routeru."
+ssid_null="SSID nemůže zůstat prázdné."
+ssid_not_allowed="Znak není v názvu SSID povolen"
+notallowpassps="Přístupové heslo se musí skládat buď z 8 až 63 znaků ASCII, nebo přesně z 64 hexadecimálních číslic. Hexadecimální znaky jsou tyto: 0, 1, 2... 8, 9, A, B, C, D, E, F."
+passphrase_short8="Nedostatečná délka přístupového hesla. Musí obsahovat minimálně 8 znaků."
+passphrase_long63="Přístupové heslo je příliš dlouhé. Maximální délka je 63 znaků."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="Společnost NETGEAR doporučuje, abyste nový router nastavili v režimu routeru."
 bh_router_suggest_str_2="Režim routeru umožňuje využívat všechny rozšířené funkce routeru NETGEAR. Opětovným spuštěním průvodce nastavením lze režim později změnit."

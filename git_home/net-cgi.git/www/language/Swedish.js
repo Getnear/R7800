@@ -485,6 +485,12 @@ bh_ap_mode_tips="NETGEAR rekommenderar att du avaktiverar din befintliga gateway
 bh_mode_query="Kan du avaktivera din befintliga gateways WiFi?"
 bh_mode_yes_tips="Kopiera dina nuvarande WiFi-inställningar från den befintliga gatewayen och ange dem här. Avaktivera sedan din befintliga gateways WiFi."
 bh_mode_no_tips="Anslut alla WiFi-enheter till den här routern via följande namn (SSID) och lösenord (nätverksnyckel), så förhindrar du att WiFi-enheterna ansluts till den befintliga gatewayen."
+ssid_null="Fältet för SSID får inte vara tomt."
+ssid_not_allowed="Tecknet inte tillåtet i SSID"
+notallowpassps="Ett lösenord består av mellan 8 och 63 ASCII-tecken eller exakt 64 hexadecimalsiffror. En hexadecimalsiffra är ett av följande tecken: 0, 1, 2, ..., 8, 9, A, B, C, D, E och F."
+passphrase_short8="Otillräcklig lösenordslängd. Längden måste vara minst 8 tecken."
+passphrase_long63="Lösenordet är för långt. Det får innehålla högst 63 tecken."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR rekommenderar att du konfigurerar den nya routern i routerläget."
 bh_router_suggest_str_2="Med routerläget kan du använda alla de avancerade funktionerna i NETGEAR-routern. Du kan alltid köra installationsguiden igen om du vill byta läge."

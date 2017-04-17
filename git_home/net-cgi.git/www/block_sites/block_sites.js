@@ -162,6 +162,11 @@ function checkKeyWordDomainList(act)
 	{
 		return false;
 	}
+	if (act=='delete' && cf.cfKeyWord_DomainList.selectedIndex==-1)
+	{
+		alert("$select_serv_del");
+		return false;
+	}
 	if (act=='delete' && cf.cfKeyWord_DomainList.selectedIndex!=-1)
 	{
 		cf.cfKeyWord_DomainList.options[cf.cfKeyWord_DomainList.selectedIndex]=null;

@@ -1601,7 +1601,15 @@ size_t answer_request(HEADER *header, char *limit, size_t qlen, struct daemon *d
 		"macs.xboxlive.com.local",
 
 		"updates1.netgear.com",
+		"472263.ftp.download.akadns.net",
+		"http.updates1.netgear.com",
 		"captive.apple.com",
+		"www.appleiphonecell.com",
+		"www.apple.com",
+		"www.itools.info",
+		"www.ibook.info",
+		"www.airport.us",
+		"www.thinkdifferent.us",
 
 		NULL	/* The End One */
 	};

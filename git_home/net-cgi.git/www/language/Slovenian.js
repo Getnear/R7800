@@ -485,6 +485,12 @@ bh_ap_mode_tips="Da se izognete motnjam v omrežju WiFi, ki lahko vplivajo na de
 bh_mode_query="Ali lahko onemogočite omrežje WiFi obstoječega prehoda?"
 bh_mode_yes_tips="Kopirajte trenutne nastavitve WiFi iz obstoječega prehoda in jih kopirajte sem. Nato onemogočite omrežje WiFi obstoječega prehoda."
 bh_mode_no_tips="Če želite povezavo naprav WiFi z obstoječim prehodom, uporabite naslednje ime (SSID) in geslo (omrežni ključ), da povežete vse naprave WiFi s tem usmerjevalnikom."
+ssid_null="SSID ne more biti prazno."
+ssid_not_allowed="SSID ne sme vsebovati znaka"
+notallowpassps="Geslo vsebuje 8~63 znakov ASCII ali natanko 64 šestnajstiških številk. Šestnajstiška številka je ena od teh znakov: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Prekratko geslo. Vsebovati mora najmanj 8 znakov."
+passphrase_long63="Geslo je predolgo. Najdaljša dolžina gesla je 63 znakov."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR priporoča, da novi usmerjevalnik nastavite v načina usmerjevalnika."
 bh_router_suggest_str_2="Način usmerjevalnika omogoča uporabo vseh naprednih funkcij, ki jih nudi usmerjevalnik NETGEAR. Način lahko pozneje kadarkoli spremenite tako, da znova zaženete čarovnika za nastavitev."

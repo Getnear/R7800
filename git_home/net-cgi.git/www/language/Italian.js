@@ -485,6 +485,12 @@ bh_ap_mode_tips="Per evitare interferenze di connettività WiFi che potrebbero c
 bh_mode_query="È possibile disattivare la connessione WiFi del gateway esistente?"
 bh_mode_yes_tips="Copiare le impostazioni WiFi correnti del gateway esistente e immetterle qui. Quindi disattivare la connessione WiFi del gateway esistente."
 bh_mode_no_tips="Per evitare che i dispositivi WiFi si connettano al gateway esistente, utilizzare il seguente nome (SSID) e password (chiave di rete) per collegare tutti i dispositivi WiFi al router."
+ssid_null="È necessario specificare il SSID."
+ssid_not_allowed="Carattere non consentito in SSID"
+notallowpassps="Una password include 8~63 caratteri ASCII o esattamente 64 cifre esadecimali. Per cifra esadecimale si intende uno di questi caratteri: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Lunghezza password insufficiente. La lunghezza minima della password è di 8 caratteri."
+passphrase_long63="Password troppo lunga. La lunghezza massima della password è di 63 caratteri."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR consiglia di impostare il nuovo router in modalità router."
 bh_router_suggest_str_2="La modalità router consente di utilizzare tutte le funzioni avanzate offerte dal router NETGEAR. È sempre possibile eseguire nuovamente la Configurazione guidata per cambiare la modalità in un secondo momento."

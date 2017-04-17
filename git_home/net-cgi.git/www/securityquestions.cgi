@@ -26,18 +26,17 @@ var quest2_8="$quest2_8";
 function loadvalue()
 {
 	var answer_again="<% cfg_get("enter_answer_again") %>";
-	var last_error_ans1="<% cfg_get("last_error_ans1") %>";
-	var last_error_ans2="<% cfg_get("last_error_ans2") %>";
 
 	<% cfg_set("enter_answer_again","0") %>
 	<% commit() %>
 
-	if( answer_again == "1" )
+	if( answer_again != "1" )
 	{
-		document.forms[0].answer1.value=last_error_ans1;
-		document.forms[0].answer2.value=last_error_ans2;
-		alert("$answer_not_match");
+		document.forms[0].answer1.value="";
+		document.forms[0].answer2.value="";
 	}
+	else
+		alert("$answer_not_match");
 }
 </script>
 <STYLE type="text/css">
@@ -81,7 +80,7 @@ TR{ FONT-FAMILY: Arial;}
 <TR>
         <TD nowrap align="right">$answer *:</TD>
         <TD nowrap align="left">
-		<input type="text" maxLength="64" autocomplete="off" size="30" name="answer1" onFocus="this.select();" >
+		<input type="text" maxLength="64" autocomplete="off" value="<% cfg_sed_xss("last_error_ans1") %>" size="30" name="answer1" onFocus="this.select();" >
         </TD>
 </TR>
 <TR>
@@ -97,7 +96,7 @@ TR{ FONT-FAMILY: Arial;}
 <TR>
         <TD nowrap align="right">$answer *:</TD>
         <TD nowrap align="left">
-                <input type="text" maxLength="64" autocomplete="off" size="30" name="answer2" onFocus="this.select();" >
+                <input type="text" maxLength="64" autocomplete="off" size="30" value="<% cfg_sed_xss("last_error_ans2") %>" name="answer2" onFocus="this.select();" >
         </TD>
 </TR>
 <TR><TD align="right">$required_information </TD> <TD></TR></TR>

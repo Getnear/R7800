@@ -748,9 +748,18 @@ static void shutdown_signal(int sig)
 	char *m;
 	int rb;
 
+	char cmd[128]="";
+	pid_t ppid, pgid;
+	ppid=getppid();
+	pgid=getpgid(0);
+	message(CONSOLE | LOG, "got reboot and ppid pgid is %d|%d..", ppid,pgid);
+	snprintf(cmd, 128, "echo \"ppid pgid is %d|%d..\" > /dev/console", ppid, pgid);
+	system(cmd);
+	system("ps -w > /dev/console");
 	shutdown_system();
 
 	if (sig == SIGTERM) {
+		system("/bin/echo \" Console Reboot \" > /dev/console");
 		m = "reboot";
 		rb = RB_AUTOBOOT;
 	} else if (sig == SIGUSR2) {
@@ -1053,6 +1062,7 @@ static void reset_action(int sig)
 			system("/bin/echo \"Done!!!\" > /dev/console");
 		}
 
+		system("/bin/echo \" Reset-Button Default Reboot \" > /dev/console");
 		system("/sbin/reboot");
 	}
 }

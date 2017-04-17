@@ -33,10 +33,7 @@ function genienowanChecking()
 		this.location.href = "BRS_00_01_check_ap_wait.html";
 	}
 	else{
-		cf.action = "/apply.cgi?/index.htm timestamp="+ts;
-		cf.target = "_top";
-		cf.submit_flag.value = "hijack_toBasic";
-		cf.submit();
+		this.location.href = "BRS_security.html";
 	}
 }
 function clickRetry()

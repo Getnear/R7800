@@ -13,13 +13,15 @@ export LN:=ln -sf
 export CP:=cp -fpR
 export TOUCH:=touch
 
-export WWW_OUT_DIR:=/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/build_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/net-cgi/www.out
+CUR_PATH=${shell pwd}
+
+export WWW_OUT_DIR:=$(CUR_PATH)/www.out
 
 export INS_DIR_PRE:=
 export INS_BIN_DIR:=$(INS_DIR_PRE)/usr/sbin
 export INS_WWW_DIR:=$(INS_DIR_PRE)/www
 
-export NETCGI_CONF:=/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/build_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/net-cgi/files/net-cgi.config
+export NETCGI_CONF:=$(CUR_PATH)/files/net-cgi.config
 
 export NEW_SOURCE:=
 

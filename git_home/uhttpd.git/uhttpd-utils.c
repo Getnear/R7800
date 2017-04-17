@@ -839,7 +839,7 @@ int uh_cgi_auth_check(
 		else
 		{
 			uh_http_sendf(cl, NULL,
-					"HTTP/%.1f 401 Authorization Required\r\n"
+					"HTTP/%.1f 401 Unauthorized\r\n"
 					"WWW-Authenticate: Basic realm=\"NETGEAR %s\"\r\n"
 					"Content-Type: text/plain\r\n"
 					"Content-Length: 23\r\n\r\n"
@@ -933,7 +933,7 @@ int uh_auth_check(
 
 		/* 401 */
 		uh_http_sendf(cl, NULL,
-			"HTTP/%.1f 401 Authorization Required\r\n"
+			"HTTP/%.1f 401 Unauthorized\r\n"
 			"WWW-Authenticate: Basic realm=\"%s\"\r\n"
 			"Content-Type: text/plain\r\n"
 			"Content-Length: 23\r\n\r\n"

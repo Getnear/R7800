@@ -4,8 +4,8 @@
  
  BASEADDR=
  
--DIRS=   crypto fips ssl engines apps test tools
-+DIRS=   crypto fips ssl apps
- SHLIBDIRS= crypto ssl fips
+-DIRS=   crypto ssl engines apps test tools
++DIRS=   crypto ssl engines apps tools
+ ENGDIRS= ccgost
+ SHLIBDIRS= crypto ssl
  
- # dirs in crypto to build

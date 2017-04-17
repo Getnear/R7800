@@ -477,12 +477,11 @@ function check_forwarding_add_range(cf,flag)
 			return false;
 		}
 	}
-	cf.portname.value=cf.portname.value.replace(/ /g, "&harr;");
 	for(i=1;i<=forward_array_num;i++)
 	{
-		var str = eval ( 'forwardingArray' + i ).replace(/&#92;/g, "\\").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#40;/g,"(").replace(/&#41;/g,")").replace(/&#34;/g,'\"').replace(/&#39;/g,"'").replace(/&#35;/g,"#").replace(/&#38;/g,"&");
+		var str = eval ( 'forwardingArray' + i );
 		var each_info=str.split(' ');
-		each_info[0] = each_info[0].replace(/&harr;/g, " ");
+		each_info[0] = each_info[0].replace(/&harr;/g, " ").replace(/&#92;/g, "\\").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#40;/g,"(").replace(/&#41;/g,")").replace(/&#34;/g,'\"').replace(/&#39;/g,"'").replace(/&#35;/g,"#").replace(/&#38;/g,"&");
 		if(flag == 'edit')
 		{
 			if(each_info[0]==cf.portname.value && !(select_editnum<=i && i<parseInt(select_editnum)+parseInt(edit_num)) && each_info[7]==0)
@@ -500,6 +499,8 @@ function check_forwarding_add_range(cf,flag)
 			}
 		}
 	}
+	cf.portname.value=cf.portname.value.replace(/&/g, "&#38;").replace(/ /g, "&harr;");
+
 	/*check IP*/
 	cf.service_ip.value=cf.server_ip1.value+'.'+cf.server_ip2.value+'.'+cf.server_ip3.value+'.'+cf.server_ip4.value;
 	if(checkipaddr(cf.service_ip.value)==false || is_sub_or_broad(cf.service_ip.value, lan_ip, lan_subnet) == false)

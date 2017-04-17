@@ -522,7 +522,7 @@ static void uh_mainloop(struct config *conf, fd_set serv_fds, int max_fd)
 							/* setup client tls context */
 							if( conf->tls )
 							{
-								if( conf->tls_accept(cl) < 1 )
+								if( config_match("dns_hijack", "0") && conf->tls_accept(cl) < 1 )
 								{
 									fprintf(stderr,
 										"tls_accept failed, "
@@ -595,7 +595,8 @@ static void uh_mainloop(struct config *conf, fd_set serv_fds, int max_fd)
                                                         && config_invmatch("hijack_process", "3")
                                                         && is_router_domain_addr(httphost)==1)
                                                 {
-							if( (strcmp(httphost, "clients3.google.com") || strncmp(req->url, "/generate_204",13))
+							if( ( !(strncmp(httphost, "clients.google.com", 7)==0
+								&& strstr(httphost, ".google.com")!=NULL) || strncmp(req->url, "/generate_204",13))
 								&& (strcmp(httphost, "www.google.com") || strncmp(req->url, "/blank.html", 11)) ){
 									req->url="/change_domain.htm";
 								}
@@ -642,8 +643,7 @@ static void uh_mainloop(struct config *conf, fd_set serv_fds, int max_fd)
 							}
 							else
 							{
-								uh_http_sendhf(cl, 404, "Not Found",
-									"No such file or directory");
+								ensure_ret(uh_http_sendc(cl, NULL, 0));
 							}
 						}
 					}

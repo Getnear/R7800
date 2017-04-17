@@ -485,6 +485,12 @@ bh_ap_mode_tips="無線 LAN パフォーマンスを下げる無線 LAN の干�
 bh_mode_query="既存のゲートウェイの無線 LAN を無効にしますか？"
 bh_mode_yes_tips="現在の無線 LAN 設定を既存のゲートウェイからコピーしてここに入力します。その後既存のゲートウェイの無線 LAN を無効にします。"
 bh_mode_no_tips="無線 LAN 機器が既存のゲートウェイに接続されるのを防ぐために、次のネットワーク名 (SSID) とパスワード（ネットワークキー）を使ってすべての無線 LAN 機器をこのルーターに接続します。"
+ssid_null="SSIDは空欄にできません。"
+ssid_not_allowed="この文字はSSIDに使用できません。"
+notallowpassps="パスワードは 8~63 文字の ASCII 文字、または 64 桁の 16 進数値（ 0～9 および A～F ）になります。"
+passphrase_short8="パスワードの長さが足りません。少なくとも 8 文字で設定してください。"
+passphrase_long63="パスワードが長すぎます。最大 63 文字までです。"
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR はこのルーターをルーターモードで設定することを推奨します。"
 bh_router_suggest_str_2="ルーターモードでは NETGEAR ルーターのすべての高度な機能を使用することができます。セットアップウイザードを実行して後でモードを変更することができます。"

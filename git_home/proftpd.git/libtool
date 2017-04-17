@@ -65,7 +65,7 @@ build=x86_64-unknown-linux-gnu
 build_os=linux-gnu
 
 # A sed program that does not truncate output.
-SED="/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/staging_dir/host/bin/sed"
+SED="/home3/haiyan.zhuang/project/r7800.git/staging_dir/host/bin/sed"
 
 # Sed that helps us avoid accidentally triggering echo(1) options like -n.
 Xsed="$SED -e 1s/^X//"
@@ -80,7 +80,7 @@ EGREP="/bin/grep -E"
 FGREP="/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B"
+NM="/home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B"
 
 # Whether we need soft or hard links.
 LN_S="ln -s"
@@ -234,10 +234,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/lib/gcc/arm-openwrt-linux-uclibcgnueabi/4.6.3 /home/haiyan.zhuang/project/r7800-beta2-buildroot.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/lib"
+sys_lib_search_path_spec="/home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/lib/gcc/arm-openwrt-linux-uclibcgnueabi/4.6.3 /home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/lib"
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib32/alsa-lib /usr/lib/alsa-lib /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib32/alsa-lib /usr/lib/alsa-lib /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /lib32 /usr/lib32 "
 
 # Whether dlopen is supported.
 dlopen_support=yes
@@ -254,7 +254,7 @@ striplib="arm-openwrt-linux-strip --strip-unneeded"
 
 
 # The linker used to build libraries.
-LD="/home/haiyan.zhuang/project/r7800-beta2-buildroot.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld"
+LD="/home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld"
 
 # Commands used to build an old-style archive.
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"

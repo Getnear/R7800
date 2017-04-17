@@ -485,6 +485,12 @@ bh_ap_mode_tips="Para evitar interferências de Wifi que possam comprometer o de
 bh_mode_query="Pode desativar o WiFi do seu gateway?"
 bh_mode_yes_tips="Copie as definições de WiFi atuais a partir do gateway existente e introduza-as aqui. Em seguida, desative o WiFi do seu gateway."
 bh_mode_no_tips="Para evitar que os seus dispositivos WiFi estabeleçam ligação ao seu gateway existente, utilize o nome (SSID) e palavra-passe (chave de rede) seguintes para ligar todos os seus dispositivos WiFi a este router."
+ssid_null="O SSID não pode ficar em branco."
+ssid_not_allowed="Caractere não permitido no SSID"
+notallowpassps="A palavra-passe deve ser composta por 8~63 caracteres ASCII ou exatamente 64 dígitos hexadecimais. Um dígito hexadecimal é um dos seguintes caracteres: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Comprimento insuficiente da palavra-passe. O comprimento mínimo é de 8 caracteres."
+passphrase_long63="A palavra-passe é demasiado longa. O comprimento máximo é de 63 caracteres."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="A NETGEAR recomenda que configure este novo router no modo de router."
 bh_router_suggest_str_2="O modo de router permite utilizar todas as funções avançadas do seu router NETGEAR. Pode sempre executar novamente o Assistente de configuração para alterar o modo mais tarde."

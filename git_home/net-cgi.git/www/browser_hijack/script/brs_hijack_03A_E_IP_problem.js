@@ -3,10 +3,7 @@ function manuallyConfig()
         var forms = document.getElementsByTagName("form");
         var cf = forms[0];
 
-	cf.action = "/apply.cgi?/welcomeok.htm timestamp=" + ts;
-	cf.submit_flag.value = "hijack_toBasic";
-	cf.submit();
-
+	this.location.href = "BRS_security.html";
         return true;
 }
 

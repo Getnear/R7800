@@ -363,7 +363,7 @@ var master="<% cfg_get("http_loginname") %>";
 if (master=="admin")
 {
 	if ( ap_mode_on == 1 && ap_ip_mode == 1 )
-		document.write('<input class="common_bt" type="button" name="Release" id="disconnect" value=$release_mark onclick="connect_stop(0);" >&nbsp;&nbsp;<input class="common_bt" type="button" name="Renew" id="connect" value=$renew_mark onclick="connect_start(3);" >');
+		document.write('<input class="common1_bt" type="button" name="Release" id="disconnect" value=$release_mark disabled>&nbsp;&nbsp;<input class="common1_bt" type="button" name="Renew" id="connect" value=$renew_mark disabled>');
 	else if ( info_get_wanproto == "static" )
         {}
 	else if( info_get_wanproto == "dhcp" )

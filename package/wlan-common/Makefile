@@ -40,8 +40,8 @@ define Package/wlan-common/install
 	cp -af $(PKG_BUILD_DIR)/etc/* $(1)/etc
 	if [ -f $(PKG_BUILD_DIR)/etc/ath/wifi.conf ]; then \
 		sed -i 's/vht_11ng=.*/vht_11ng="on"/g' $(1)/etc/ath/wifi.conf; \
-		sed -i 's/g_device=.*/g_device="wifi1"/g' $(1)/etc/ath/wifi.conf; \
-		sed -i 's/a_device=.*/a_device="wifi0"/g' $(1)/etc/ath/wifi.conf; \
+		sed -i 's/^g_device=.*/g_device="wifi1"/' $(1)/etc/ath/wifi.conf; \
+		sed -i 's/^a_device=.*/a_device="wifi0"/' $(1)/etc/ath/wifi.conf; \
 	fi
 	$(INSTALL_DIR) $(1)/sbin
 	cp -af $(PKG_BUILD_DIR)/sbin/* $(1)/sbin

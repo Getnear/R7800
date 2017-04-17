@@ -13,6 +13,7 @@ firewall_start()
 {
 	$fw_sh sched_rule
 	$netwall start
+	[ "$($nvram get ipv6_type)" != "disabled" ] && $netwall -6 start
 }
 
 config_net_wall()

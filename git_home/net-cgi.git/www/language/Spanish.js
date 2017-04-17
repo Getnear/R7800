@@ -485,6 +485,12 @@ bh_ap_mode_tips="Para evitar que las interferencias WiFi afecten al rendimiento 
 bh_mode_query="¿Puede desactivar el WiFi de la puerta de enlace existente?"
 bh_mode_yes_tips="Copie la configuración WiFi actual desde la puerta de enlace existente e introdúzcala aquí. A continuación, desactive el WiFi de la puerta de enlace existente."
 bh_mode_no_tips="Para evitar que los dispositivos WiFi se conecten a la puerta de enlace existente, utilice el siguiente nombre (SSID) y contraseña (clave de red) para conectar todos los dispositivos WiFi al router."
+ssid_null="El SSID no puede dejarse en blanco."
+ssid_not_allowed="Este carácter no puede formar parte del SSID"
+notallowpassps="La contraseña consta de 8~63 caracteres ASCII o exactamente 64 dígitos hexadecimales. Un dígito hexadecimal es uno de los siguientes caracteres: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="La contraseña es demasiado breve. Debe tener un mínimo de 8 caracteres."
+passphrase_long63="La contraseña es demasiado larga. La longitud máxima es de 63 caracteres."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR le recomienda configurar el nuevo router en modo router."
 bh_router_suggest_str_2="El modo router le permite utilizar todas las funciones avanzadas de su router NETGEAR. Puede volver a cambiar el modo de funcionamiento en cualquier momento con el asistente de configuración."

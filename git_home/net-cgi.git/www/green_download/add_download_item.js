@@ -382,7 +382,7 @@ function refresh_download_table()
 
 	for( i=0; i< top.green_download_item_num; i++)
 	{
-		var info = item[i];
+		var info = item[i].toString();
 		var each_info = info.split('*');
 
 		if( each_info[6] == "Paused" )

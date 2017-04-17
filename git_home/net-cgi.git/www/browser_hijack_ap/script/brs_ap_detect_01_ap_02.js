@@ -5,6 +5,33 @@ function goto_next(cf, wl_login)
 	
 	if(cf.use_ap[0].checked)
 	{
+		var ssid_bgn = document.getElementById("ESSID").value;
+		var ssid_an = document.getElementById("ESSID_an").value;
+
+		if(ssid_bgn == "" || ssid_an == "")
+		{
+			alert(ssid_null);
+			return false;
+		}
+
+		for(i=0;i<ssid_bgn.length;i++)
+		{
+			if(isValidChar_space(ssid_bgn.charCodeAt(i))==false)
+			{
+				alert(ssid_not_allowed);
+				return false;
+			}
+		}
+
+		for(i=0;i<ssid_an.length;i++)
+		{
+			if(isValidChar_space(ssid_an.charCodeAt(i))==false)
+			{
+				alert(ssid_not_allowed);
+				return false;
+			}
+		}
+
 		if(checkpsk(cf.passphrase_an, cf.wla_sec_wpaphrase_len)== false)
 			return;
 		if( checkpsk(cf.passphrase, cf.wl_sec_wpaphrase_len)== false)

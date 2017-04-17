@@ -148,8 +148,9 @@ if(forward_array_num > 0)
 	for(i=1;i<=forward_array_num;i++)
 	{
 		var str = eval ( 'forwardingArray' + i );
-		str = str.replace(/\*/g, "&#42;");
+		str = str.replace(/\*/g, "&#42;");	
 		var each_info=str.split(' ');
+		each_info[0] = each_info[0].replace(/&harr;/g, " ").replace(/&#92;/g, "\\").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#40;/g,"(").replace(/&#41;/g,")").replace(/&#34;/g,'\"').replace(/&#39;/g,"'").replace(/&#35;/g,"#").replace(/&#38;/g,"&");
 		if(service_name!=each_info[0])
 		{
 			if(count!=-1)
@@ -209,8 +210,8 @@ if (forward_array_num > 0)
 			
 		document.write('<TD nowrap align=center><input type="radio" name="RouteSelect" id="inbound_select'+(i+1)+'" value="'+i+'"></TD>');
 		document.write('<TD nowrap align=center><span class="subhead">'+j+'</span></TD>');
-		each_service_name=each_info[0].replace(/&#38;harr;/g," ");
-		each_service_name=each_service_name.replace(/ /g,"&nbsp;").replace(/\</g, "&#60;").replace(/\>/g, "&#62;");
+		each_service_name=each_info[0];
+		each_service_name=each_service_name.replace(/&#42;/g, "*").replace(/&/g, "&#38;").replace(/ /g,"&nbsp;").replace(/\</g, "&#60;").replace(/\>/g, "&#62;");
 		document.write('<TD nowrap align=center>'+each_service_name+'</TD>');
 		document.write('<TD nowrap align=center>'+each_info[1]+'</TD>');
 		document.write('<TD nowrap align=center>'+each_info[2]+'</TD>');

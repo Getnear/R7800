@@ -485,6 +485,12 @@ bh_ap_mode_tips="To avoid Wifi interference that might compromise WiFi performan
 bh_mode_query="Can you disable your existing gateway's WiFi?"
 bh_mode_yes_tips="Copy your current WiFi settings from the existing gateway and enter them here. Then disable your existing gateway's WiFi."
 bh_mode_no_tips="To prevent your WiFi devices from connection to the existing gateway, use the following name (SSID) and password  (network key) to connect all your WiFi devices to this router."
+ssid_null="SSID cannot be blank."
+ssid_not_allowed="Character is not allowed in SSID."
+notallowpassps="A password consists of either 8~63 ASCII characters or exactly 64 hex-digits. A hex digit is one of these characters: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Insufficient password length. It should be a minimum of 8 characters long."
+passphrase_long63="The password is too long. The maximum length is 63 characters."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR recommends that you set up this new router in router mode."
 bh_router_suggest_str_2="Router mode allows you to use all the advanced features of your NETGEAR router. You can always run the Setup Wizard again to change the mode later."

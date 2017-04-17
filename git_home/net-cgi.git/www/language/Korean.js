@@ -485,6 +485,12 @@ bh_ap_mode_tips="WiFi 성능 저하를 초래할 수 있는 Wifi 간섭을 막�
 bh_mode_query="기존 게이트웨이의 WiFi를 비활성화할 수 있습니까?"
 bh_mode_yes_tips="기존 게이트웨이에서 현재 WiFi 설정을 복사하여 여기에 입력하십시오. 그런 다음 기존 게이트웨이의 WiFi를 비활성화하십시오."
 bh_mode_no_tips="WiFi 장치가 기존 게이트웨이에 연결되는 것을 방지하려면 다음과 같은 이름(SSID) 및 암호(네트워크 키)를 사용하여 모든 WiFi 장치를 이 공유기에 연결하십시오."
+ssid_null="SSID는 공백으로 둘 수 없습니다!"
+ssid_not_allowed="SSID에 사용할 수 없는 문자입니다."
+notallowpassps="암호문은 8 ~ 63자의 ASCII 문자 또는 16진수 64자리로 구성됩니다. 16진수는 다음 문자로 구성됩니다. 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="암호 길이가 너무 짧습니다. 최소 8자여야 합니다."
+passphrase_long63="암호가 너무 깁니다. 최대 길이는 63자입니다."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR에서는 이 새 공유기를 공유기 모드로 설정할 것을 권장합니다."
 bh_router_suggest_str_2="공유기 모드를 사용하면 NETGEAR 공유기의 모든 고급 기능을 사용할 수 있습니다. 나중에 다시 설정 마법사를 실행하여 언제든지 모드를 변경할 수 있습니다."

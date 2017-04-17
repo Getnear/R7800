@@ -100,7 +100,7 @@ if (array_num > 0)
 			document.write('<TD nowrap align=center><input type="checkbox" name="enable_triggering" value="1" checked></TD>');
 		else
 			document.write('<TD nowrap align=center><input type="checkbox" name="enable_triggering" value="1"></TD>');
-		each_service_name=each_info[0].replace(/&#38;harr;/g," ");
+		each_service_name=each_info[0].replace(/&harr;/g," ");
 		each_service_name=each_service_name.replace(/ /g,"&nbsp;").replace(/\</g, "&#60;").replace(/\>/g, "&#62;");
 		document.write('<TD nowrap align=center>'+each_service_name+'</TD><TD nowrap align=center>'+each_info[3]+':'+each_info[4]+ '<TD nowrap align=center>'+each_info[5]+':'+each_info[6]+'..'+each_info[7]+'<TD nowrap align=center>'+each_info[2]+'</TD></TR>');
 	}

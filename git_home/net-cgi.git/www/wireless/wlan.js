@@ -308,6 +308,8 @@ function check_dfs()
 {
 	var cf = document.forms[0]; 
 	var each_info = dfs_info.split(':');
+	var currentMode = cf.opmode_an.value;
+	var index = cf.WRegion.value;
 	var channel_info;
 	var channel = cf.w_channel_an;
         var ch_index = channel.selectedIndex;
@@ -320,8 +322,6 @@ function check_dfs()
 		return true;
 	}
 	if(top.dfs_radar_detect_flag == 1){	
-		var currentMode = cf.opmode_an.value;
-		var index = cf.WRegion.value;
 		var tmp_array;
 		if(ht160_enabled)
 		{
@@ -589,7 +589,11 @@ function setAChannel(channel)
 	var i, j=0, val;
 	var tmp_array = ht40_array[index];
 
-	if ( 1 == currentMode || 2 == currentMode || 7 == currentMode )
+	if(enable_ht160 == "1" && currentMode == 9 && index == 10)
+	{
+		tmp_array = ht160_array10;
+	}
+	else if ( 1 == currentMode || 2 == currentMode || 7 == currentMode )
 	{
 		tmp_array = ht20_array[index];
 	}
@@ -613,7 +617,7 @@ function setAChannel(channel)
 			( dfs_canada_router_flag == 1 &&  index == 3 ) || //Australia, Canada, Europe
 			( dfs_australia_router_flag == 1 &&  index == 2 ) ||
 			( dfs_europe_router_flag == 1 &&  index == 4 ) ||
-			( dfs_japan_router_flag && index == 6 ) ) ) //Japan, United States
+			( dfs_japan_router_flag && index == 6 ) || index == 10 ) ) //Japan, United States
 		{
 			if(currentMode == 9 && index == 21)//50244
 				if(tmp_array[i] == "60" || tmp_array[i] == "64")
@@ -1921,7 +1925,7 @@ var ht20_array = new Array(
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "149", "153", "157", "161" ), //7
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161", "165" ), //8
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)", "136(DFS)", "140(DFS)", "149", "153", "157", "161", "165" ), //9
-	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "136(DFS)", "140(DFS)", "149", "153", "157", "161", "165" ), //10
+	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)","136(DFS)", "140(DFS)", "149", "153", "157", "161", "165" ), //10
 	new Array ( "149", "153", "157", "161", "165" ), //11
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161", "165" ), //12
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161", "165" ), //13
@@ -1945,7 +1949,7 @@ var ht40_array = new Array(
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "149", "153", "157", "161" ), //7
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //8
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)", "136(DFS)", "149", "153", "157", "161" ), //9
-	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "149", "153", "157", "161" ), //10
+	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)", "136(DFS)", "140(DFS)", "149", "153", "157", "161" ), //10
 	new Array ( "149", "153", "157", "161" ), //11
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //12
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //13
@@ -1969,7 +1973,7 @@ var ht80_array = new Array(
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "149", "153", "157", "161" ), //7
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //8
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "149", "153", "157", "161" ), //9
-	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "149", "153", "157", "161" ), //10
+	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)", "136(DFS)", "140(DFS)", "149", "153", "157", "161" ), //10
 	new Array ( "149", "153", "157", "161" ), //11
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //12
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //13
@@ -1982,3 +1986,4 @@ var ht80_array = new Array(
 	new Array ( "36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "149", "153", "157", "161" ), //20
 	new Array ( "60", "64", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "149", "153", "157", "161" ) //21
 );
+var ht160_array10 = new Array("36", "40", "44", "48", "52(DFS)", "56(DFS)", "60(DFS)", "64(DFS)", "100(DFS)", "104(DFS)", "108(DFS)", "112(DFS)", "116(DFS)", "120(DFS)", "124(DFS)", "128(DFS)", "132(DFS)", "136(DFS)", "140(DFS)", "149", "153", "157", "161");

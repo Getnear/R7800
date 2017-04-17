@@ -84,11 +84,7 @@ function clickNext()
 		if(confirm(bh_no_genie_help_confirm) == false)
 			return false;
 
-		cf.action = "/apply.cgi?/none timestamp=" + ts;
-		cf.submit_flag.value = "hijack_toBasic";
-		cf.submit();
-		goto_home_page();
-
+		this.location.href = "BRS_security.html";
 		return true;
 	}
 }

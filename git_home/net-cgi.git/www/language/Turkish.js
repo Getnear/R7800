@@ -485,6 +485,12 @@ bh_ap_mode_tips="NETGEAR, WiFi performansını olumsuz yönde etkileyebilecek Wi
 bh_mode_query="Mevcut ağ geçidinizin WiFi işlevini devre dışı bırakabilir misiniz?"
 bh_mode_yes_tips="Mevcut ağ geçidinden geçerli WiFi ayarlarınızı kopyalayın ve bu ayarları buraya girin. Ardından mevcut ağ geçidinizin WiFi işlevini devre dışı bırakın."
 bh_mode_no_tips="WiFi aygıtlarınızın mevcut ağ geçidine bağlanmasını önlemek için aşağıdaki adı (SSID) ve parolayı (ağ anahtarı) kullanarak tüm WiFi aygıtlarınızı bu router'a bağlayın."
+ssid_null="SSID boş olamaz."
+ssid_not_allowed="Karaktere SSID'de izin verilmiyor."
+notallowpassps="Parola, 8~63 ASCII karakterinden veya tam olarak 64 tane onaltılık rakamdan oluşur. Onaltılık rakam, şu karakterlerden biridir: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Parola yeteri kadar uzun değil. En az 8 karakter uzunluğunda olmalıdır."
+passphrase_long63="Parola çok uzun. Maksimum uzunluk 63 karakterdir."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR, bu yeni router'ı router modunda kurmanızı önerir."
 bh_router_suggest_str_2="Router modu, NETGEAR router'ınızın tüm gelişmiş özelliklerini kullanmanızı sağlar. Daha sonra modu değiştirmek için dilediğiniz zaman Kurulum Sihirbazı'nı tekrar çalıştırabilirsiniz."

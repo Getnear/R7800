@@ -11,6 +11,7 @@
 #define NET_LOC_IFNAME	"br0"		/* lan interface names, such as 'br0' */
 #define NET_PPP3_IFNAME  "ppp3"      /* used for IPv6 l2tp */
 #define NET_SIT1_IFNAME  "sit1"	/* used for IPv6 6to4 */
+#define NET_6RD_IFNAME  "6rd"	/* used for IPv6 6rd */
 #define NET_PPP2_IFNAME  "ppp2" /* used for IPv6 pppoe */
 
 /***************************************************************/

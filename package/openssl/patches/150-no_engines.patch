@@ -72,10 +72,10 @@
  EVP_aes_256_ofb                         3220	EXIST::FUNCTION:AES
  EVP_aes_192_ofb                         3221	EXIST::FUNCTION:AES
 @@ -3107,7 +3099,6 @@ EC_GFp_nist_method                      
- STORE_method_set_modify_function        3530	EXIST:!VMS:FUNCTION:
- STORE_meth_set_modify_fn                3530	EXIST:VMS:FUNCTION:
- STORE_parse_attrs_next                  3531	EXIST::FUNCTION:
--ENGINE_load_padlock                     3532	EXIST::FUNCTION:ENGINE
+ STORE_meth_set_modify_fn                3530	NOEXIST::FUNCTION:
+ STORE_method_set_modify_function        3530	NOEXIST::FUNCTION:
+ STORE_parse_attrs_next                  3531	NOEXIST::FUNCTION:
+-ENGINE_load_padlock                     3532	EXIST::FUNCTION:ENGINE,STATIC_ENGINE
  EC_GROUP_set_curve_name                 3533	EXIST::FUNCTION:EC
  X509_CERT_PAIR_it                       3534	EXIST:!EXPORT_VAR_AS_FUNCTION:VARIABLE:
  X509_CERT_PAIR_it                       3534	EXIST:EXPORT_VAR_AS_FUNCTION:FUNCTION:

@@ -60,7 +60,7 @@ if (show_time == "1")
 		ipupd_day='0'+ipupd_day;
 	var year=parseInt(ipupd_year);	
 }
-if(status== "0" )
+if((status== "0") || (status== "") )
 	document.write("$status0");
 else if(status== "1" )
 {

@@ -146,7 +146,6 @@ elif [ "\$(config get wan_proto)" = "pppoe" -a "\$(config get wan_pppoe_intranet
 	cat /tmp/dhcpc_resolv.conf >> /tmp/resolv.conf
 fi
 
-[ "\$(/bin/config get ipv6_sameinfo)" = "1" ] && /etc/net6conf/6pppoe adddns
 
 
 local qos_enable=\$(/bin/config get qos_endis_on)
@@ -162,6 +161,9 @@ if [ "x\$ipv6_wantype" != "x" -a "\$ipv6_wantype" != "disabled" -a "\$ipv6_wanty
 	killall net6conf
 	/etc/net6conf/net6conf restart
 fi
+
+[ "x\$ipv6_wantype" = "xpppoe" ] && /etc/net6conf/6pppoe adddns
+
 /sbin/cmdigmp start
 # If upgrade FW, need to update stremboost database
 sb_update_database

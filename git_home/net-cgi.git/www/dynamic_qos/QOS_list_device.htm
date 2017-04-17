@@ -17,6 +17,7 @@ var ip_addr=new Array();
 var name_addr=new Array();
 var prio_addr=new Array();
 var enable_bridge_flag="<% cfg_get("bridge_mode") %>";
+var enable_ap_mode_flag="<% cfg_get("ap_mode") %>";
 
 var devList=[];
 var listBySort=1;
@@ -169,8 +170,8 @@ function loadvalue()
 
 <div class="access">$access_control_url1
 <script>
-	if(enable_bridge_flag == "1")
-		document.write("<a href=# class=\"ui-corner-all\"><font color=grey>&nbsp; $access_control_url2 &nbsp;</font></a>&nbsp;");
+	if(enable_bridge_flag == "1" || enable_ap_mode_flag == "1")
+		document.write("<a href=# class=\"ui-corner-all\" style=\"background-color:grey;\">&nbsp; $access_control_url2 &nbsp;</a>&nbsp;");
 	else
 		document.write("<a href=# onclick=\"goto_url(); return false;\" class=\"ui-corner-all\">&nbsp; $access_control_url2 &nbsp;</a>&nbsp;");
 

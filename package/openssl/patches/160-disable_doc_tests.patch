@@ -1,24 +1,15 @@
---- a/Makefile
-+++ b/Makefile
-@@ -134,7 +134,7 @@ FIPSCANLIB=
- 
- BASEADDR=0xFB00000
- 
--DIRS=   crypto ssl engines apps test tools
-+DIRS=   crypto ssl engines apps tools
- SHLIBDIRS= crypto ssl
- 
- # dirs in crypto to build
-@@ -151,7 +151,7 @@ SDIRS=  \
+--- openssl-1.0.2h/Makefile.org	2016-05-26 14:12:33.000000000 +0800
++++ openssl-1.0.2h.org/Makefile.org	2016-05-26 14:19:40.000000000 +0800
+@@ -154,7 +154,7 @@
  
  # tests to perform.  "alltests" is a special word indicating that all tests
  # should be performed.
 -TESTS = alltests
-+TESTS =
++TESTS = 
  
  MAKEFILE= Makefile
  
-@@ -163,7 +163,7 @@ SHELL=/bin/sh
+@@ -168,7 +168,7 @@
  
  TOP=    .
  ONEDIRS=out tmp
@@ -27,29 +18,18 @@
  WDIRS=  windows
  LIBS=   libcrypto.a libssl.a
  SHARED_CRYPTO=libcrypto$(SHLIB_EXT)
-@@ -323,7 +323,7 @@ FIPS_EX_OBJ= ../crypto/aes/aes_cfb.o \
- 	../crypto/uid.o
+@@ -271,7 +271,7 @@
  
  sub_all: build_all
+ 
 -build_all: build_libs build_apps build_tests build_tools
 +build_all: build_libs build_apps build_tools
  
- build_libs: build_crypto build_fips build_ssl build_shared build_engines
+ build_libs: build_libcrypto build_libssl openssl.pc
  
-@@ -617,7 +617,7 @@ dist:   
- dist_pem_h:
- 	(cd crypto/pem; $(MAKE) -e $(BUILDENV) pem.h; $(MAKE) clean)
- 
--install: all install_docs install_sw
-+install: all install_sw
- 
- install_sw:
- 	@$(PERL) $(TOP)/util/mkdir-p.pl $(INSTALL_PREFIX)$(INSTALLTOP)/bin \
---- a/Makefile.org
-+++ b/Makefile.org
-@@ -615,7 +615,7 @@ dist:   
- dist_pem_h:
- 	(cd crypto/pem; $(MAKE) -e $(BUILDENV) pem.h; $(MAKE) clean)
+@@ -523,7 +523,7 @@
+ 	@$(MAKE) SDIRS='$(SDIRS)' clean
+ 	@$(MAKE) TAR='$(TAR)' TARFLAGS='$(TARFLAGS)' $(DISTTARVARS) tar
  
 -install: all install_docs install_sw
 +install: all install_sw

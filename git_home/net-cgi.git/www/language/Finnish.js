@@ -485,6 +485,12 @@ bh_ap_mode_tips="WiFi-verkon toimintahäiriöiden estämiseksi NETGEAR suosittel
 bh_mode_query="Voitko poistaa nykyisen yhdyskäytävän WiFi-verkon käytöstä?"
 bh_mode_yes_tips="Kopioi nykyisen yhdyskäytävän WiFi-asetukset ja lisää ne tähän. Poista sitten nykyisen yhdyskäytävän WiFi-verkko käytöstä."
 bh_mode_no_tips="Voit estää WiFi-laitteita muodostamasta yhteyttä nykyiseen yhdyskäytävään käyttämällä seuraavaa nimeä (SSID) ja salasanaa (verkkoavain), kun muodostat yhteyttä kaikista WiFi-laitteista tähän reitittimeen."
+ssid_null="SSID ei voi olla tyhjä."
+ssid_not_allowed="Merkkiä ei saa käyttää SSID-tunnuksessa"
+notallowpassps="Salasana koostuu joko 8~63 ASCII-merkistä tai täsmälleen 64 heksadesimaaliluvusta. Heksadesimaaliluku on jokin näistä merkeistä: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Liian lyhyt salasana. Sen on oltava vähintään 8 merkkiä pitkä."
+passphrase_long63="Salasana on liian pitkä. Enimmäispituus on 63 merkkiä."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR suosittelee uuden reitittimen määrittämistä reititintilassa."
 bh_router_suggest_str_2="Reititintilassa voit käyttää kaikkia NETGEAR-reitittimen lisätoimintoja. Voit vaihtaa tilaa milloin tahansa suorittamalla ohjatun asennustoiminnon uudelleen."

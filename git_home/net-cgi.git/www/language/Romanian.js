@@ -485,6 +485,12 @@ bh_ap_mode_tips="Pentru a evita interferenţele WiFi care pot compromite perform
 bh_mode_query="Puteţi dezactiva funcţia WiFi a gateway-ului dvs. existent?"
 bh_mode_yes_tips="Copiaţi setările dvs. WiFi curente din gateway-ul existent şi introduceţi-le aici. Apoi, dezactivaţi funcţia WiFi a gateway-ului dvs. existent."
 bh_mode_no_tips="Pentru a preveni conectarea dispozitivelor dvs. WiFi la gateway-ul existent, utilizaţi următorul nume (SSID) şi următoarea parolă (cheie de reţea) pentru conectarea tuturor dispozitivelor dvs. WiFi la acest router."
+ssid_null="SSID-ul nu poate fi necompletat."
+ssid_not_allowed="Caracterul nu este permis în SSID"
+notallowpassps="O parolă constă din 8~63 caractere ASCII sau exact 64 de cifre hexazecimale. O cifră hexazecimală este unul dintre caracterele următoare: 0, 1, 2, ..., 8, 9, A, B, C, D, E, F."
+passphrase_short8="Parola este prea scurtă. Trebuie să aibă minimum 8 caractere."
+passphrase_long63="Parola este prea lungă. Lungimea maximă este de 63 caractere."
+
 //BRS_ap_detect_01_router_01.html
 bh_router_suggest_str_1="NETGEAR recomandă configurarea acestui nou router în modul router."
 bh_router_suggest_str_2="Modul router permite utilizarea tuturor caracteristicilor avansate ale routerului dvs. NETGEAR. Puteţi întotdeauna aplicaţia Expert configurare pentru a schimba ulterior modul."
