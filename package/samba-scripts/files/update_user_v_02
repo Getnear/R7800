@@ -41,16 +41,17 @@ while [ $i -le 9 ]; do
 	if [ "x$readycloud_user" != "x" ]; then
 		username=`echo $readycloud_user | awk '{print $1}'`
 		userpasswd=`echo $readycloud_user | awk '{print $3}'`
-		echo "$username:x:$id:" >> $SMB_CONF_DIR/group
-		(sleep 1; echo $userpasswd; sleep 1; echo $userpasswd) | /bin/adduser -G $username $username -H -h /tmp/ftpadmin -s /bin/ash
-		/usr/bin/smbpasswd $username $userpasswd
+#		echo "$username:x:$id:" >> $SMB_CONF_DIR/group
+#		(sleep 1; echo $userpasswd; sleep 1; echo $userpasswd) | /bin/adduser -G $username $username -H -h /tmp/ftpadmin -s /bin/ash
+#		/usr/bin/smbpasswd $username $userpasswd
+		echo "$username:$id:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX:$userpasswd:[U          ]:LCT-00000001:" >> $SMB_PASSWD_DIR
 	else
 		break;
 	fi
 	let i=$i+1
 	let id=$id+1
 # admin permission for cloud user
-sed -i "s/$username\:x\:$id/$username\:x\:500/g" $SMB_CONF_DIR/passwd
+#sed -i "s/$username\:x\:$id/$username\:x\:500/g" $SMB_CONF_DIR/passwd
 done
 fi
 

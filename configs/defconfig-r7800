@@ -419,8 +419,6 @@ CONFIG_DEFAULT_kmod-qca-nss-gmac=y
 CONFIG_DEFAULT_kmod-qca-nss-tun6rd=y
 CONFIG_DEFAULT_kmod-qca-nss-tunipip6=y
 CONFIG_DEFAULT_kmod-qca-ssdk-nohnat=y
-CONFIG_DEFAULT_kmod-qca-wifi=y
-CONFIG_DEFAULT_kmod-qca-wifi-akronite-perf=y
 CONFIG_DEFAULT_kmod-sound-core=y
 CONFIG_DEFAULT_kmod-sound-soc-ipq806x=y
 CONFIG_DEFAULT_kmod-usb-core=y
@@ -456,8 +454,6 @@ CONFIG_DEFAULT_ppp-mod-pptp=y
 CONFIG_DEFAULT_pure-ftpd=y
 CONFIG_DEFAULT_qca-hostap=y
 CONFIG_DEFAULT_qca-hostapd-cli=y
-CONFIG_DEFAULT_qca-nss-fw-retail=y
-CONFIG_DEFAULT_qca-spectral=y
 CONFIG_DEFAULT_qca-ssdk-shell=y
 CONFIG_DEFAULT_qca-wapid=y
 CONFIG_DEFAULT_qca-wpa-cli=y
@@ -469,7 +465,6 @@ CONFIG_DEFAULT_quagga-zebra=y
 CONFIG_DEFAULT_radvd=y
 CONFIG_DEFAULT_rp-pppoe-relay=y
 CONFIG_DEFAULT_sigma-dut=y
-CONFIG_DEFAULT_streamboost-noload=y
 CONFIG_DEFAULT_swconfig=y
 CONFIG_DEFAULT_sysstat=y
 CONFIG_DEFAULT_tftp-hpa=y
@@ -1538,7 +1533,6 @@ CONFIG_PACKAGE_libopenssl=y
 #
 # database
 #
-CONFIG_PACKAGE_hiredis=y
 CONFIG_PACKAGE_libsqlite3=y
 CONFIG_PACKAGE_alsa-lib=y
 CONFIG_PACKAGE_confuse=y
@@ -1912,10 +1906,6 @@ CONFIG_PACKAGE_kmod-qca-ssdk-nohnat=y
 # CONFIG_PACKAGE_kmod-tulip is not set
 # CONFIG_PACKAGE_kmod-via-rhine is not set
 # CONFIG_PACKAGE_kmod-via-velocity is not set
-# CONFIG_PACKAGE_qca-nss-fw-carrier is not set
-# CONFIG_qca-nss-fw_USE_CUSTOM_SOURCE_DIR is not set
-# CONFIG_PACKAGE_qca-nss-fw-enterprise is not set
-CONFIG_PACKAGE_qca-nss-fw-retail=y
 
 #
 # custom source directory
@@ -2253,36 +2243,20 @@ CONFIG_PACKAGE_dni-libmtd=y
 # QCA SSDK
 #
 CONFIG_PACKAGE_qca-ssdk-shell=y
-CONFIG_PACKAGE_kmod-qca-wifi=y
-
-#
-# custom source directory
-#
-# CONFIG_qca-wifi_USE_CUSTOM_SOURCE_DIR is not set
 
 #
 # overwrite package version
 #
-# CONFIG_qca-wifi_USE_CUSTOM_VERSION is not set
+CONFIG_PACKAGE_qca-wpa-supplicant=y
+CONFIG_QCA_ATHR_HOSTAP_SUPPLICANT_CONFIG="wpa_supplicant-10.4-default"
 
 #
 # Configuration
 #
-CONFIG_QCA_WIFI_USE_DNI_GIT=y
-CONFIG_QCA_WIFI_USE_CLIENT_BRIDGE=y
-# CONFIG_QCA_WIFI_DISPLAY_SCAN_IN_PROC is not set
-# CONFIG_PACKAGE_kmod-qca-wifi-akronite-perf-emu is not set
-CONFIG_PACKAGE_qca-acfg=y
+CONFIG_QCA_ATHR_HOSTAP_SUPPLICANT_wpa-supplicant-default=y
+CONFIG_PACKAGE_qca-wpa-cli=y
+# CONFIG_PACKAGE_qca-wpa-supplicant-macsec is not set
 
-#
-# custom source directory
-#
-# CONFIG_qca-acfg_USE_CUSTOM_SOURCE_DIR is not set
-
-#
-# overwrite package version
-#
-# CONFIG_qca-acfg_USE_CUSTOM_VERSION is not set
 CONFIG_PACKAGE_qca-hostap=y
 
 #
@@ -2295,89 +2269,16 @@ CONFIG_PACKAGE_qca-hostap=y
 #
 # CONFIG_qca-hostap_USE_CUSTOM_VERSION is not set
 CONFIG_QCA_ATHR_HOSTAP_HOSTAPD_CONFIG="hostapd-default"
-
-#
-# Configuration
-#
-CONFIG_QCA_ATHR_HOSTAP_USE_DNI_GIT=y
 CONFIG_QCA_ATHR_HOSTAP_HOSTAPD_hostap-default=y
+CONFIG_QCA_ATHR_HOSTAP_USE_DNI_GIT=y
 CONFIG_PACKAGE_qca-hostapd-cli=y
-CONFIG_PACKAGE_qca-spectral=y
-# CONFIG_PACKAGE_qca-mcs-apps is not set
-
-#
-# overwrite package version
-#
-# CONFIG_qca-spectral_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_qca-spectral_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_qca-wifi-fw-asic=y
-
-#
-# custom source directory
-#
-# CONFIG_qca-wifi-fw_USE_CUSTOM_SOURCE_DIR is not set
-
-#
-# overwrite package version
-#
-# CONFIG_qca-wifi-fw_USE_CUSTOM_VERSION is not set
-# CONFIG_PACKAGE_qca-wifi-fw-emu_bb is not set
-# CONFIG_PACKAGE_qca-wifi-fw-emu_m2m is not set
-CONFIG_PACKAGE_qca-wpa-supplicant=y
-CONFIG_QCA_ATHR_HOSTAP_SUPPLICANT_CONFIG="wpa_supplicant-10.4-default"
-
-#
-# Configuration
-#
-CONFIG_QCA_ATHR_HOSTAP_SUPPLICANT_wpa-supplicant-default=y
-CONFIG_PACKAGE_qca-wpa-cli=y
-# CONFIG_PACKAGE_qca-wpa-supplicant-macsec is not set
-CONFIG_PACKAGE_qca-wpc=y
-
-#
-# overwrite package version
-#
-# CONFIG_qca-wpc_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_qca-wpc_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_qca-wrapd=y
-
-#
-# custom source directory
-#
-# CONFIG_qca-wrapd_USE_CUSTOM_SOURCE_DIR is not set
-
-#
-# overwrite package version
-#
-# CONFIG_qca-wrapd_USE_CUSTOM_VERSION is not set
-CONFIG_PACKAGE_qcmbr=y
-
 #
 # Bigfoot
 #
 
 #
-# Bandwidth Control
-#
-CONFIG_PACKAGE_overlord=y
-
-#
-# overwrite package version
-#
-# CONFIG_overlord_USE_CUSTOM_VERSION is not set
-
-#
 # custom source directory
 #
-# CONFIG_overlord_USE_CUSTOM_SOURCE_DIR is not set
 # CONFIG_PACKAGE_relay_client is not set
 
 #
@@ -2385,242 +2286,16 @@ CONFIG_PACKAGE_overlord=y
 #
 # CONFIG_PACKAGE_bwestd is not set
 
-#
-# Connection Blocking/Unblocking
-#
-CONFIG_PACKAGE_blockman=y
 
-#
-# overwrite package version
-#
-# CONFIG_blockman_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_blockman_USE_CUSTOM_SOURCE_DIR is not set
-
-#
-# Flow Detect
-#
-CONFIG_PACKAGE_app-flow-scripts=y
-
-#
-# overwrite package version
-#
-# CONFIG_app-flow-scripts_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_app-flow-scripts_USE_CUSTOM_SOURCE_DIR is not set
-# CONFIG_PACKAGE_app-flow-scripts-noload is not set
-CONFIG_PACKAGE_callhomeclient=y
-
-#
-# overwrite package version
-#
-# CONFIG_callhomeclient_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_callhomeclient_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_cape=y
-
-#
-# overwrite package version
-#
-# CONFIG_cape_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_cape_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_celes=y
-
-#
-# overwrite package version
-#
-# CONFIG_celes_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_celes_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_drflocs=y
-
-#
-# overwrite package version
-#
-# CONFIG_drflocs_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_drflocs_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_dumpevents=y
-
-#
-# overwrite package version
-#
-# CONFIG_dumpevents_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_dumpevents_USE_CUSTOM_SOURCE_DIR is not set
-# CONFIG_PACKAGE_flowcap is not set
-CONFIG_PACKAGE_flowman=y
-
-#
-# overwrite package version
-#
-# CONFIG_flowman_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_flowman_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_flowmark=y
-
-#
-# overwrite package version
-#
-# CONFIG_flowmark_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_flowmark_USE_CUSTOM_SOURCE_DIR is not set
 # CONFIG_PACKAGE_kmod-nexus is not set
 # CONFIG_PACKAGE_kmod-nexus-example-sensor is not set
-CONFIG_PACKAGE_macoui-db=y
-
 #
-# overwrite package version
-#
-# CONFIG_macoui-db_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_macoui-db_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_p0f-db=y
-
-#
-# overwrite package version
-#
-# CONFIG_p0f-db_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_p0f-db_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_policy-reader=y
-
-#
-# overwrite package version
-#
-# CONFIG_policy-reader_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_policy-reader_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_policy-redis=y
-
-#
-# overwrite package version
-#
-# CONFIG_policy-redis_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_policy-redis_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_qdiscman=y
-
-#
-# overwrite package version
-#
-# CONFIG_qdiscman_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_qdiscman_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_sea=y
-
-#
-# overwrite package version
-#
-# CONFIG_sea_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_sea_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_wopr-db=y
-
-#
-# overwrite package version
-#
-# CONFIG_wopr-db_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_wopr-db_USE_CUSTOM_SOURCE_DIR is not set
-
-#
-# Node Management
-#
-CONFIG_PACKAGE_jigglyp0f=y
-
-#
-# overwrite package version
-#
-# CONFIG_jigglyp0f_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_jigglyp0f_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_nodedetectd=y
-
-#
-# overwrite package version
-#
-# CONFIG_nodedetectd_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_nodedetectd_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_sbnamed=y
-
-#
-# overwrite package version
-#
-# CONFIG_sbnamed_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_sbnamed_USE_CUSTOM_SOURCE_DIR is not set
 
 #
 # Utilities
 #
-CONFIG_PACKAGE_aperture-noauto=y
 # CONFIG_PACKAGE_aperture is not set
-CONFIG_PACKAGE_checkpcap=y
-CONFIG_PACKAGE_customer-keys=y
-CONFIG_PACKAGE_guest_dhcp=y
-CONFIG_PACKAGE_leash=y
 # CONFIG_PACKAGE_libnexus is not set
-CONFIG_PACKAGE_libsbdaemon=y
 
 #
 # overwrite package version
@@ -2636,56 +2311,6 @@ CONFIG_PACKAGE_libsbdaemon=y
 # CONFIG_PACKAGE_libsquirrel is not set
 # CONFIG_PACKAGE_nexus-utils is not set
 # CONFIG_PACKAGE_nxstat is not set
-CONFIG_PACKAGE_sbmacouid=y
-
-#
-# overwrite package version
-#
-# CONFIG_sbmacouid_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_sbmacouid_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_sbnoded=y
-
-#
-# overwrite package version
-#
-# CONFIG_sbnoded_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_sbnoded_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_settings-loader=y
-
-#
-# overwrite package version
-#
-# CONFIG_settings-loader_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_settings-loader_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_smoketest=y
-CONFIG_PACKAGE_streamboost-misc=y
-
-#
-# Utils
-#
-CONFIG_PACKAGE_sbsaved=y
-
-#
-# overwrite package version
-#
-# CONFIG_sbsaved_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_sbsaved_USE_CUSTOM_SOURCE_DIR is not set
 
 #
 # Web UI
@@ -2693,7 +2318,6 @@ CONFIG_PACKAGE_sbsaved=y
 # CONFIG_PACKAGE_lil-ozker-nofcgi is not set
 # CONFIG_PACKAGE_lil-ozker is not set
 # CONFIG_PACKAGE_ozker-nofcgi is not set
-CONFIG_PACKAGE_ozker=y
 
 #
 # overwrite package version
@@ -2705,7 +2329,6 @@ CONFIG_PACKAGE_ozker=y
 #
 # CONFIG_ozker_USE_CUSTOM_SOURCE_DIR is not set
 # CONFIG_PACKAGE_ready-genie-cloud is not set
-CONFIG_PACKAGE_zz-dni-streamboost=y
 
 #
 # Sound
@@ -2719,50 +2342,6 @@ CONFIG_PACKAGE_forked-daapd=y
 #
 # JavaScript
 #
-CONFIG_PACKAGE_angular-loadcontent=y
-
-#
-# overwrite package version
-#
-# CONFIG_angular-loadcontent_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_angular-loadcontent_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_angular-ozker=y
-
-#
-# overwrite package version
-#
-# CONFIG_angular-ozker_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_angular-ozker_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_flux=y
-
-#
-# overwrite package version
-#
-# CONFIG_flux_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_flux_USE_CUSTOM_SOURCE_DIR is not set
-CONFIG_PACKAGE_tresbar=y
-
-#
-# overwrite package version
-#
-# CONFIG_tresbar_USE_CUSTOM_VERSION is not set
-
-#
-# custom source directory
-#
-# CONFIG_tresbar_USE_CUSTOM_SOURCE_DIR is not set
 
 #
 # Lua

@@ -1,9 +1,0 @@
-#!/bin/sh /etc/rc.common
-# Make sysfs changes at start time
-
-START=98
-
-start() {
-	echo 0 >/sys/block/mtdblock2/queue/read_ahead_kb
-	echo 1 >/sys/fast_classifier/skip_to_bridge_ingress
-}

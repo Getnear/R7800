@@ -338,12 +338,12 @@ start() # $1: manually
 	start_stage0 start $1
 	/etc/init.d/ntpclient start
 	/etc/init.d/cron restart
+	/etc/init.d/dnsmasq stop
 	/etc/init.d/dnsmasq start
 }
 
 stop()
 {
-	/etc/init.d/dnsmasq stop
 	/etc/init.d/ntpclient stop
 	/etc/init.d/init6 stop
 

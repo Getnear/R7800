@@ -3,6 +3,7 @@
 <div class="page_title">$firm_upgrade</div>
 <div id="main" class="main">
 <form method="post" action="/upgrade.cgi" target=formframe>
+<input type="hidden" name="submit_flag" value="upload_firmware" />
 <input type="hidden" name="upgrade_yes_no" value="">
 
 <div><img src=/liteblue.gif width=100%% height=12></div>
@@ -54,6 +55,8 @@ function click_button(form, flag)
 </td></tr>
 
 <script language="javascript" type="text/javascript">
+<% refresh_timestamp("upload_firmware") %>
+var ts="<% cfg_get("upload_firmware") %>"
 function return_to_upgrade_page()
 {
 	if(top.hidden_upgrade)  //if top.hidden_upgrade exits, top is CheckNewFirmware.htm
@@ -92,6 +95,7 @@ function loadvalue()
 		file_num*=100;
 	}
 
+	document.forms[0].action = "/upgrade.cgi? timestamp=" + ts;
 	if(netgear_num<file_num)
 	{
 		click_button(document.forms[0], 1);

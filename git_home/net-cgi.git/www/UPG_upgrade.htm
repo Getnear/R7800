@@ -11,7 +11,9 @@
 
 <script>
 <% refresh_timestamp("auto_upgrade_check", "download_confile") %>
+<% refresh_timestamp("upload_check_fw") %>
 var ts="<% cfg_get("auto_upgrade_check") %>"
+var ts1="<% cfg_get("upload_check_fw") %>"
 
 <% cfg_set("hidden_upgrade", "0") %>
 
@@ -19,8 +21,10 @@ function loadvalue()
 {
 	var autoup = '<% cfg_get("auto_check_for_upgrade") %>';
 	var cf = document.forms[0];
+	var cf1 = document.forms[1];
 
 	cf.action = "/apply.cgi?/UPG_upgrade.htm timestamp=" + ts;
+	cf1.action = "/upgrade_check.cgi?/UPG_version.htm timestamp=" + ts1;
 }
 var netgear_module="<% cat_file("/module_name") %>";
 var netgear_region=top.netgear_region;

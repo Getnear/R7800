@@ -34,11 +34,12 @@ include $(INCLUDE_DIR)/package.mk
 define Package/datalib
   SECTION:=utils
   CATEGORY:=Utilities
+  DEPENDS:=+dni-libmtd
   TITLE:=Small application for saving data on embedded system
 endef
 
 define Build/Prepare
-	$(CP) $(GIT_HOME)/datalib.git/* $(PKG_BUILD_DIR)/	
+	$(CP) $(GIT_HOME)/datalib.git/* $(PKG_BUILD_DIR)/
 endef
 
 define Build/Compile

@@ -50,11 +50,7 @@ bridge-utils, 1.5, GPL, No
 
 bridge-mode, 1, DNI, Yes
 
-blockman, g594cecb, Atheros, Yes
-
 curl, 7.29.0, GPL, No
-
-customer-keys, 1-netgear-r7800, Atheros, Yes
 
 dnibusybox, 1.4.2, GPL, Yes
 
@@ -199,16 +195,6 @@ qca-nss-clients,2.4.3.1008.232 , Dual BSD/GPL, Yes
 qca-nss-crypto,1 , Dual BSD/GPL, Yes
 
 qca-ssdk,2.4.3.1008.232 , Dual BSD/GPL, Yes
-
-qca-acfg, 10.4-r38329.1, Atheros, Yes
-
-qca-wpc, 10.4-r38329.1, Atheros, Yes
-
-qca-wrapd, 10.4-r38329.1, Atheros, Yes
-
-qca-wifi-fw, CNSS.BL.1.0-00453-S-1, Atheros, Yes
-
-qcmbr, 10.4, Atheros, Yes
 
 radardetect, 1, DNI, Yes
 
