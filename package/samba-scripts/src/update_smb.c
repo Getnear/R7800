@@ -1079,7 +1079,7 @@ static void load_share_info(FILE *fp, char *diskname)
                         if (diskinfo->label == 'U')
                                 snprintf(share_name, sizeof(share_name), "USB_Storage");
                         else if (diskinfo->label == 's')
-				snprintf(share_name, sizeof(share_name), "External_Disk");
+				snprintf(share_name, sizeof(share_name), "USB_Storage");
                         else if (diskinfo->label == '0'){
 				snprintf(share_name, sizeof(share_name), "SD_Card");
 			}
@@ -1088,7 +1088,7 @@ static void load_share_info(FILE *fp, char *diskname)
 			else if(isdigit(diskinfo->label))
 				snprintf(share_name, sizeof(share_name),"SD_Card_%c", diskinfo->label);
 			else
-                                snprintf(share_name, sizeof(share_name),"External_Disk%d", 's' + 1 - diskinfo->label);
+                                snprintf(share_name, sizeof(share_name),"USB_Storage%d", 's' + 1 - diskinfo->label);
 
 			snprintf(value,sizeof(value),"%s*/*0*0*%s*%s*%s",share_name,diskinfo->vol_name,diskinfo->vendor,diskinfo->device_id);
 

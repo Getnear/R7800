@@ -1,8 +1,5 @@
 #
-# Copyright (c) 2013 Qualcomm Atheros, Inc.
-#
-# All Rights Reserved.
-# Qualcomm Atheros Confidential and Proprietary.
+# Copyright (c) 2013 The Linux Foundation. All rights reserved.
 #
 
 include $(TOPDIR)/rules.mk
@@ -18,10 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/qca-ssdk-shell
   SECTION:=QCA
-  CATEGORY:=QCA Proprietary software
-  URL:=http://www.qca.qualcomm.com
-  MAINTAINER:=Qualcomm Atheros
-  SUBMENU:=QCA SSDK
+  CATEGORY:=Utilities
   TITLE:=Shell application for QCA SSDK
 endef
 

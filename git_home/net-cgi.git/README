@@ -1,0 +1,8 @@
+## Compile
+
+1. configurate net-cgi module to generate top rules for make system,
+   please run `./configure --help` to know options.
+   for instence: run `./configure --use_new_source`
+
+2. call `make; make install` to compile and install finally files.
+   note that you should specify `INS_DIR_PRE=<path>` when run `make install`.

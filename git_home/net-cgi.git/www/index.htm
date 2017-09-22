@@ -54,7 +54,8 @@ var gui_region="<% cfg_get("GUI_Region") %>";
 var auto_change_lang = 0;//bug 28482
 <% cfg_set("show_ap", "0") %>
 <% cfg_set("show_bridge", "0") %>
-<% show_devices() %>
+
+var disk_num = <% cat_file("/tmp/usbdisknum") %>;
 
 var is_ru_version=(((netgear_region.toUpperCase() == "WW" || netgear_region == "") && gui_region == "Russian" ) || netgear_region.toUpperCase() == "RU") ? 1 : 0;
 var is_pr_version=(((netgear_region.toUpperCase() == "WW" || netgear_region == "") && gui_region == "Chinese" ) || netgear_region.toUpperCase() == "PR") ? 1 : 0;

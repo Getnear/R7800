@@ -1,3 +1,0 @@
-Qualcomm Atheros, Inc. has chosen to take pal subject to the BSD license and terms.
-Qualcomm Atheros, Inc. has chosen to take umac subject to the BSD license and terms.
-Qualcomm Atheros, Inc. has chosen to take lmac subject to the BSD license and terms.

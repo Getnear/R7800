@@ -1095,7 +1095,7 @@ int get_lan_ipaddr(struct in_addr *inp)
 
 #define IF_INET6 "/proc/net/if_inet6"
 
-int get_lan_linklocal_ipaddr6(struct in6_addr *inp6)
+int get_lan_linklocal_ipaddr6(struct in6_addr *inp6, int global_flag)
 {
 	char str[128], addr6[64];
 	char *addr, *index, *prefix, *scope, *flags, *name;
@@ -1136,6 +1136,8 @@ int get_lan_linklocal_ipaddr6(struct in6_addr *inp6)
 	 *
 	 * Note that all values of row 1~5 are hexadecimal string.
 	 */
+	memset(inp6, 0x00, sizeof(&inp6));
+	#define IPV6_ADDR_GLOBAL 0x0000U
 	#define IPV6_ADDR_LINKLOCAL 0x0020U
 	while (fgets(str, sizeof(str), fp)) {
 		addr = strtok(str, delim);
@@ -1147,8 +1149,10 @@ int get_lan_linklocal_ipaddr6(struct in6_addr *inp6)
 
 		if (strcmp(name, "br0"))
 			continue;
+		if (global_flag && IPV6_ADDR_GLOBAL != (unsigned int)strtoul(scope, NULL, 16))
+			continue;
 		/* Must be link local IPv6 address */
-		if (IPV6_ADDR_LINKLOCAL != (unsigned int)strtoul(scope, NULL, 16))
+		if (!global_flag && IPV6_ADDR_LINKLOCAL != (unsigned int)strtoul(scope, NULL, 16))
 			continue;
 
 		memset(addr6, 0x00, sizeof(addr6));
@@ -1168,7 +1172,10 @@ int get_lan_linklocal_ipaddr6(struct in6_addr *inp6)
 		break;
 	}
 	#undef IPV6_ADDR_LINKLOCAL
-
+	#undef IPV6_ADDR_GLOBAL
+	
+        if (0 == inp6->s6_addr16[0])
+                return -1;
 	fclose(fp);
 	return 0;
 }
@@ -1603,9 +1610,7 @@ size_t answer_request(HEADER *header, char *limit, size_t qlen, struct daemon *d
 		"updates1.netgear.com",
 		"472263.ftp.download.akadns.net",
 		"http.updates1.netgear.com",
-		"captive.apple.com",
 		"www.appleiphonecell.com",
-		"www.apple.com",
 		"www.itools.info",
 		"www.ibook.info",
 		"www.airport.us",
@@ -1692,8 +1697,10 @@ size_t answer_request(HEADER *header, char *limit, size_t qlen, struct daemon *d
 	     * that listed on this section.
 	     */
 		if (qtype == T_AAAA || qtype == T_A6) {
-		    if (get_lan_linklocal_ipaddr6(&addr.addr.addr6))
-		        return 0;
+		    if (get_lan_linklocal_ipaddr6(&addr.addr.addr6, 1)){
+		        if (get_lan_linklocal_ipaddr6(&addr.addr.addr6, 0))
+		            return 0;
+		    }
 		    if (add_resource_record(header, limit, &trunc, nameoffset, &ansp, 0, NULL, T_AAAA, C_IN, "6", &addr))
 		        anscount++;
 		} else {

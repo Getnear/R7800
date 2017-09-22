@@ -139,7 +139,10 @@ function check_device_edit_apply(cf)
 		<div class="devType">
 			<script>document.write(show_type(contype));</script>
 		</div>
-		<div class="devName"><b><script>document.write(edit_name)</script></b></div>
+		<div class="devName"><b><script>
+			var acture_name = edit_name.replace(/#/g,"&#35;").replace(/&/g,"&#38;").replace(/\\/g, "&#92;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\(/g,"&#40;").replace(/\)/g,"&#41;").replace(/\"/g,'&#34;').replace(/\'/g,'&#39;');
+			document.write(acture_name);
+		</script></b></div>
 	</div>
 	<div class="lineright">
 

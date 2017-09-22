@@ -96,7 +96,7 @@ var basic_dynamic_page="<% cfg_get("basic_dynamic_page") %>"
 var enable_mapt="<% cfg_get("mapt_enable") %>";
 var master = "<% cfg_get("http_loginname") %>";
 
-<% show_devices() %>
+var disk_num = <% cat_file("/tmp/usbdisknum") %>;
 
 var lang_select = "<% cfg_get("Language_Selection") %>";
 var browser_lang = "<% get_browser_language() %>";

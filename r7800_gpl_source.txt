@@ -23,26 +23,6 @@ User application
         http://amule.en.softonic.com/
         GPL
         Source Code
-[angular-loadcontent]
-        angular-loadcontent
-        Atheros
-        Atheros
-        Binary
-[angular-ozker]
-        angular-ozker
-        Atheros
-        Atheros
-        Binary
-[aperture]
-        aperture
-        Atheros
-        Atheros
-        Binary
-[app-flow-scripts]
-        app-flow-scripts
-        Atheros
-        Atheros
-        Binary
 [artmtd]
         artmtd
         DNI
@@ -68,11 +48,6 @@ User application
 		http://packages.debian.org/bc
         GPL
         Source Code
-[blockman]
-		blockman
-		Atheros
-		Atheros
-        Binary
 [dni-libmtd]
 	dni-libmtd
 	DNI
@@ -88,31 +63,6 @@ User application
         http://bridge.sourceforge.net/
         GPL
         Source Code
-[bwestd]
-	bwestd
-	Atheros
-	Atheros
-	Binary
-[callhomeclient]
-        callhomeclient
-        Atheros
-        Atheros
-        Binary
-[cape]
-        cape
-        Atheros
-        Atheros
-        Binary
-[celes]
-	celes	
-	Atheros
-	Atheros
-	Binary
-[checkpcap]
-        checkpcap
-        Atheros
-        Atheros
-        Source Code
 [confuse]
         confuse-2.6.tar.gz
         http://www.nongnu.org/confuse/
@@ -122,11 +72,6 @@ User application
         curl-7.29.0.tar.bz2
         http://curl.haxx.se/
         GPL
-        Source Code
-[customer-keys]
-        customer-keys
-        Atheros
-        Atheros
         Source Code
 [cyassl]
         libcyassl
@@ -198,16 +143,6 @@ User application
         http://www.thekelleys.org.uk/dnsmasq
         GPL
         Source Code
-[drflocs]
-        drflocs
-        Atheros
-        Atheros
-        Binary
-[dumpevents]
-        dumpevents
-        Atheros
-        Atheros
-        Source Code
 [e2fsprogs]
         e2fsprogs-1.42
         http://e2fsprogs.sourceforge.net/
@@ -248,21 +183,6 @@ User application
         http://www.fastcgi.com/
         GPL
         Source Code
-[flowman]
-        flowman
-        Atheros
-        Atheros
-        Binary
-[flowmark]
-        flowmark
-        Atheros
-        Atheros
-        Binary
-[flux]
-        flux
-        Atheros
-        Atheros
-        Binary
 [ffmpeg]
         ffmpeg-0.11.2
         http://ffmpeg.org/releases
@@ -293,21 +213,11 @@ User application
         DNI
         DNI
         Binary
-[guest_dhcp]
-	guest_dhcp
-	Atheros
-	Atheros
-	Source Code
 [hd-idle]
         hd-idle-1.04.tgz
         http://hd-idle.sourceforge.net/
         GPL
         Source Code
-[hiredis]
-        hiredis
-        Atheros
-        Atheros
-        Binary
 [hotplug2]
         hotplug2-201
         http://isteve.bofh.cz/~isteve/hotplug2
@@ -338,21 +248,11 @@ User application
         http://www.digip.org/jansson/releases/
         GPL
         Source Code
-[jigglyp0f]
-        jigglyp0f
-        Atheros
-        Atheros
-        Binary
 [jq]
         jq-1.3.tar.gz
         openwrt
         GPL
         Source Code
-[leash]
-        leash
-        Atheros
-        Atheros
-        Binary
 [led-control]
         led-control
         DNI
@@ -463,11 +363,6 @@ User application
         http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
         GPL
         Source Code
-[libsbdaemon]
-        libsbdaemon
-        Atheros
-        Atheros
-        Binary
 [libtool]
         libtool
         http://www.gnu.org/software/libtool/
@@ -538,11 +433,6 @@ User application
         http://www.oberhumer.com/opensource/lzo/
         GPL
         Source Code
-[macoui-db]
-        macoui-db
-        Atheros
-        Atheros
-        Binary
 [minidlna]
         minidlna
         http://sourceforge.net/projects/minidlna
@@ -623,11 +513,6 @@ User application
         http://ngrep.sourceforge.net
         GPL
         Source Code
-[nodedetectd]
-        nodedetectd
-        Atheros
-        Atheros
-        Binary
 [noip2]
         noip2
         http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
@@ -668,26 +553,6 @@ User application
         http://wiki.openmoko.org/wiki/Opkg
         GPL
         Source Code
-[overlord]
-        overlord
-        Atheros
-        Atheros
-        Binary
-[ozker]
-        ozker
-        Atheros
-        Atheros
-        Binary
-[p0f]
-        p0f-3.06b.tgz
-        http://lcamtuf.coredump.cx/p0f.shtml
-        GPL
-        Source Code
-[p0f-db]
-        p0f-db
-        Atheros
-        Atheros
-        Binary
 [parted]
         parted-3.0.tar.gz
         http://www.gnu.org/software/parted/index.shtml
@@ -703,16 +568,6 @@ User application
         http://open.oray.com/doc/phddns-sdk-1.0.4.17314.tar.gz
         GPL
         Source Code
-[policy-reader]
-        policy-reader-0.0.1
-        Atheros
-        Atheros
-        Source Code
-[policy-redis]
-        policy-redis
-        Atheros
-        Atheros
-        Binary
 [popt]
         popt-1.7.tar.gz
         http://rpm5.org/files/popt/
@@ -743,21 +598,16 @@ User application
         openwrt
         GPL
         Source Code
-[qca-acfg]
-	qca-acfg
-	Atheros
-	Atheros
-	Binary
-[qca-hostap]
-        hostap-10.2.2.39.1
-        Atheros
-        Atheros
-        Binary
 [qca-mcs]
 	qca-mcs
 	https://www.codeaurora.org/cgit/quic/qsdk/oss
 	Dual BSD/GPL
 	Source Code
+[qca-hostap]
+	hostap-10.2.2.39.1
+	Atheros
+	Atheros
+	Binary
 [qca-nss-clients]
 	qca-nss-clients
 	https://www.codeaurora.org/cgit/quic/qsdk/oss
@@ -784,16 +634,6 @@ User application
         https://www.codeaurora.org/cgit/quic/qsdk/oss
 		GPL
         Source Code
-[qca-nss-fw]
-        NSS.AK.1.0.c8-00014.tar.tar.bz2
-        https://www.codeaurora.org/cgit/quic/qsdk/oss
-		GPL
-        Source Code
-[qca-spectral]
-        qca-spectral
-        Atheros
-        Atheros
-        Binary
 [qca-ssdk]
         qca-ssdk
         https://www.codeaurora.org/cgit/quic/qsdk/oss
@@ -804,41 +644,6 @@ User application
         Atheros
         Atheros
         Source Code
-[qca-wifi]
-        qca-wifi
-        Atheros
-        Atheros
-        Binary
-[qca-wifi-fw]
-	qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.r1-00003-S-1.tar.bz2
-	http://www.qca.qualcomm.com
-	Dual BSD/GPL
-        Source Code
-[qca-wpc]
-	qca-wpc
-	Atheros
-	Atheros
-	Binary
-[qca-wrapd]
-	qca-wrapd
-	Atheros
-	Atheros
-	Binary
-[qca-wifi-fw]
-	qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.2-00043-s-1.tar.gz2
-	Atheros
-	Atheros
-	Binary
-[qcmbr]
-	qcmbr
-	Atheros
-	Atheros
-	Binary
-[qdiscman]
-        qdiscman
-        Atheros
-        Atheros
-        Binary
 [qsdk-wifi-script]
         qsdk-wifi-script
         DNI
@@ -869,41 +674,6 @@ User application
         DNI
         GPL
         Source Code
-[sbmacouid]
-        sbmacouid
-        Atheros
-        Atheros
-        Binary
-[sbnamed]
-        sbnamed
-        Atheros
-        Atheros
-        Binary
-[sbnoded]
-        sbnoded
-        Atheros
-        Atheros
-        Binary
-[sbsaved]
-        sbsaved
-        Atheros
-        Atheros
-        Binary
-[sea]
-        sea
-        Atheros
-        Atheros
-        Binary
-[settings-loader]
-        settings-loader
-        Atheros
-        Atheros
-        Source Code
-[smoketest]
-        smoketest
-        Atheros
-        Atheros
-        Source Code
 [shortcut-fe]
         shortcut-fe
         Atheros
@@ -923,16 +693,6 @@ User application
         ssmtp-2.64
         http://ftp.debian.org/debian/pool/main/s/ssmtp
         GPL
-        Source Code
-[streamboost]
-        streamboost
-        Atheros
-        Atheros
-        Source Code
-[streamboost-misc]
-        streamboost-misc
-        Atheros
-        Atheros
         Source Code
 [swconfig]
         swconfig
@@ -979,11 +739,6 @@ User application
 		http://www.transmissionbt.com
         GPL
         Source Code
-[tresbar]
-        tresbar
-        Atheros
-        Atheros
-        Binary
 [ubus]
         dl/ubus-2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50.tar.gz
         git://nbd.name/luci2/ubus.git
@@ -1049,11 +804,6 @@ User application
         DNI
         GPL
         Source Code
-[wopr-db]
-        wopr-db
-        Atheros
-        Atheros
-        Binary
 [xfsprogs]
         xfsprogs-3.1.7.tar.gz
         http://oss.sgi.com/projects/xfs
@@ -1079,11 +829,6 @@ User application
         http://www.zlib.net
         GPL
         Source Code
-[zz-dni-streamboost]
-        zz-dni-streamboost
-        Atheros
-        Atheros
-        Binary
 
 Kernel Modules
 [Linux]
@@ -1187,8 +932,3 @@ atm
         DNI
         DNI
         Binary
-[madwifi-11n]
-	qca-wifi
-	DNI
-	DNI
-	Binary

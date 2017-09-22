@@ -980,7 +980,7 @@ void show_arp_table(void)
 			/* for GUI dealing easily:  &lt;unknown&gt;   <----> <unknown>*/
 			fprintf(fp, "%s %s %s @#$&*!\n",
 				inet_ntoa(u->ip), ether_etoa(u->mac, mac),
-				u->host[0] == '\0' ? "&lt;unknown&gt;" : host_stod(u->host));
+				u->host[0] == '\0' ? "&lt;unknown&gt;" : u->host);
 #ifdef SUPPORT_STREAMBOOST
 			ether_etoa(u->mac, mac);
 			if (sb_fp){
@@ -1001,7 +1001,7 @@ void show_arp_table(void)
 					inet_ntoa(u->ip),  mac, sb_dlp->type == TYPE_SOAP_OLD ? u->type : sb_dlp->type, netgear_priority,
 					u->state == SB_INFO_STATE_2? u->down : 0.0,
 					u->state == SB_INFO_STATE_2? u->up : 0.0,
-					sb_dlp->host[0] == '\0' ? (u->host[0] == '\0' ? "&lt;unknown&gt;" : host_stod(u->host)) : host_stod(sb_dlp->host));
+					sb_dlp->host[0] == '\0' ? (u->host[0] == '\0' ? "&lt;unknown&gt;" : u->host) : sb_dlp->host);
 				}
 				else{
 					/* This attached device was NOT edited by user*/
@@ -1009,7 +1009,7 @@ void show_arp_table(void)
 					inet_ntoa(u->ip), mac, u->type, netgear_priority,
 					u->state == SB_INFO_STATE_2? u->down : 0.0,
 					u->state == SB_INFO_STATE_2? u->up : 0.0,
-					u->host[0] == '\0' ? "&lt;unknown&gt;" : host_stod(u->host));
+					u->host[0] == '\0' ? "&lt;unknown&gt;" : u->host);
 				}
 			}
 			if (name_type_fp){
@@ -1057,7 +1057,7 @@ void show_arp_table(void)
 						fprintf(sb_fp, "%s %s %d %s %.2f %.2f %s @#$&*!\n",
 							"&lt;unknown&gt", mac , 
 							sb_dlp->type == TYPE_SOAP_OLD ? TYPE_OTHERS : sb_dlp->type, netgear_priority, 0.0, 0.0,
-							sb_dlp->host[0] == '\0' ? "&lt;unknown&gt;" : host_stod(sb_dlp->host));
+							sb_dlp->host[0] == '\0' ? "&lt;unknown&gt;" : sb_dlp->host);
 					}
 					else{
 						fprintf(sb_fp, "%s %s %d %s %.2f %.2f %s @#$&*!\n",

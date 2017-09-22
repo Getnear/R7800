@@ -12,9 +12,6 @@ PKG_VERSION:=1.0.24.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.alsa-project.org/pub/lib/ \
-		http://alsa.cybermirror.org/lib/
-PKG_MD5SUM:=7cc05f25e1d5b65da8fb3fdcd540f226
 
 PKG_LICENSE:=LGPLv2.1 GPLv2
 PKG_LICENSE_FILE:=COPYING aserver/COPYING
