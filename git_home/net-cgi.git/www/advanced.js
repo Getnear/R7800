@@ -680,6 +680,11 @@ function click_adv_action(id)
 			goto_formframe("device_mode_setting.htm");
 			menu_color_change('devmode');
 		}
+		else if( id == "vpn_client" )
+		{
+			goto_formframe("vpn_client.htm");
+			menu_color_change('vpn_client');
+		}
 						                 
         }
 	change_menu_height();

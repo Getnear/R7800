@@ -128,6 +128,11 @@ User application
         ftp://ftp.samba.org/pub/ppp
         GPL
         Source Code
+[dni-openvpn-client]
+		dni-openvpn-client
+		DNI
+		GPL
+		Source Code
 [dni-ripd]
         dni-ripd
         DNI
@@ -539,7 +544,7 @@ User application
         GPL
         Source Code
 [openvpn]
-        openvpn-2.3.2.tar.gz
+        openvpn-2.4.3.tar.gz
         http://openvpn.net
         GPL
         Source Code

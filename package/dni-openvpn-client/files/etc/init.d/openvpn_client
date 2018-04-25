@@ -1,0 +1,11 @@
+#!/bin/sh /etc/rc.common
+START=60
+
+start() {
+	openvpn_client.sh "enable"
+}
+
+# this functions should not be called, it's recommend to call openvpn_client.sh directly!
+stop() {
+	openvpn_client.sh "disable"
+}

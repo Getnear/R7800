@@ -451,6 +451,11 @@ function click_action(id)
 			basic_menu_color_change('internet');
 			goto_formframe('check_mobile_internet_wait.htm');
 		}
+                else if( id == "vpn_client")
+		{
+			basic_menu_color_change('vpn_client');
+			goto_formframe('vpn_client.htm');
+		}
 
         }
 }

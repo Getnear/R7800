@@ -64,6 +64,8 @@ disktype, 1, GPL, Yes
 
 dni-libmtd,1, DNI, Yes
 
+dni-openvpn-client, 1.0, DNI, Yes
+
 dni-rip, 1.0, DNI, Yes
 
 dni-mtdoops, 2, GPL, Yes

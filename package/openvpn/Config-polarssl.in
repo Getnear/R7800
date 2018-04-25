@@ -24,14 +24,6 @@ config OPENVPN_polarssl_ENABLE_MANAGEMENT
 #	bool "Enable pkcs11 support"
 #	default n
 
-config OPENVPN_polarssl_ENABLE_HTTP
-	bool "Enable HTTP proxy support"
-	default y
-
-config OPENVPN_polarssl_ENABLE_SOCKS
-	bool "Enable SOCKS proxy support"
-	default y
-
 config OPENVPN_polarssl_ENABLE_FRAGMENT
 	bool "Enable internal fragmentation support (--fragment)"
 	default y

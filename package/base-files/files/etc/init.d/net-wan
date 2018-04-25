@@ -326,6 +326,10 @@ start_stage0() # $1: boot/start, $2: manually
 	# If not wait, the `udhcpc` CAN'T obtain IP address in its selecting time.
 	[ "$changing_mode" = "1" ] && sleep 5
 	setup_wan_interface $2
+	
+	if [ "x`grep -n '"connected"' /tmp/openvpn/client/data/openvpn_client.stat`" != "x" ]; then
+		/usr/bin/openvpn_client.sh reconnect &
+	fi
 
 	/etc/init.d/upnp $1 &                # upnp daemon
 	/etc/init.d/ddns $1 &                # DDNS daemon
@@ -340,6 +344,7 @@ start() # $1: manually
 	/etc/init.d/cron restart
 	/etc/init.d/dnsmasq stop
 	/etc/init.d/dnsmasq start
+	/etc/openvpn/client/ovpn_client_apply.sh reconnect
 }
 
 stop()
