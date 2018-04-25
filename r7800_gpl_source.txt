@@ -188,16 +188,16 @@ User application
         http://ffmpeg.org/releases
         GPL
         Source Code
-[forked-daapd]
-		forked-daapd-23.0-dni1.tar.bz2
-        https://github.com/jasonmc/forked-daapd
-        GPL
-        Source Code
 [fbwifi]
 		fbwifi
 		netgear
 		netgear
 		Binary
+[forked-daapd]
+		forked-daapd
+		https://github.com/jasonmc/forked-daapd
+		GPL
+		Source Code
 [gdbm]
         gdbm-1.8.3
         ftp://ftp.gnu.org/gnu/gdbm
@@ -213,6 +213,11 @@ User application
         DNI
         DNI
         Binary
+[heimdal]
+		heimdal
+		http://www.h5l.org/dist/src/
+		GPL
+		Source Code
 [hd-idle]
         hd-idle-1.04.tgz
         http://hd-idle.sourceforge.net/
@@ -568,6 +573,11 @@ User application
         http://open.oray.com/doc/phddns-sdk-1.0.4.17314.tar.gz
         GPL
         Source Code
+[python]
+		python
+		https://www.python.org/ftp/python
+		GPL
+		Source Code
 [popt]
         popt-1.7.tar.gz
         http://rpm5.org/files/popt/
@@ -684,6 +694,11 @@ User application
         Atheros
         Atheros
         Source Code
+[soapclient]
+	soapclient
+	DNI
+	DNI
+	Binary
 [sqlite3]
         sqlite-3.6.16
         http://www.sqlite.org

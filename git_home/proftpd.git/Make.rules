@@ -1,0 +1,104 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+bindir=/usr/local/bin
+datadir=/usr/locale/share
+libdir=${exec_prefix}/lib
+datarootdir=${prefix}/share
+sbindir=/usr/local/sbin
+sysconfdir=/etc
+includedir=${prefix}/include
+libexecdir=/usr/local/libexec
+localedir=${datarootdir}/locale
+localstatedir=/var/run
+pkgconfigdir=${exec_prefix}/lib/pkgconfig
+mandir=${datarootdir}/man
+
+AR=arm-openwrt-linux-ar
+CC=arm-openwrt-linux-gcc
+PLATFORM=-DLINUX 
+LDFLAGS=-L$(top_srcdir)/lib  -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/lib
+LIBEXECDIR=/usr/local/libexec
+LIBS=-lsupp -lcrypt -ldl  -liconv -lintl 
+LIBTOOL=$(SHELL) $(top_builddir)/libtool
+RANLIB=arm-openwrt-linux-ranlib
+
+CURSES_LIBS=-lncurses
+UTILS_LIBS=-lintl -lsupp -lcrypt -ldl  -liconv
+
+INSTALL=/usr/bin/install -c
+INSTALL_USER=root
+INSTALL_GROUP=root
+INSTALL_BIN=$(INSTALL) -s -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755
+INSTALL_SBIN=$(INSTALL) -s -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0755
+INSTALL_MAN=$(INSTALL) -o $(INSTALL_USER) -g $(INSTALL_GROUP) -m 0644
+
+RM=rm -f
+SHELL=/bin/bash
+
+ENABLE_NLS=1
+ENABLE_TESTS=""
+
+VERSION=1.3.3
+
+# Directory include paths.
+#
+INCLUDES=-I.. -I$(top_srcdir)/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/include
+
+# Preprocessor compilation flags.
+#
+CPPFLAGS= -DHAVE_CONFIG_H $(DEFAULT_PATHS) $(PLATFORM) $(INCLUDES)
+ADDL_CPPFLAGS=
+
+# Our compiler flags.
+#
+CFLAGS= -Wall
+DEFINES=$(PLATFORM)
+
+OBJS=main.o timers.o sets.o pool.o privs.o str.o table.o regexp.o dirtree.o \
+     expr.o support.o netaddr.o inet.o child.o parser.o log.o lastlog.o \
+     xferlog.o bindings.o netacl.o class.o scoreboard.o help.o feat.o netio.o \
+     cmd.o response.o data.o modules.o display.o auth.o fsio.o mkhome.o \
+     ctrls.o event.o var.o throttle.o session.o trace.o encode.o proctitle.o \
+     filter.o pidfile.o env.o version.o wtmp.o
+
+BUILD_OBJS=src/main.o src/timers.o src/sets.o src/pool.o src/privs.o src/str.o \
+           src/table.o src/regexp.o src/dirtree.o src/expr.o src/support.o \
+           src/netaddr.o src/inet.o src/child.o src/parser.o src/log.o \
+           src/lastlog.o src/xferlog.o src/bindings.o src/netacl.o src/class.o \
+           src/scoreboard.o src/help.o src/feat.o src/netio.o src/cmd.o \
+           src/response.o src/data.o src/modules.o src/display.o src/auth.o \
+           src/fsio.o src/mkhome.o src/ctrls.o src/event.o src/var.o \
+           src/throttle.o src/session.o src/trace.o src/encode.o \
+           src/proctitle.o src/filter.o src/pidfile.o src/env.o src/version.o \
+           src/wtmp.o
+
+SHARED_MODULE_DIRS=""
+SHARED_MODULE_LIBS=
+SHARED_MODULE_OBJS=""
+
+BUILD_SHARED_MODULE_OBJS=
+
+STATIC_MODULE_DIRS=""
+STATIC_MODULE_OBJS=mod_core.o mod_xfer.o mod_auth_unix.o mod_auth_file.o mod_auth.o mod_ls.o mod_log.o mod_site.o mod_delay.o mod_facts.o mod_ident.o  mod_lang.o
+
+BUILD_STATIC_MODULE_ARCHIVES=
+BUILD_STATIC_MODULE_OBJS=modules/mod_core.o modules/mod_xfer.o modules/mod_auth_unix.o modules/mod_auth_file.o modules/mod_auth.o modules/mod_ls.o modules/mod_log.o modules/mod_site.o modules/mod_delay.o modules/mod_facts.o modules/mod_ident.o  modules/mod_lang.o modules/module_glue.o
+
+FTPCOUNT_OBJS=ftpcount.o scoreboard.o misc.o
+BUILD_FTPCOUNT_OBJS=utils/ftpcount.o utils/scoreboard.o utils/misc.o
+
+FTPDCTL_OBJS=ftpdctl.o pool.o netaddr.o log.o ctrls.o
+BUILD_FTPDCTL_OBJS=src/ftpdctl.o src/pool.o src/str.o src/netaddr.o src/log.o \
+  src/ctrls.o
+
+FTPSCRUB_OBJS=ftpscrub.o scoreboard.o misc.o
+BUILD_FTPSCRUB_OBJS=utils/ftpscrub.o utils/scoreboard.o utils/misc.o
+
+FTPSHUT_OBJS=ftpshut.o
+BUILD_FTPSHUT_OBJS=utils/ftpshut.o
+
+FTPTOP_OBJS=ftptop.o scoreboard.o misc.o
+BUILD_FTPTOP_OBJS=utils/ftptop.o utils/scoreboard.o utils/misc.o
+
+FTPWHO_OBJS=ftpwho.o scoreboard.o misc.o
+BUILD_FTPWHO_OBJS=utils/ftpwho.o utils/scoreboard.o utils/misc.o

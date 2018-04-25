@@ -589,6 +589,10 @@ static void uh_mainloop(struct config *conf, fd_set serv_fds, int max_fd)
                                                 if(httphost != NULL && strcmp(httphost, "www.msftncsi.com") == 0 && strcmp(req->url,"/ncsi.txt")==0)
                                                        goto cleanup;
 
+						if((strcasecmp(httphost, "mywifiext.net")==0 || strcasecmp(httphost, "mywifiext.com")==0 || strcasecmp(httphost, "www.mywifiext.com")==0 || strcasecmp(httphost, "www.mywifiext.net")==0) && strcmp(req->url,"/wifiSettings.htm")==0){
+							req->url="/";
+						}
+
                                                 if(is_ipv6_domain(remote_addr)==0
                                                         && IsSameSubnet(lan_ip, lan_mask, remote_addr, lan_mask)
                                                         && config_match("dns_hijack", "1")

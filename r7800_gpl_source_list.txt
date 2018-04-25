@@ -82,7 +82,11 @@ ez-ipupdate, 3.0.10, GPL, Yes
 
 fast-classifier,1, Dual BSD/GPL, Yes
 
+forked-daapd, 23.0-dni1, GPL, Yes
+
 hotplug2, 201, GPL, No
+
+heimdal, 1.5.3, GPL, No
 
 igmpproxy, 1, GPL, No
 
@@ -127,6 +131,8 @@ dni-ntpclient, 2003_194, GPL, Yes
 pot, 1.0.0, GPL, Yes
 
 phddns, 2.0.2.16556, GPL, Yes
+
+python, 2.7, GPL, No
 
 proccgi, 1.1.2.1, GPL, Yes
 

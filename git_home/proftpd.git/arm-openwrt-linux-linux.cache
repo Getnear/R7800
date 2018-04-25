@@ -270,7 +270,7 @@ ac_cv_path_EGREP=${ac_cv_path_EGREP='/bin/grep -E'}
 ac_cv_path_FGREP=${ac_cv_path_FGREP='/bin/grep -F'}
 ac_cv_path_GREP=${ac_cv_path_GREP=/bin/grep}
 ac_cv_path_LDCONFIG=${ac_cv_path_LDCONFIG=}
-ac_cv_path_SED=${ac_cv_path_SED=/home3/haiyan.zhuang/project/r7800.git/staging_dir/host/bin/sed}
+ac_cv_path_SED=${ac_cv_path_SED=/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/host/bin/sed}
 ac_cv_path_install=${ac_cv_path_install='/usr/bin/install -c'}
 ac_cv_prog_AR=${ac_cv_prog_AR=arm-openwrt-linux-ar}
 ac_cv_prog_CC=${ac_cv_prog_CC=arm-openwrt-linux-gcc}
@@ -357,15 +357,15 @@ lt_cv_ld_reload_flag=${lt_cv_ld_reload_flag=-r}
 lt_cv_module_path_var=${lt_cv_module_path_var=LD_LIBRARY_PATH}
 lt_cv_nm_interface=${lt_cv_nm_interface='BSD nm'}
 lt_cv_objdir=${lt_cv_objdir=.libs}
-lt_cv_path_LD=${lt_cv_path_LD=/home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld}
-lt_cv_path_NM=${lt_cv_path_NM='/home3/haiyan.zhuang/project/r7800.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B'}
+lt_cv_path_LD=${lt_cv_path_LD=/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld}
+lt_cv_path_NM=${lt_cv_path_NM='/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B'}
 lt_cv_prog_compiler_c_o=${lt_cv_prog_compiler_c_o=yes}
 lt_cv_prog_compiler_pic_works=${lt_cv_prog_compiler_pic_works=yes}
 lt_cv_prog_compiler_rtti_exceptions=${lt_cv_prog_compiler_rtti_exceptions=no}
 lt_cv_prog_compiler_static_works=${lt_cv_prog_compiler_static_works=no}
 lt_cv_prog_gnu_ld=${lt_cv_prog_gnu_ld=yes}
 lt_cv_sys_dlopen_deplibs=${lt_cv_sys_dlopen_deplibs=yes}
-lt_cv_sys_dlsearch_path=${lt_cv_sys_dlsearch_path='/lib /usr/lib /usr/lib32/alsa-lib /usr/lib/alsa-lib /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /lib32 /usr/lib32 '}
+lt_cv_sys_dlsearch_path=${lt_cv_sys_dlsearch_path='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu '}
 lt_cv_sys_global_symbol_pipe=${lt_cv_sys_global_symbol_pipe='sed -n -e '\''s/^.*[	 ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[	 ][	 ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p'\'''}
 test "${lt_cv_sys_global_symbol_to_c_name_address+set}" = set || lt_cv_sys_global_symbol_to_c_name_address='sed -n -e '\''s/^: \([^ ]*\) $/  {\"\1\", (void *) 0},/p'\'' -e '\''s/^[ABCDGIRSTW]* \([^ ]*\) \([^ ]*\)$/  {"\2", (void *) \&\2},/p'\'''
 test "${lt_cv_sys_global_symbol_to_c_name_address_lib_prefix+set}" = set || lt_cv_sys_global_symbol_to_c_name_address_lib_prefix='sed -n -e '\''s/^: \([^ ]*\) $/  {\"\1\", (void *) 0},/p'\'' -e '\''s/^[ABCDGIRSTW]* \([^ ]*\) \(lib[^ ]*\)$/  {"\2", (void *) \&\2},/p'\'' -e '\''s/^[ABCDGIRSTW]* \([^ ]*\) \([^ ]*\)$/  {"lib\2", (void *) \&\2},/p'\'''
