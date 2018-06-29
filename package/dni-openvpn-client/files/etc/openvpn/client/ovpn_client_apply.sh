@@ -1,5 +1,10 @@
 #!/bin/sh
 
+router_region=`artmtd -r region |grep REGION|awk -F ': ' '{print $2}'`
+if [ "x$router_region" = "xPR" ]; then
+	exit 0
+fi
+
 case $1 in
 	'apply')
 		killall ovpn_sync_configs.sh

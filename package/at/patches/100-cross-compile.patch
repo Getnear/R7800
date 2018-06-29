@@ -1,0 +1,12 @@
+diff -Nurp -Nurp at-3.1.13.bak/configure at-3.1.13/configure
+--- at-3.1.13.bak/configure	2018-01-23 11:23:43.098749375 +0800
++++ at-3.1.13/configure	2018-01-23 11:24:07.190749832 +0800
+@@ -3461,7 +3461,7 @@ esac
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking Trying to compile a trivial ANSI C program" >&5
+ $as_echo_n "checking Trying to compile a trivial ANSI C program... " >&6; }
+ if test "$cross_compiling" = yes; then :
+-  as_fn_error $? "Could not compile and run even a trivial ANSI C program - check CC." "$LINENO" 5
++  #as_fn_error $? "Could not compile and run even a trivial ANSI C program - check CC." "$LINENO" 5
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */

@@ -75,6 +75,11 @@ update_success_connection_info ()
 	${ovpn_client_dir}/ovpn_connection_history.sh set "$server_isp" "$server_country" "$server_city" "$config"
 
 	logger -- "[OpenVPN] VPN Client connected. Provider:$server_isp,Country:$server_country, City:$server_city"
+
+	config set vpn_client_latest_conn_status="Success"
+	config set vpn_client_failed_conn_reason=""
+	config set vpn_client_failed_debug_info=""
+	config commit
 }
 
 update_failure_connection_info ()
@@ -103,6 +108,11 @@ update_failure_connection_info ()
 	write_state_file "disconnected" "" "" "" "" "" "$fail" "$fail_message"
 	
 	logger -- "[OpenVPN] VPN Client connection fail: $fail_message"
+
+	config set vpn_client_latest_conn_status="Failed"
+	config set vpn_client_failed_conn_reason="$fail_message"
+	config set vpn_client_failed_debug_info="$(sed -r -e 's/"/\\&/g' -e 's/$/\\r\\n/g' "$ovpn_client_log_file" | tr -d '\n')"
+	config commit
 }
 
 update_resolv_conf ()

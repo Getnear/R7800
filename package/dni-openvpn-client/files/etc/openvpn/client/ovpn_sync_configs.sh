@@ -57,7 +57,7 @@ while true; do
 	if [ -f ${ovpn_client_cfg_dir}/${providerlist_file_name}.bak ]; then
 		mv ${ovpn_client_cfg_dir}/${providerlist_file_name}.bak ${ovpn_client_cfg_dir}/${providerlist_file_name}.new
 	else
-	curl ${curl_opt} ${remote_location}/${providerlist_file_name} -o ${ovpn_client_cfg_dir}/${providerlist_file_name}.new
+	curl ${curl_opt} ${remote_location}/providerlist20180409.json -o ${ovpn_client_cfg_dir}/${providerlist_file_name}.new
 	fi
 	[ -f ${ovpn_client_cfg_dir}/${providerlist_file_name}.new ] && sed -i 's/PureVPN /PureVPN/g' ${ovpn_client_cfg_dir}/${providerlist_file_name}.new 
 	if [ ! -f ${ovpn_client_cfg_dir}/${providerlist_file_name} ] \

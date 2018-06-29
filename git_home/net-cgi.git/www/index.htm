@@ -63,6 +63,7 @@ var is_pr_version=(((netgear_region.toUpperCase() == "WW" || netgear_region == "
 var is_gr_version=(((netgear_region.toUpperCase() == "WW" || netgear_region == "") && gui_region == "German" ) || netgear_region.toUpperCase() == "GR") ? 1 : 0;
 var is_jp_version=(((netgear_region.toUpperCase() == "WW" || netgear_region == "") && gui_region == "Japanese" ) || netgear_region.toUpperCase() == "JP") ? 1 : 0;
 
+var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 //Failover & Loadbalance
 var multi_wan_mode="none";  // none, multi
 var multi_wan_mode_ether="0";//0:unconfigured, 1:configured
@@ -156,7 +157,6 @@ function loadvalue()
 	<% basic_menu_wifi() %>
 	<div id="attached" class="basic_button" onclick="click_action('attached');"><b><span id="basic_attached">$attach_device</span></b></div>
 	<% basic_menu() %>
-	<div id="vpn_client" class="basic_button" onclick="click_action('vpn_client');"><b><span id="basic_vpnclient">$vpn_client</span></b></div>
 </div>
 <div id="formframe_div">
 		<iframe name="formframe" id="formframe" allowtransparency="true" height="100%" width="100%" scrolling="no" frameborder="0" style="display:none;">

@@ -28,6 +28,7 @@ FILES += rae_apply.o rae_asp.o
 FILES += vpn_apply.o vpn_asp.o
 FILES += wless_schedule_apply.o wless_schedule_asp.o wless_schedule_action.o
 FILES += devmode_apply.o
+FILES += funjsq_apply.o
 
 CFLAGS += -DHOST_NAME=$(HOST_NAME)
 CFLAGS += -DNET_IFNAME=$(NET_IFNAME)
@@ -75,6 +76,20 @@ CFLAGS += -DHAVE_OPENVPN=$(HAVE_OPENVPN)
 CFLAGS += -DHAVE_BT_IGMP=$(HAVE_BT_IGMP)
 CFLAGS += -DENABLE_VLAN_PPPOE_SUPPORT=$(ENABLE_VLAN_PPPOE_SUPPORT)
 CFLAGS += -DDFS_RADAR_DETECT=$(DFS_RADAR_DETECT)
+ifeq ($(TNC_REQUEST), 1)
+CFLAGS += -DTNC_REQUEST=1
+else
+CFLAGS += -DTNC_REQUEST=0
+endif
+ifeq ($(AUTO_UPGRADE), 1)
+CFLAGS += -DAUTO_UPGRADE=1
+else
+CFLAGS += -DAUTO_UPGRADE=0
+endif
+
+ifeq ($(HAVE_SMART_CONNECT), 1)
+CFLAGS += -DHAVE_SMART_CONNECT
+endif
 
 ifeq ($(READYCLOUD), 1)
 FILES += readycloud_apply.o readycloud_asp.o
@@ -173,6 +188,12 @@ CFLAGS += -DHAVE_L2TP
 endif
 ifeq ($(HAVE_BIGPOND), 1)
 CFLAGS += -DHAVE_BIGPOND
+endif
+ifeq ($(HAVE_FUNJSQ), 1)
+CFLAGS += -DHAVE_FUNJSQ
+endif
+ifeq ($(HAVE_FUNJSQ_MUL), 1)
+CFLAGS += -DHAVE_FUNJSQ_MUL
 endif
 ifeq ($(HAVE_WIRELESS_AN), 1)
 CFLAGS += -DHAVE_WIRELESS_AN
@@ -296,6 +317,9 @@ CFLAGS += -DDFS_JAPAN
 endif
 ifeq ($(DFS_RUSSIA), 1)
 CFLAGS += -DDFS_RUSSIA
+endif
+ifeq ($(DFS_KOREA), 1)
+CFLAGS += -DDFS_KOREA
 endif
 ifeq ($(MODE_IS_300_OR_150), 1)
 CFLAGS += -DMODE_IS_300_OR_150
@@ -434,6 +458,9 @@ CFLAGS += -DHAVE_ITUNES
 endif
 ifeq ($(HAVE_VPN),1)
 CFLAGS += -DHAVE_VPN
+endif
+ifeq ($(HAVE_VPN_CLIENT),1)
+CFLAGS += -DHAVE_VPN_CLIENT
 endif
 CFLAGS += -DHAVE_PPTP_VPN=$(HAVE_PPTP_VPN)
 

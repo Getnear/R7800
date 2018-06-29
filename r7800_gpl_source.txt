@@ -28,6 +28,11 @@ User application
         DNI
         DNI
         Binary
+[at]
+		at
+		http://packages.debian.org/stable/at
+		GPL
+		Source Code
 [avahi]
         avahi-0.6.31
         http://avahi.org/download/
@@ -38,6 +43,11 @@ User application
         http://avahi.org/download/
         GPL
         Source Code
+[aws-iot]
+		aws-iot
+		DNI
+		DNI
+		Binary
 [base-files]
         base-files
         DNI
