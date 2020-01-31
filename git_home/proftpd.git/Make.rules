@@ -16,7 +16,7 @@ mandir=${datarootdir}/man
 AR=arm-openwrt-linux-ar
 CC=arm-openwrt-linux-gcc
 PLATFORM=-DLINUX 
-LDFLAGS=-L$(top_srcdir)/lib  -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib -L/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/lib
+LDFLAGS=-L$(top_srcdir)/lib  -L/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/lib -L/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/lib -L/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib -L/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/lib
 LIBEXECDIR=/usr/local/libexec
 LIBS=-lsupp -lcrypt -ldl  -liconv -lintl 
 LIBTOOL=$(SHELL) $(top_builddir)/libtool
@@ -42,7 +42,7 @@ VERSION=1.3.3
 
 # Directory include paths.
 #
-INCLUDES=-I.. -I$(top_srcdir)/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/include -I/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/include
+INCLUDES=-I.. -I$(top_srcdir)/include -I/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libiconv/include -I/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/lib/libintl/include -I/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/usr/include -I/home2/jinxiong.huang/projects/r7800-game/staging_dir/target-arm_v7-a_uClibc-0.9.33.2_eabi/include
 
 # Preprocessor compilation flags.
 #

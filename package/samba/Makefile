@@ -136,6 +136,8 @@ SAMBA43_CACHE := " \
 # do the renaming trick
 define Build/Prepare
 	$(CP) $(GIT_HOME)/samba.git/* $(PKG_BUILD_DIR)/
+	$(SED) 's#__OPENWRT_SAMBA_MULTICALL__#$(PKG_NAME)_multicall#g' $(PKG_BUILD_DIR)/source3/wscript_build
+	$(SED) s#param\'\'\'#smbconf\'\'\'#g $(PKG_BUILD_DIR)/source3/wscript_build
 endef
 
 define Build/Configure

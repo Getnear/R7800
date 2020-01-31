@@ -334,6 +334,7 @@ cursor:pointer;
   height: 300px;
   border-style: solid;
   border-color: #1965b1;
+  background: white;
 }
 .funjsq_pay div:first-child {
   float: right;
@@ -417,19 +418,25 @@ cursor:pointer;
 }
 /*funjsq_pay2.htm*/
 .tab {
-  top: 2px;
+  top: 10px;
   bottom: 3px;
-  width: 100%;
+  width: 599px;
   overflow: auto;
   position: absolute;
+  background: white;
+  /*border: 3px solid rgb(141,141,141);*/
+  border-radius: 8px;
 }
 .tab ul {
   list-style: none outside none;
 }
 .tab h1 {
   color: #0db59c;
-  margin-left: 40px;
+  margin-left: 25px;
   font-size: 1.2rem;
+}
+.tab .pay {
+  margin-left: -10px;
 }
 .pay li {
   margin: 0.5rem 0;
@@ -686,6 +693,10 @@ cursor:pointer;
   font-size: 11px;
   overflow: scroll;
   background-color: white;
+}
+#payForm {
+  width: 599px;
+  height: 420px;
 }
 .funjsq_new select {
   font-size: 11px;
@@ -968,4 +979,107 @@ cursor:pointer;
         */
                 -webkit-transform: rotate(45deg);
   }
+}
+/*******************************************************************
+ *
+ *  modal overlay
+ *
+ ******************************************************************/
+#modalOverlay.active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #fff;
+  opacity: 0.4;
+  filter:alpha(opacity=40);
+  -moz-opacity:0.4;
+  -khtml-opacity: 0.4;
+}/*******************************************************************
+ *
+ *  modal overlay
+ *
+ ******************************************************************/
+#modalOverlay.active {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #fff;
+  opacity: 0.4;
+  filter:alpha(opacity=40);
+  -moz-opacity:0.4;
+  -khtml-opacity: 0.4;
+}
+.loadingModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background: transparent url('../img/loading-on-white.gif') no-repeat 50% 50% ;
+  opacity: 0.4;
+  filter:alpha(opacity=40);
+  -moz-opacity:0.4;
+  -khtml-opacity: 0.4;
+}
+.modalBox {
+  position: absolute;
+  top: 0;
+  left: 40%;
+  z-index: 102;
+  width: 360px;
+  height: 150px;
+  padding: 30px;
+  margin: 120px 0 0 -180px;
+  border: 2px solid #1965b1;
+  background: #fff;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow:0 0 5px rgba(0,0,0,0.4);
+  box-shadow:0 0 5px rgba(0,0,0,0.4);
+}
+.modalBox.form {
+  width: 70%;
+  margin: 200px 0 0;
+  left: 15%;
+}
+.isTablet .modalBox.form {
+  width: 90%;
+  margin: 200px 0 0;
+  left: 5%;
+}
+.modalBox.hidden {
+  display: none;
+}
+.boxButtons {
+  margin-top: 60px;
+  text-align: center;
+}
+#alertImage {
+  width: 70px;
+  float: left;
+  margin-left: -15px;
+  margin-top: 20px;
+}
+#alertMsg {
+  font-size: 22px;
+  margin-left: 110px;
+}
+.recommendation p{
+  font-size: 15px;
+  margin-left: 70px;
+}
+.alertClose {
+  background: none repeat scroll 0 0 #1965b1;
+  color: white;
+  font-size: 1.0rem;
+  padding:0.4rem 1.5rem;
 }

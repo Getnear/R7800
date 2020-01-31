@@ -1,12 +1,14 @@
 <% http_header("style/form.css", "/funcs.js", "/jquery-1.7.2.min.js", "/moment.js", "/funjsq.js") %>
 <body onLoad="loadvalue(); please_wait(false);">
-<form method="post" id="payForm" action="/apply.cgi?/funjsq_select.htm" target="formframe">
+<form method="post" id="payForm" action="/apply.cgi?/funjsq_select.htm" target="formframe" style="display:block;">
 <input type="hidden" name="submit_flag" value="funjsq_pay" />
 <script language="javascript" type="text/javascript">
 var mobile="<% cfg_get("funjsq_mobile") %>";
 var expire="<% cfg_get("funjsq_expire") %>";
 var QQSupport="<% cfg_get("funjsq_QQSupport") %>";
 var funjsq_accNum="<% cfg_get("funjsq_accNum") %>";
+var funjsq_acc_max="<% cfg_get("funjsq_acc_max") %>";
+var funjsq_acc_tips="<% cfg_get("funjsq_acc_tips") %>";
 <% refresh_timestamp("funjsq_pay") %>
 var ts = "<% cfg_get("funjsq_pay") %>";
 function loadvalue()
@@ -121,6 +123,9 @@ function loadvalue()
 </div>
 </div>
 </div>--!>
+<div class="WeChat" onClick="window.open('https://static.meiqia.com/dist/standalone.html?=t&eid=48087');">
+        <img class="funjsq_new_image" style="position:absolute;margin:-10px 0px 0px 630px;" src="/image/WeChat.png" />
+</div>
 </form>
 <form id="confirmForm" hidden="">
 	<div class="funjsq_pay">
@@ -132,6 +137,9 @@ function loadvalue()
                        <input type="button" name="Apply" id="payFinish" value="我已完成付款">
                </div>
 	</div>
+<div class="WeChat" onClick="window.open('https://static.meiqia.com/dist/standalone.html?=t&eid=48087');">
+        <img class="funjsq_new_image" style="margin:-390px 0px 0px 610px;" src="/image/WeChat.png" />
+</div>
 </form>
 <div class="plz_wait" hidden="">
         <div align="center"><br/><br/><b><script>document.write(getText(top.bh_plz_wait_moment, "请等待一会..."));</script></b><br/><br/></div>

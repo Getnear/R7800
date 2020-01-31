@@ -21,12 +21,12 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 <TABLE cellspacing=5 cellPadding=3 width=100% border=0 class="funjsq_tab">
 <TR>
         <TD nowrap>
-        <input type="text" name="funjsq_username" id="loginName" maxLength="64" size="16" value="" placeholder="输入您的帆游账号...">
+        <input type="text" name="funjsq_username" id="loginName" maxLength="64" size="16" autocomplete="off" value="" placeholder="输入您的帆游账号...">
         </TD>
 </TR>
 <TR>
         <TD nowrap>
-        <input type="text" name="funjsq_password" id="loginPwd" maxlength="64" size="16" placeholder="输入您的帆游密码...">
+        <input type="text" name="funjsq_password" id="loginPwd" maxlength="64" size="16" autocomplete="off" placeholder="输入您的帆游密码...">
         </TD>
 </TR>
 <TR>
@@ -47,7 +47,7 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 </div>
 
 <div class="WeChat" style="float:left;" onClick="window.open('https://static.meiqia.com/dist/standalone.html?=t&eid=48087');">
-        <img class="funjsq_new_image" src="/image/WeChat.png" />
+        <img style="width:130px;" src="/image/WeChat.png" />
 </div>
 </form>
 <form id="forgetForm" method="POST" action="/admin.cgi?/funjsq_login.htm" target=formframe>
@@ -66,21 +66,21 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 <TR>
         <TD nowrap>手机号</TD>
         <TD nowrap colspan="2">
-                <input type="text" name="funjsq_username" id="forgetName" maxLength="64" size="26" value="" placeholder="输入您的手机号码">
+                <input type="text" name="funjsq_username" id="forgetName" maxLength="64" size="26" autocomplete="off" value="" placeholder="输入您的手机号码">
         </TD>
 	<TD></TD>
 </TR>
 <TR>
         <TD nowrap>密码</TD>
         <TD nowrap colspan="2">
-        <input type="text" name="funjsq_password" id="forgetPwd" maxlength="32" size="26" placeholder="请输入6-32位数字和字母组合">
+        <input type="text" name="funjsq_password" id="forgetPwd" maxlength="32" size="26" autocomplete="off" placeholder="请输入6-32位数字和字母组合">
         </TD>
 	<TD></TD>
 </TR>
 <TR>
         <TD nowrap>验证码</TD>
         <TD nowrap>
-                <input type="text" name="funjsq_verify" id="forgetVry" maxLength="64" size="13" value="" placeholder="请输入短
+                <input type="text" name="funjsq_verify" id="forgetVry" maxLength="64" size="13" autocomplete="off" value="" placeholder="请输入短
 信验证码">
         </TD>
         <TD nowrap>
@@ -96,7 +96,7 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 </div>
 </div>
 <div class="WeChat" onClick="window.open('https://static.meiqia.com/dist/standalone.html?=t&eid=48087');">
-        <img class="funjsq_new_image" src="/image/WeChat.png" />
+        <img style="width:130px;" src="/image/WeChat.png" />
 </div>
 </form>
 <form id="registerForm" method="POST" action="/admin.cgi?/funjsq_login.htm" target=formframe>
@@ -115,21 +115,21 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 <TR>
         <TD nowrap>手机号</TD>
         <TD nowrap colspan="2">
-                <input type="text" name="funjsq_username" id="registerName" maxLength="64" size="26" value="" placeholder="输入您的手机号码">
+                <input type="text" name="funjsq_username" id="registerName" maxLength="64" size="26" autocomplete="off" value="" placeholder="输入您的手机号码">
         </TD>
 	<TD></TD>
 </TR>
 <TR>
         <TD nowrap>密码</TD>
         <TD nowrap colspan="2">
-        <input type="text" name="funjsq_password" id="registerPwd" maxlength="32" size="26" placeholder="请输入6-32位数字和字母组合">
+        <input type="text" name="funjsq_password" id="registerPwd" maxlength="32" size="26" autocomplete="off" placeholder="请输入6-32位数字和字母组合">
         </TD>
 	<TD></TD>
 </TR>
 <TR>
         <TD nowrap>验证码</TD>
         <TD nowrap>
-                <input type="text" name="funjsq_verify" id="registerVry" maxLength="64" size="13" value="" placeholder="请输入
+                <input type="text" name="funjsq_verify" id="registerVry" maxLength="64" size="13" autocomplete="off" value="" placeholder="请输入
 短信验证码">
         </TD>
         <TD nowrap>
@@ -147,7 +147,7 @@ var funjsq_no_need_login = "<% cfg_get("funjsq_no_need_login") %>";
 </div>
 
 <div class="WeChat" onClick="window.open('https://static.meiqia.com/dist/standalone.html?=t&eid=48087');">
-        <img class="funjsq_new_image" src="/image/WeChat.png" />
+        <img style="width:130px;" src="/image/WeChat.png" />
 </div>
 </form>
 <div class="plz_wait" hidden="">

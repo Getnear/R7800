@@ -49,6 +49,89 @@
 			});
 		};
 
+		/*******************************************************************************************
+                 *
+                 * Rewrite alert and confirm dialog
+                 *
+                 *******************************************************************************************/
+                $$.alertBox = function(msg, str, act) {
+                        if ( !$$('#modalOverlay').length ) {
+                                $$('body').append("<div id='modalOverlay'></div>");
+                        }
+                        $$('#modalOverlay').addClass('active');
+                        $$('#modalOverlay').fadeIn('fast');
+
+                        var date = new Date();
+                        var id = "alert"+date.getTime();
+                        var close = function() {
+                                if ( $$('.modalBox:visible').length == 1 ){
+                                        $$('#modalOverlay').fadeOut();
+                                }
+                                $$('#'+id).fadeOut();
+                                $$('#'+id).remove();
+                        },
+                        action = close;
+
+                        if ( !str ) str = "我知道了";
+                        if ( typeof(act) == "function" ) {
+                                action = function() {
+                                        act();
+                                        close();
+                                }
+                        }
+
+			var data = "<div id='"+id+"'class='modalBox'><div><img id='alertImage' src='/image/pay_issue.png'></div><div id='alertMsg'>温馨提示</div><div class='recommendation'><p>"
+                                + msg + "</p><div class='centerButtons'><div class='boxButtons'><a class='alertClose' id='"+id+"Ok'>"
+                                + str + "</a></div></div></div></div>";
+                        $$('body').append(data);
+                        $$('#'+id+'Ok').click(action);
+                        //fixed_modal();
+                };
+
+		$$.confirmBox = function(msg, str1, act1, str2, act2) {
+                        if ( !$$('#modalOverlay').length ) {
+                                $$('body').append("<div id='modalOverlay'></div>");
+                        }
+                        $$('#modalOverlay').addClass('active');
+                        $$('#modalOverlay').fadeIn('fast');
+
+                        var date = new Date();
+                        var id = "alert"+date.getTime();
+                        var close = function() {
+                                if ( $$('.modalBox:visible').length == 1 ){
+                                        $$('#modalOverlay').fadeOut();
+                                }
+                                $$('#'+id).fadeOut();
+                                $$('#'+id).remove();
+                        },
+			action1 = close,
+                        action2 = close;
+                        if ( !str1 ) str1 = ok_mark;
+                        if ( !str2 ) str2 = cancel_mark;
+                        if ( typeof(act1) == "function" ) {
+                                action1 = function() {
+                                        act1();
+                                        close();
+                                };
+                        }
+                        if ( typeof(act2) == "function" ) {
+                                action2 = function() {
+                                        act2();
+                                        close();
+                                };
+                        }
+
+
+                        var data = "<div id='"+id+"'class='modalBox'><div class='recommendation'><p>"
+                                + msg + "</p><div class='centerButtons'><div class='boxButtons'><a class='btn primary close' id='"+id+"Cancel'>"
+                                + str2 + "</a><a class='btn primary close' id='"+id+"Ok'>"
+                                + str1 + "</a></div></div></div></div>";
+                        $$('body').append(data);
+                        $$('#'+id+'Ok').click(action1);
+                        $$('#'+id+'Cancel').click(action2);
+                        fixed_modal();
+                };
+
 	// regular expression
 	$$.REG_PASSWORD = /^[0-9a-zA-Z]{6,32}$/;
 	$$.REG_PASSWORD2 = /^(?![0-9]+$$)(?![a-zA-Z]+$$)[0-9A-Za-z]{6,32}$/;
@@ -69,14 +152,14 @@
 		$$('#loginBt').click(function() {
                         var cf=document.forms[0];
                         if ( !$$.REG_PHONE.test($$('#loginName').val()) ) {
-                                alert("无效的账号！");
+                                $$.alertBox("无效的账号！");
                                 return false;
                         }else{
                                 cf.hidden_funjsq_username.value = cf.funjsq_username.value;
                         }
 
                         if ( !$$.REG_PASSWORD.test($$('#loginPwd').val()) ) {
-                                alert("无效的密码！");
+                                $$.alertBox("无效的密码！");
                                 return false;
                         }else{
                                 cf.hidden_funjsq_password.value = cf.funjsq_password.value;
@@ -94,17 +177,17 @@
                                         $$('.plz_wait').css('display','none');
                                         $$('body').css('background','rgb(229,229,229)');
                                         if( json.code == "1201"){
-                                                alert("该号码尚未注册完成，请确认输入是否正确");
+                                                $$.alertBox("该号码尚未注册完成，请确认输入是否正确");
 					}else if( json.code == "1202" || json.code == "1203"){
                                                 count++;
                                                 if(count < 3){
                                                         if( json.code == "1202" )
-                                                                alert("手机号码输入错误，请确认输入是否正确");
+                                                                $$.alertBox("手机号码输入错误，请确认输入是否正确");
                                                         else
-                                                                alert("密码输入错误，请确认输入是否正确");
+                                                                $$.alertBox("密码输入错误，请确认输入是否正确");
                                                 }else {
                                                         count=0;
-                                                        alert("您已重复输入错误的账号或密码3次，请您提供电话号码，以便我们提供验证码做确认");
+                                                        $$.alertBox("您已重复输入错误的账号或密码3次，请您提供电话号码，以便我们提供验证码做确认");
                                                         $$('#forgetBt').trigger("click");
                                                 }
                                         }
@@ -113,7 +196,7 @@
 					$$('#loginForm').css('display','block');
                                         $$('.plz_wait').css('display','none');
                                         $$('body').css('background','rgb(229,229,229)');
-                                        alert("请检查你的网络连接。");
+                                        $$.alertBox("请检查你的网络连接。");
                                         //location.href = "funjsq_login.htm";
                                 }
                         });
@@ -168,7 +251,7 @@
                 {
                         var cf=document.forms[num];
                         if ( !$$.REG_PHONE.test($$('#'+form+'Name').val()) ) {
-                                alert("无效的账号！");
+                                $$.alertBox("无效的账号！");
                                 return false;
                         }else{
                                 cf.hidden_funjsq_username.value = cf.funjsq_username.value;
@@ -183,17 +266,17 @@
                                         return true;
                                 } else if ( json.status == "error"){
                                         if( json.code == "1101"){
-                                                alert("该手机号码已注册，请确认");
+                                                $$.alertBox("该手机号码已注册，请确认");
 					}else if( json.code == "1301"){
-                                                alert("该号码尚未注册完成，请确认输入是否正确");
+                                                $$.alertBox("该号码尚未注册完成，请确认输入是否正确");
                                         }else if( json.code == "1102" || json.code == "1302"){
-                                                alert("手机号码输入错误，请确认输入是否正确");
+                                                $$.alertBox("手机号码输入错误，请确认输入是否正确");
                                         }else if( json.code == "1103" || json.code == "1303"){
-                                                alert("验证码调用次数过多，请一天后重试");
+                                                $$.alertBox("验证码调用次数过多，请一天后重试");
                                         }
                                         wait=0;
                                 } else{
-                                        alert("请检查你的网络连接。");
+                                        $$.alertBox("请检查你的网络连接。");
                                         wait=0;
                                 }
                         });
@@ -204,21 +287,21 @@
                 {
                         var cf=document.forms[num];
                         if ( !$$.REG_PHONE.test($$('#'+form+'Name').val()) ) {
-                                alert("无效的账号！");
+                                $$.alertBox("无效的账号！");
                                 return false;
                         }else{
                                 cf.hidden_funjsq_username.value = cf.funjsq_username.value;
                         }
 			if(form == "register"){
                                 if ( !$$.REG_PASSWORD2.test($$('#'+form+'Pwd').val()) ) {
-                                        alert("无效的密码！");
+                                        $$.alertBox("无效的密码！");
                                         return false;
                                 }else{
                                         cf.hidden_funjsq_password.value = cf.funjsq_password.value;
                                 }
 			}else{
 				if ( !$$.REG_PASSWORD.test($$('#'+form+'Pwd').val()) ) {
-                                        alert("无效的密码！");
+                                        $$.alertBox("无效的密码！");
                                         return false;
                                 }else{
                                         cf.hidden_funjsq_password.value = cf.funjsq_password.value;
@@ -226,7 +309,7 @@
 			}
 
 			if ( !$$.REG_NUM.test($$('#'+form+'Vry').val()) ) {
-                                alert("无效的验证码！");
+                                $$.alertBox("无效的验证码！");
                                 return false;
                         }else{
                                 cf.hidden_funjsq_verify.value = cf.funjsq_verify.value;
@@ -248,7 +331,7 @@
                                                         $$('.plz_wait').css('display','none');
                                                         $$('#loginForm').css('display','block');
                                                         $$('body').css('background','rgb(229,229,229)');
-                                                        alert("请重新登陆");
+                                                        $$.alertBox("请重新登陆");
                                                 }
                                         });
 				}else{
@@ -256,35 +339,35 @@
                                         $$('body').css('background','rgb(229,229,229)');
                                         $$('#'+form+'Form').css('display','block');
                                         if ( json.code == "1106" || json.code == "1306") {
-                                                alert("手机号码输入错误，请确人输入是否正确");
+                                                $$.alertBox("手机号码输入错误，请确人输入是否正确");
                                         }else if ( json.code == "1107" || json.code == "1307") {
-                                                alert("验证码未输入，请确认");
+                                                $$.alertBox("验证码未输入，请确认");
                                         }else if ( json.code == "1108" || json.code == "1109" || json.code == "1308" || json.code == "1309" || json.code == "1103") {
                                                 if( form == "forget"){
                                                         verify_count++;
                                                         if(verify_count < 3){
                                                                 if( json.code == "1303" )
 
- alert("验证码输入错误，请重新输入验证码");
+ $$.alertBox("验证码输入错误，请重新输入验证码");
                                                                 else
-                                                                        alert("验证码已失效，请重新获取验证码");
+                                                                        $$.alertBox("验证码已失效，请重新获取验证码");
                                                         }else{
-                                                                alert("验证码输入错误，请联系客服");
+                                                                $$.alertBox("验证码输入错误，请联系客服");
                                                         }
                                                 }else{
 							if( json.code == "1109" || json.code == "1309")
-                                                                alert("验证码输入错误，请重新输入验证码");
+                                                                $$.alertBox("验证码输入错误，请重新输入验证码");
                                                         else
-                                                                alert("验证码已失效，请重新获取验证码");
+                                                                $$.alertBox("验证码已失效，请重新获取验证码");
                                                 }
                                         }
                                         if(form == "register"){
                                                 if ( json.code == "1105" ) {
-                                                        alert("该手机号码已注册，请确认");
+                                                        $$.alertBox("该手机号码已注册，请确认");
                                                 }
                                         }else if(form == "forget"){
                                                 if ( json.code == "1305" ) {
-                                                        alert("该号码尚未注册完成，请确认输入是否正确");
+                                                        $$.alertBox("该号码尚未注册完成，请确认输入是否正确");
                                                 }
                                         }
                                 }
@@ -301,7 +384,7 @@
 		var cur_date = date.getTime();
 		var expire_date = date_expire.getTime();
 		if(expire_date < cur_date)
-			alert("加速服务已经到期，请您续费。");
+			$$.alertBox("加速服务已经到期，请您续费。");
 
 		$$.getData('mul_device.aspx',function(json){
                         var newRow = "";
@@ -315,7 +398,7 @@
 					Area[num]=json[key].accArea;
 					$$('.funjsq_no_device').css('display','none');	
 					newRow = '<table class="funjsq_mul_device" cellspacing="3" cellpadding="0"><tr>';
-					if (json[key].status == "10"){
+					if (json[key].conn_onoff == "0"){
 						if(json[key].type == "1"){
                                                         newRow += '<td rowspan="2" class="icon_play_gray icon_device"><div>'+json[key].Name+'</div></td>';
                                                 }else if (json[key].type == "2"){
@@ -366,6 +449,13 @@
 						connect_value = "close";
 						font_value = "联机加速";
 					}
+
+					if (json[key].conn_onoff == "0"){
+                                                connect_status = "funjsq_enable2";
+                                                connect_value = "open";
+                                                font_color = "gray";
+                                                font_value = "已断线";
+                                        }
 					newRow += '<td id="mulMac'+num+'">MAC:'+key+'</td><td id="mulTxb'+num+'">上传流量: '+json[key].TXbyte+'</td><td>请选择加速节点</td><td class="icon_update_shop '+connect_status+'" id="plugin'+num+'" onclick="$$.pluginClick('+num+', '+json[key].type+');" style="width:13%;"><input hidden="" value="'+connect_value+'" id="pluginBt'+num+'"><div class="circleProgress_wrapper_new" id="circle'+num+'" hidden=""><div class="progress_new" id="progress'+num+'"></div><div class="wrapper_new right_new"><div class="circleProgress_new rightcircle_new"></div></div><div class="wrapper_new left_new"><div class="circleProgress_new leftcircle_new"></div></div></div></td></tr><tr><td>';
 					newRow += 'IP:'+json[key].IP+'</td><td id="mulRxb'+num+'">下载流量: '+json[key].RXbyte+'</td><td><select id="accArea'+num+'" name="accArea" onChange="$$.accAreaChange('+num+');"><option value="0" selected>请选择加速节点</option></select></td><td style="color:'+font_color+';" id="fontStatus'+num+'">'+font_value+'</td></tr></table>';
 					$$('.funjsq_type_new').append(newRow);
@@ -403,9 +493,12 @@
 				var num=0;
 				for(var key in json){
 					if(count == num){
-						if( json[key].status == "1" ){
+						if( json[key].status == "1"){
 							var cf = document.forms[0];
 
+							var change_num = $$('#accArea'+num+'').val();
+							if(change_num == "0")
+								return false;
 							cf.selMac.value = key;
 							cf.selType.value = json[key].type;
 							cf.selArea.value = $$('#accArea'+num+'').val();
@@ -416,7 +509,7 @@
 								if ( json.status == "1") {
 									$$.updateStatus(key);
 								} else {
-									alert("请重试");
+									$$.alertBox("请重试");
 								}
 							});
 						}
@@ -477,6 +570,11 @@
 								$$('#fontStatus'+num+'').html("联机加速");
                                                                 $$('#fontStatus'+num+'').css('color','gray');
 							}
+
+							if( json[key].conn_onoff == "0" ){
+                                                                $$('#fontStatus'+num+'').html("已断线");
+                                                                $$('#fontStatus'+num+'').css('color','gray');
+                                                        }
 						}
 					}
 
@@ -496,14 +594,14 @@
 			for(var i=0;i < devNum;i++){
 				if(i != num && $$('#plugin'+i+'').hasClass("active"))
 				{
-					alert("请等待另一台设备加速完成！");
+					$$.alertBox("请等待另一台设备加速完成！");
 					return false;
 				}
 			}
 
 			if($$('#accArea'+num+'').val() == "0")
                         {
-                                alert("请选择加速节点！");
+                                $$.alertBox("请选择加速节点！");
                                 return false;
                         }
 
@@ -515,11 +613,12 @@
                                 cf.submit_flag.value="close_plugin_new";
                         }else if ($$('#pluginBt'+num+'').val() =="close")
                         {
+				if( $$('.funjsq_enable2').length == funjsq_acc_max || $$('.funjsq_enable2').length > funjsq_acc_max) {
+					$$.alertBox("您需要购买更高级的路由器才能支持更多的加速终端数，推荐型号："+funjsq_acc_tips);
+					return false;
+				}
 				if( $$('.funjsq_enable2').length == funjsq_accNum || $$('.funjsq_enable2').length > funjsq_accNum) {
-					if(funjsq_accNum >= "3")
-						alert("已达到路由器最大可加速设备数，若需加速更多设备请升级您的路由器");
-					else
-						alert("多终端设备加速已达上限，请升级套餐终端数或关闭无需加速的设备");
+					$$.alertBox("超过您的加速终端数，您需要升级加速终端数");
 					return false;
 				}
                                 $$('#pluginBt'+num+'').val("open");
@@ -548,7 +647,7 @@
                                                 setTimeout(function(){$$.updateStatus(select_mac);},2*1000);
                                         } else {
                                                 //location.href = "funjsq_pay.htm";
-                                                alert("请重试");
+                                                $$.alertBox("请重试");
                                         }
                                 }else{
                                         if ( json.status == "1" ) {
@@ -556,7 +655,7 @@
 						$$.updateStatus(select_mac);
                                                 //location.href = "funjsq_select.htm";
                                         } else {
-                                                alert("无效的请求，请重试");
+                                                $$.alertBox("无效的请求，请重试");
                                                 //location.href = "funjsq_select.htm";
                                         }
                                 }
@@ -573,7 +672,7 @@
                                         //$$.checkStatus();
                                         location.href = "funjsq_select.htm";
                                 } else {
-                                        alert("无效的请求，请重试");
+                                        $$.alertBox("无效的请求，请重试");
                                         //location.href = "funjsq_select.htm";
                                 }
                         });
@@ -603,10 +702,12 @@
 		var select_id;
 		var price = new Array();
 		var suit_type = 1;
+		var ExpireFlag = 0;
+		var user_accNum;
 
 		$$('#nowNum').html(funjsq_accNum);
 		$$('#afterNum').html(funjsq_accNum);
-		$$.getData('http://api.funjsq.com/thirdParty/netgear/SearchProductInfo.php?Mobile='+mobile+'',function(json){
+		$$.getData('http://api.funjsq.com/thirdParty/netgear/v2/SearchProductInfo.php?Mobile='+mobile+'',function(json){
 			var i=0;
 			if ( json.List.length > 0 ) {
 				for ( i = 0; i < json.List.length; i++ ){
@@ -624,8 +725,21 @@
 				}
 				$$.selectSuit("1");
 			}
+			ExpireFlag = json.ExpireFlag;
+			user_accNum = json.user_accNum;
+			if( ExpireFlag == "0"){
+                                if(user_accNum){
+                                        $$('#num'+user_accNum+'').addClass("active");
+                                        for(var m=1;m<6;m++){
+                                                if(m != user_accNum)
+                                                        $$('#num'+m+'').removeClass("active");
+                                        }
+                                }
+			}else if( ExpireFlag == "1"){
+				$$("#suitType2").css("display","none");
+			}
 			if( json.code == "1001")
-				alert("用户不存在");
+				$$.alertBox("用户不存在");
 		},function(){});
 
 		$$.chExpireTime = function(){
@@ -668,8 +782,13 @@
 		}
 
 		$$('#payBt').click(function() {
+			var val=$$('.sum b').html();
+			if(val == "0.00"){
+				$$.alertBox("请先选择加速终端数");
+				return false;
+			}
 			//var id=suit_num*3 + 178;
-			window.open("https://api.funjsq.com/thirdParty/netgear/zfb/alipayapi.php?Mobile="+mobile+"&ID="+select_id+"");
+			window.open("https://api.funjsq.com/thirdParty/netgear/v2/zfb/alipayapi.php?Mobile="+mobile+"&ID="+select_id+"");
 			$$('#payForm').css('display','none');
 			$$('#confirmForm').css('display','block');
 		});
@@ -681,14 +800,16 @@
 				$$('.suit_select').css('display','block');
 				suit_type=1;
 				select_id = parseInt(suit_num)*5 + parseInt(acc_num) + 175;
+				$$('.sum b').html(price[select_id]);
 			}else{
 				$$('#suitType2').addClass("active");
                                 $$('#suitType1').removeClass("active");
 				$$('.suit_select').css('display','none');
 				suit_type=2;
-				select_id = parseInt(acc_num) + 288;
+				for(var j=1;j<6;j++)
+					$$('#num'+j+'').removeClass("active");
+				$$('.sum b').html("0.00");
 			}
-			$$('.sum b').html(price[select_id]);
 		}
 
 		$$.selectSuit = function(num){
@@ -705,6 +826,36 @@
 
 		$$.selectNum = function(num){
 			acc_num = num;
+			if(suit_type == "1"){
+				if(ExpireFlag == "0"){
+					if( num < funjsq_acc_max ){
+						$$.alertBox("您当前套餐未过期，您需要等待套餐过期之后才可以降低终端数");
+						return false;
+					}else if( num > funjsq_acc_max ){
+						$$.alertBox("您需要购买更高级的路由器才能支持更多的加速终端数，推荐型号："+funjsq_acc_tips);
+						return false;
+					}
+				}else if(ExpireFlag == "1"){
+					if(num > funjsq_acc_max){
+						$$.alertBox("您需要购买更高级的路由器才能支持更多的加速终端数，推荐型号："+funjsq_acc_tips);
+						return false;
+					}
+				}
+			}else if(suit_type == "2"){
+				if(ExpireFlag == "0"){
+					if( num < user_accNum){
+						$$.alertBox("您当前套餐未过期，您需要等待套餐过期之后才可以降低终端数");
+						return false;
+					}
+					if( num > funjsq_acc_max){
+						$$.alertBox("您需要购买更高级的路由器才能支持更多的加速终端数，推荐型号："+funjsq_acc_tips);
+						return false;
+					}
+
+					if( num == user_accNum)
+						return false;
+				}
+			}
 			$$('#afterNum').html(num);
 			$$('#num'+num+'').addClass("active");
 			if(suit_type=="2")
@@ -722,9 +873,9 @@
 
 		$$('#payTrouble').click(function() {
 			if(QQSupport== "" )
-				alert("请加入帆游用户QQ群（492072361）");
+				$$.alertBox("请加入帆游用户QQ群（492072361）");
 			else
-				alert("请加入帆游用户QQ群（"+QQSupport+"）");
+				$$.alertBox("请加入帆游用户QQ群（"+QQSupport+"）");
 			location.href="funjsq_select.htm";
 		});
 
@@ -737,12 +888,12 @@
                                 if ( json.code == "1000" ) {
 					location.href="funjsq_select.htm";
 				} else if(json.code == "1001"){
-					alert(json.msg);
+					$$.alertBox(json.msg);
 					$$('#payForm').css('display','block');
 					$$('#confirmForm').css('display','none');
 					$$('.plz_wait').css('display','none');
                                 } else{
-                                        alert("请检查你的网络连接。");
+                                        $$.alertBox("请检查你的网络连接。");
 					$$('.plz_wait').css('display','none');
 					$$('#payForm').css('display','block');
                                         $$('#confirmForm').css('display','none');

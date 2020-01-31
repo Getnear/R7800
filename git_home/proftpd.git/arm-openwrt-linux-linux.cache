@@ -270,7 +270,7 @@ ac_cv_path_EGREP=${ac_cv_path_EGREP='/bin/grep -E'}
 ac_cv_path_FGREP=${ac_cv_path_FGREP='/bin/grep -F'}
 ac_cv_path_GREP=${ac_cv_path_GREP=/bin/grep}
 ac_cv_path_LDCONFIG=${ac_cv_path_LDCONFIG=}
-ac_cv_path_SED=${ac_cv_path_SED=/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/host/bin/sed}
+ac_cv_path_SED=${ac_cv_path_SED=/home2/jinxiong.huang/projects/r7800-game/staging_dir/host/bin/sed}
 ac_cv_path_install=${ac_cv_path_install='/usr/bin/install -c'}
 ac_cv_prog_AR=${ac_cv_prog_AR=arm-openwrt-linux-ar}
 ac_cv_prog_CC=${ac_cv_prog_CC=arm-openwrt-linux-gcc}
@@ -357,8 +357,8 @@ lt_cv_ld_reload_flag=${lt_cv_ld_reload_flag=-r}
 lt_cv_module_path_var=${lt_cv_module_path_var=LD_LIBRARY_PATH}
 lt_cv_nm_interface=${lt_cv_nm_interface='BSD nm'}
 lt_cv_objdir=${lt_cv_objdir=.libs}
-lt_cv_path_LD=${lt_cv_path_LD=/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld}
-lt_cv_path_NM=${lt_cv_path_NM='/home3/dni/haiyan.zhuang/r7800-test.git/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B'}
+lt_cv_path_LD=${lt_cv_path_LD=/home2/jinxiong.huang/projects/r7800-game/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/arm-openwrt-linux-uclibcgnueabi/bin/ld}
+lt_cv_path_NM=${lt_cv_path_NM='/home2/jinxiong.huang/projects/r7800-game/staging_dir/toolchain-arm_v7-a_gcc-4.6-linaro_uClibc-0.9.33.2_eabi/bin/arm-openwrt-linux-nm -B'}
 lt_cv_prog_compiler_c_o=${lt_cv_prog_compiler_c_o=yes}
 lt_cv_prog_compiler_pic_works=${lt_cv_prog_compiler_pic_works=yes}
 lt_cv_prog_compiler_rtti_exceptions=${lt_cv_prog_compiler_rtti_exceptions=no}

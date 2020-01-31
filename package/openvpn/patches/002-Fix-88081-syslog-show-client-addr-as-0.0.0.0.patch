@@ -1,0 +1,113 @@
+diff -Nur openvpn-2.4.5.org/src/openvpn/forward.c openvpn-2.4.5/src/openvpn/forward.c
+--- openvpn-2.4.5.org/src/openvpn/forward.c	2018-05-31 20:13:49.856201180 +0800
++++ openvpn-2.4.5/src/openvpn/forward.c	2018-05-31 18:51:52.328219939 +0800
+@@ -536,6 +536,7 @@
+ static void
+ process_coarse_timers(struct context *c)
+ {
++	char sysmsg[25] = {'\0'}, *c_addr = NULL;
+ #ifdef ENABLE_CRYPTO
+     /* flush current packet-id to file once per 60
+      * seconds if --replay-persist was specified */
+@@ -569,9 +570,18 @@
+ 
+     /* restart if ping not received */
+     check_ping_restart(c);
+-    if(c->sig->signal_received == SIGUSR1)
+-	    /* for udp connection drop */
+-	    syslog(4, "[OpenVPN, connection drop] from remote IP address: %s", inet_ntoa(c->c2.to_link_addr->dest.addr.in4.sin_addr));
++    if(c->sig->signal_received == SIGUSR1){
++		if(c_addr = msg_get_prefix()){
++			snprintf(sysmsg,sizeof(sysmsg),"%s",c_addr);
++			if(c_addr = strchr(sysmsg,'/')){
++				if(sysmsg<c_addr<sysmsg+25){
++					syslog(4, "[OpenVPN, connection drop] from remote IP address: %s", ++c_addr);
++				}
++			}
++		}
++
++	}
++
+     if (c->sig->signal_received)
+     {
+         return;
+@@ -722,7 +732,7 @@
+      * sent to our TCP/UDP port.
+      */
+     int status;
+-
++	char sysmsg[25] = {'\0'}, *c_addr;
+     /*ASSERT (!c->c2.to_tun.len);*/
+ 
+     perf_push(PERF_READ_IN_LINK);
+@@ -737,7 +747,15 @@
+     if (socket_connection_reset(c->c2.link_socket, status))
+     {
+ 	  /* for tcp connection drop */ 
+-	  syslog(4, "[OpenVPN, connection drop] from remote IP address: %s", inet_ntoa(c->c2.to_link_addr->dest.addr.in4.sin_addr));
++		if(c_addr = msg_get_prefix()){
++			snprintf(sysmsg,sizeof(sysmsg),"%s",c_addr);
++			if(c_addr = strchr(sysmsg,'/')){
++				if(sysmsg<c_addr<sysmsg+25){
++					syslog(4, "[OpenVPN, connection drop] from remote IP address: %s", ++c_addr);
++				}
++			}
++		}
++
+ #if PORT_SHARE
+         if (port_share && socket_foreign_protocol_detected(c->c2.link_socket))
+         {
+diff -Nur openvpn-2.4.5.org/src/openvpn/push.c openvpn-2.4.5/src/openvpn/push.c
+--- openvpn-2.4.5.org/src/openvpn/push.c	2018-05-31 20:13:49.856201180 +0800
++++ openvpn-2.4.5/src/openvpn/push.c	2018-05-31 18:48:11.420220782 +0800
+@@ -458,10 +458,18 @@
+     const int extra = 84; /* extra space for possible trailing ifconfig and push-continuation */
+     const int safe_cap = BCAP(&buf) - extra;
+     bool push_sent = false;
++	char sysmsg[25] = {'\0'}, *c_addr = NULL;
+ 
+-    syslog(4, "[OpenVPN, connection successfully] from remote IP address: %s", inet_ntoa(c->c2.to_link_addr->dest.addr.in4.sin_addr));
++	if(c_addr = msg_get_prefix()){
++		snprintf(sysmsg,sizeof(sysmsg),"%s",c_addr);
++		if(c_addr = strchr(sysmsg,'/')){
++			if(sysmsg<c_addr<sysmsg+25){
++				syslog(4, "[OpenVPN, connection successfully] from remote IP address: %s", ++c_addr);
++			}
++		}
++	}
+ 
+-    buf_printf(&buf, "%s", push_reply_cmd);
++	buf_printf(&buf, "%s", push_reply_cmd);
+ 
+     /* send options which are common to all clients */
+     if (!send_push_options(c, &buf, &c->options.push_list, safe_cap,
+diff -Nur openvpn-2.4.5.org/src/openvpn/ssl.c openvpn-2.4.5/src/openvpn/ssl.c
+--- openvpn-2.4.5.org/src/openvpn/ssl.c	2018-05-31 20:13:49.856201180 +0800
++++ openvpn-2.4.5/src/openvpn/ssl.c	2018-05-31 19:27:55.848211686 +0800
+@@ -2726,6 +2726,7 @@
+     bool active = false;
+     struct key_state *ks = &session->key[KS_PRIMARY];      /* primary key */
+     struct key_state *ks_lame = &session->key[KS_LAME_DUCK]; /* retiring key */
++	char sysmsg[25] = {'\0'}, *c_addr = NULL;
+ 
+     /* Make sure we were initialized and that we're not in an error state */
+     ASSERT(ks->state != S_UNDEF);
+@@ -3104,7 +3105,17 @@
+     tls_clear_error();
+     ks->state = S_ERROR;
+     msg(D_TLS_ERRORS, "TLS Error: TLS handshake failed");
+-    syslog(4, "[OpenVPN, connection fail] from remote IP address: %s", inet_ntoa(ks->remote_addr.dest.addr.in4.sin_addr));
++	
++	if(c_addr = msg_get_prefix()){
++		snprintf(sysmsg,sizeof(sysmsg),"%s",c_addr);
++		if(c_addr = strchr(sysmsg,'/')){
++			if(sysmsg<c_addr<sysmsg+25){
++				syslog(4, "[OpenVPN, connection fail] from remote IP address: %s", ++c_addr);
++			}
++		}
++		else syslog(4, "[OpenVPN, connection fail] from remote IP address: %s", sysmsg);
++	}
++
+     INCR_ERROR;
+     gc_free(&gc);
+     return false;

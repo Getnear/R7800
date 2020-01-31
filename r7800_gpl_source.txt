@@ -554,7 +554,7 @@ User application
         GPL
         Source Code
 [openvpn]
-        openvpn-2.4.3.tar.gz
+        openvpn-2.4.5.tar.gz
         http://openvpn.net
         GPL
         Source Code
