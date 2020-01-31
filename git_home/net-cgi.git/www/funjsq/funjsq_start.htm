@@ -1,0 +1,42 @@
+<% http_header("style/form.css", "/funcs.js", "/jquery-1.7.2.min.js") %>
+<body onLoad="please_wait(false);" style="background:rgb(229,229,229)">
+<form method="POST" target="formframe">
+<input type="hidden" name="submit_flag" value="">
+<div class="funjsq">
+<div class="funjsq_title2">用户条款宣告</div>
+<div>
+<script>
+function enable_next()
+{
+    var cf=document.forms[0];
+    if(cf.funjsqAgree.checked == true){
+	document.getElementById("funjsq_next").className  = "common_bt";
+	document.getElementById("funjsq_next").disabled = false;
+    }else{
+        document.getElementById("funjsq_next").className  = "common_gray_bt";
+	document.getElementById("funjsq_next").disabled = true;
+    }
+}
+</script>
+<TABLE cellspacing=5 cellPadding=3 width=100% border=0 class="funjsq_tab">
+<TR>
+        <TD nowrap>
+        <input id="funjsq_agree" name="funjsqAgree" type="checkbox" onclick="enable_next();">我同意这些条款
+        </TD>
+</TR>
+<TR>
+	<TD nowrap>
+	<input class="common_gray_bt" type="button" name="Next" id="funjsq_next" value="下一步" onclick="location.href='funjsq_login.htm'" disabled>
+	</TD>
+</TR>
+</TABLE>
+</div>
+</div>
+
+</div>
+</form>
+<div class="WeChat">
+        <img id="WeChatImg" src="/image/WeChat.png" />
+</div>
+</body>
+</html>

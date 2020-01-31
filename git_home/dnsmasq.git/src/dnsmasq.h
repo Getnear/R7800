@@ -16,6 +16,8 @@
 #include <sys/types.h> 
 #include <netinet/in.h>
 
+extern char *config_get(char *name);
+
 /*
  * Advanced API
  * source interface/address selection, source routing, etc...

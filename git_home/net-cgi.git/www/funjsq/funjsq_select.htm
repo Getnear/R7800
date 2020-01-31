@@ -1,0 +1,100 @@
+<% http_header("style/form.css", "/jquery-1.7.2.min.js", "style/form2.css","/funcs.js", "/funjsq.js" ) %>
+<body onLoad="loadvalue(); please_wait(false);" style="background:rgb(229,229,229)">
+<script language="javascript" type="text/javascript">
+<% refresh_timestamp("open_plugin","close_plugin","reset_plugin","reset_open_plugin","need_login") %>
+<% update_pay_result() %>
+var ts = "<% cfg_get("open_plugin") %>";
+function loadvalue()
+{
+}
+</script>
+<form id="selectForm" method="POST" action="/admin.cgi?/funjsq_select.htm" target=formframe>
+<input type=hidden name=submit_flag value="open_plugin" />
+<script>
+var mobile="<% cfg_get("funjsq_mobile") %>";
+var expire="<% cfg_get("funjsq_expire") %>";
+var funjsq_ip=("<% cfg_get("funjsq_ip") %>" == "x.x.x.x") ? "未绑定加速设备IP" : ("<% cfg_get("funjsq_ip") %>");
+var funjsq_mac=("<% cfg_get("funjsq_mac") %>" == "x.x.x.x.x.x") ? "未绑定加速设备MAC" : ("<% cfg_get("funjsq_mac") %>");
+var accType = "<% cfg_get("funjsq_accType") %>";
+var accArea = "<% cfg_get("funjsq_accArea") %>";
+var funjsq_status = "<% cfg_get("funjsq_status") %>";
+var funjsq_conntime = "<% cfg_get("funjsq_conntime") %>";
+var QQSupport="<% cfg_get("funjsq_QQSupport") %>";
+var funjsq_TXbyte = "<% cfg_get("funjsq_TXbyte") %>";
+var funjsq_RXbyte = "<% cfg_get("funjsq_RXbyte") %>";
+</script>
+<input type="hidden" name="hidden_accType" />
+<input type="hidden" name="hidden_accArea" />
+<div class="funjsq">
+<div class="funjsq_title">简单两步完成加速</div>
+<div class="funjsq_title2">第2步 ———————— 选择加速平台</div>
+<div class="funjsq_type">
+	<div class="funjsq_select">
+		<div id="funjsq_account" class="funjsq_sel">
+			<div id="funjsq_icon1"></div>
+			<script>
+				document.write('<div id="account_info">'+mobile+'</div>');
+			</script>
+			<div class="ui-corner-all" id="pay_bt"><a href="funjsq_pay.htm" style="color:rgb(242,187,111);">续费</a>
+			</div>
+		</div>
+		<script>
+			document.write('<div class="funjsq_sel">过期时间: '+expire+'</div>');
+		</script>
+		<div class="funjsq_sel">请选择加速类型
+			<select id="accType" name="accType">
+				<option value="0" selected>请选择加速类型</option>
+				<option value="1">PlayStation4</option>
+				<option value="2">Windows</option>
+				<option value="3">Xbox</option>
+				<option value="4">Nintendo Switch</option>
+			</select>
+		</div>
+		<div class="funjsq_sel">请选择加速节点
+                        <select id="accArea" name="accArea">
+                                <option value="0" selected>请选择加速节点</option>
+                        </select>
+                </div>
+		<div style="margin-left:230px;"><input class="funjsq_bt" type="button" name="Apply" id="resetBt" value="重置插件">
+		</div>
+		<div class="funjsq_sel">PS:1.当出现未知错误时，请点击[重置插件]按钮重置加速器。</div>
+		<div class="funjsq_sel" style="margin-left:34px;">2.被加速主机需为自动获取IP和DNS的方式。</div>
+		<div class="funjsq_sel" style="margin-left:34px;">3.如果您有任何技术问题，请加入帆游QQ群：<script>document.write(''+QQSupport+'');</script>
+		</div>
+	</div>
+	<div class="funjsq_service">
+		<div id="funjsq_icon2" class="icon_fail">
+			<div class="circleProgress_wrapper" hidden="">
+				<div class="progress"></div>
+				<div class="wrapper right">
+					<div class="circleProgress rightcircle"></div>
+				</div>
+				<div class="wrapper left">
+					<div class="circleProgress leftcircle"></div>
+				</div>
+			</div>
+		</div>
+		<div class="funjsq_sel" id="status_info">服务未启动</div>
+		<div class="funjsq_sel" id="status_info2"></div>
+		<div class="funjsq_sel">连接时长：<span id="funjsqConntime"></span></div>
+		<div class="funjsq_sel">IP: <span id="funjsqIp"></span></div>
+		<div class="funjsq_sel">MAC: <span id="funjsqMac"></span></div>
+		<div class="funjsq_sel">上传流量: <span id="funjsqTXbyte"></span></div>
+		<div class="funjsq_sel">下载流量: <span id="funjsqRXbyte"></span></div>
+		<!--
+		<script>
+			document.write('<div class="funjsq_sel">IP: '+lan_ip+'</div>');
+			document.write('<div class="funjsq_sel">MAC: '+lan_mac+'</div>');
+		</script>
+		--!>
+		<input class="funjsq_bt" id="pluginBt" type="button" name="Apply" value="开启服务">
+	</div>
+</div>
+</div>
+
+</form>
+<div class="WeChat">
+        <img id="WeChatImg" src="/image/WeChat.png" />
+</div>
+</body>
+</html>

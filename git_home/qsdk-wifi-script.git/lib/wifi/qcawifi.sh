@@ -178,6 +178,20 @@ load_qcawifi() {
 	config_get_bool testmode qcawifi testmode
 	[ -n "$testmode" ] && append umac_args "testmode=$testmode"
 
+	config_get fcc_b5_threshold qcawifi fcc_b5_threshold
+	[ -n "$fcc_b5_threshold" ]  && append umac_args "fcc_b5_threshold=$fcc_b5_threshold"
+	config_get fcc_b5_mindur qcawifi fcc_b5_mindur
+	[ -n "$fcc_b5_mindur" ]	    && append umac_args "fcc_b5_mindur=$fcc_b5_mindur"
+	config_get fcc_b5_maxdur qcawifi fcc_b5_maxdur
+	[ -n "$fcc_b5_maxdur" ]	    && append umac_args "fcc_b5_maxdur=$fcc_b5_maxdur"
+	config_get fcc_b5_timewindow qcawifi fcc_b5_timewindow
+	[ -n "$fcc_b5_timewindow" ] && append umac_args "fcc_b5_timewindow=$fcc_b5_timewindow"
+	config_get fcc_b5_rssithresh qcawifi fcc_b5_rssithresh
+	[ -n "$fcc_b5_rssithresh" ] && append umac_args "fcc_b5_rssithresh=$fcc_b5_rssithresh"
+	config_get fcc_b5_rssimargin qcawifi fcc_b5_rssimargin
+	[ -n "$fcc_b5_rssimargin" ] && append umac_args "fcc_b5_rssimargin=$fcc_b5_rssimargin"
+
+
 	config_get vow_config qcawifi vow_config
 	[ -n "$vow_config" ] && append umac_args "vow_config=$vow_config"
 
@@ -261,9 +275,6 @@ load_qcawifi() {
 	region=`artmtd -r region | grep REGION | cut -d" " -f2`
 	[ "$region" = "US" ] && append umac_args "new_fcc_rule=1"
 
-	config_get specified_BDF qcawifi specified_BDF
-	[ "x$specified_BDF" = "xPR" ] && append umac_args "use_pr_bd=1"
-
 	find_qca_wifi_dir _qca_wifi_dir
 	for mod in $(cat ${_qca_wifi_dir}/33-qca-wifi*); do
 
@@ -301,6 +312,66 @@ unload_qcawifi() {
 	done
 }
 
+set_boarddata() {
+	local country_code="$1"
+
+	REGULATORY_DOMAIN=FCC_ETSI
+	IPQ4019_BDF_DIR=/lib/firmware/IPQ4019/hw.1
+	QCA9984_BDF_DIR=/lib/firmware/QCA9984/hw.1
+	QCA9888_BDF_DIR=/lib/firmware/QCA9888/hw.2
+
+	config_get wl_super_wifi qcawifi wl_super_wifi
+	config_get wla_super_wifi qcawifi wla_super_wifi
+	if [ "$wl_super_wifi" == "1" ] || [ "$wla_super_wifi" == "1" ]; then
+		REGULATORY_DOMAIN=SUPER_WIFI
+	else
+		case "$country_code" in
+			5001)
+				REGULATORY_DOMAIN=Canada
+				;;
+			5000)
+				REGULATORY_DOMAIN=AU
+				;;
+			412)
+				REGULATORY_DOMAIN=Korea
+				;;
+			356)
+				REGULATORY_DOMAIN=INS
+				;;
+			458|156|702|764)
+				REGULATORY_DOMAIN=SRRC
+				;;
+		esac
+	fi
+
+	if [ -d $IPQ4019_BDF_DIR/$REGULATORY_DOMAIN ]; then
+		/bin/cp -f $IPQ4019_BDF_DIR/$REGULATORY_DOMAIN/* $IPQ4019_BDF_DIR/
+	elif ([ "$wl_super_wifi" == "1" ] || [ "$wla_super_wifi" == "1" ]) &&
+	     [ -d $IPQ4019_BDF_DIR/SRRC ]; then
+		/bin/cp -f $IPQ4019_BDF_DIR/SRRC/* $IPQ4019_BDF_DIR/
+	elif [ -d $IPQ4019_BDF_DIR/FCC_ETSI ]; then
+		/bin/cp -f $IPQ4019_BDF_DIR/FCC_ETSI/* $IPQ4019_BDF_DIR/
+	fi
+
+	if [ -d $QCA9984_BDF_DIR/$REGULATORY_DOMAIN ]; then
+		/bin/cp -f $QCA9984_BDF_DIR/$REGULATORY_DOMAIN/* $QCA9984_BDF_DIR/
+	elif ([ "$wl_super_wifi" == "1" ] || [ "$wla_super_wifi" == "1" ]) &&
+	     [ -d $QCA9984_BDF_DIR/SRRC ]; then
+		/bin/cp -f $QCA9984_BDF_DIR/SRRC/* $QCA9984_BDF_DIR/
+	elif [ -d $QCA9984_BDF_DIR/FCC_ETSI ]; then
+		/bin/cp -f $QCA9984_BDF_DIR/FCC_ETSI/* $QCA9984_BDF_DIR/
+	fi
+
+	if [ -d $QCA9888_BDF_DIR/$REGULATORY_DOMAIN ]; then
+		/bin/cp -f $QCA9888_BDF_DIR/$REGULATORY_DOMAIN/* $QCA9888_BDF_DIR/
+	elif ([ "$wl_super_wifi" == "1" ] || [ "$wla_super_wifi" == "1" ]) &&
+	     [ -d $QCA9888_BDF_DIR/SRRC ]; then
+		/bin/cp -f $QCA9888_BDF_DIR/SRRC/* $QCA9888_BDF_DIR/
+	elif [ -d $QCA9888_BDF_DIR/FCC_ETSI ]; then
+		/bin/cp -f $QCA9888_BDF_DIR/FCC_ETSI/* $QCA9888_BDF_DIR/
+	fi
+}
+
 
 disable_qcawifi() {
 	local device="$1"
@@ -328,7 +399,16 @@ disable_qcawifi() {
 			local parent=$(cat /sys/class/net/${dev}/parent)
 			[ -n "$parent" -a "$parent" = "$device" ] && { \
 				[ -f "/var/run/wifi-${dev}.pid" ] &&
-					kill "$(cat "/var/run/wifi-${dev}.pid")"
+					kill "$(cat "/var/run/wifi-${dev}.pid")" || {
+						pids=`ps | grep hostapd | grep "\-d\{1,4\}" | awk '{print $1}'`
+						for pid in $pids; do
+							found=`cat /proc/$pid/cmdline | grep ${dev}`
+							[ -n "$found" ] && {
+								echo "Kill debug enabled hostapd for interface ${dev}"
+								kill $pid
+							}
+						done
+					}
 				[ -f "/var/run/hostapd_cli-${dev}.pid" ] &&
 					kill "$(cat "/var/run/hostapd_cli-${dev}.pid")"
 				ifconfig "$dev" down
@@ -357,9 +437,21 @@ disable_qcawifi() {
 	return 0
 }
 
+reload_check_qcawifi() {
+    [ ! -d /sys/module/umac ] && {
+        echo "umac module is expected to be inserted, but not, so load WiFi modules again"
+        load_qcawifi
+    } || {
+        echo "No reload qcawifi modules"
+    }
+}
+
 enable_qcawifi() {
 	local device="$1"
 	echo "$DRIVERS: enable radio $1" >/dev/console
+
+	config_get country "$device" country
+	set_boarddata "$country"
 
 	config_get_bool module_reload qcawifi module_reload 1
 	if [ "$2" != "dni" ]; then	    # wifi up
@@ -371,8 +463,8 @@ enable_qcawifi() {
 		    sleep 3
 		    load_qcawifi
 		}
-	else				    # wlan up
-		echo "qcawifi modules are not reloaded"
+	else
+		reload_check_qcawifi
 	fi
 
 	find_qcawifi_phy "$device" || return 1
@@ -1194,6 +1286,12 @@ enable_qcawifi() {
 		config_get_bool rrm "$vif" rrm
 		[ -n "$rrm" ] && iwpriv "$ifname" rrm "$rrm"
 
+		config_get nrshareflag "$vif" nrshareflag
+		[ -n "$nrshareflag" ] && iwpriv "$ifname" nrshareflag "$nrshareflag"
+
+		config_get_bool scanentryage "$vif" scanentryage
+		[ -n "$scanentryage" ] && iwpriv "$ifname" scanentryage "$scanentryage"
+
 		config_get_bool rrmslwin "$vif" rrmslwin
 		[ -n "$rrmslwin" ] && iwpriv "$ifname" rrmslwin "$rrmslwin"
 
@@ -1382,6 +1480,11 @@ enable_qcawifi() {
 			}
 		fi
 
+        #because hostapd_setup_vif will change the value of vifs 
+        #so I can just save the value and reset it after that function
+        old_temp_vif=$vif
+        old_temp_vifs=$vifs
+
 		case "$mode" in
 			ap|wrap|ap_monitor|ap_smart_monitor|mesh|ap_lp_iot)
 
@@ -1430,6 +1533,9 @@ enable_qcawifi() {
 					}
 				fi
 		esac
+
+        vif=$old_temp_vif
+        vifs=$old_temp_vifs
 
 		[ -z "$bridge" -o "$isolate" = 1 -a "$mode" = "wrap" ] || {
 			start_net "$ifname" "$net_cfg"
@@ -1518,8 +1624,7 @@ enable_qcawifi() {
 		isup=`ifconfig $ifname | grep UP`
 		no_assoc=`iwconfig $ifname | grep Not-Associated`
 		if [ "$isup" != "" -a "$no_assoc" != "" -a "$mode" != "sta" ]; then
-			ifconfig "$ifname" down
-			ifconfig "$ifname" up
+		    {	sleep 3;ifconfig "$ifname" down;sleep 1;ifconfig "$ifname" up; } &
 		fi
 	done
 
@@ -1613,6 +1718,7 @@ wifischedule_qcawifi()
     local hw_btn_state="$2"
     local band="$3"
     local newstate="$4"
+    local is_guest="$5"
 
     find_qcawifi_phy "$device" || return 1
 
@@ -1620,6 +1726,9 @@ wifischedule_qcawifi()
     config_get vifs "$device" vifs
     for vif in $vifs; do
         config_get ifname "$vif" ifname
+	if [ "$is_guest" = "1" ]; then
+	   [ "$ifname" = "ath0" -o "$ifname" = "ath1" ] && continue # only want to set guest network vap
+	fi
         if [ "$newstate" = "on" -a "$hw_btn_state" = "on" ]; then
             isup=`ifconfig $ifname | grep UP`
             [ -n "$isup" ] && continue
@@ -1667,6 +1776,7 @@ wifischedule_qcawifi()
         fi
     done
 
+    [ "$is_guest" = "1" ] && return
     # update wlan uptime file
     config_get ifname "$vif" ifname
     isup=`ifconfig $ifname | grep UP`
@@ -1685,6 +1795,17 @@ wifischedule_qcawifi()
         rm /tmp/WLAN_uptime_5G
         echo "OFF" > /tmp/WLAN_5G_status
     fi
+}
+
+wifiapscan_qcawifi()
+{
+    local device="$1"
+
+    config_get vifs "$device" vifs
+    for vif in $vifs; do
+        config_get ifname "$vif" ifname
+        [ "$ifname" = "ath0" -o "$ifname" = "ath1" ] && iwlist "$ifname" scan
+    done
 }
 
 wifistainfo_qcawifi()
@@ -1789,16 +1910,28 @@ wifiradio_qcawifi()
                             161) chan="149 + 153 + 157 + 161(p)";;
                         esac
                     elif [ -n "$is_80_80" ]; then
+                        # Per "R7800 channel combination for 160Mhz_20170921.docx" conclude:
+                        freq_5210="36 + 40 + 44 + 48"
+                        freq_5690="132 + 136 + 140 + 144"
+                        freq_5775="149 + 153 + 157 + 161"
                         case "${p_chan}" in
-                            132) chan="132(p) + 136 + 140 + 144 + 149 + 153 + 157 + 161" ;;
-                            136) chan="132 + 136(p) + 140 + 144 + 149 + 153 + 157 + 161" ;;
-                            140) chan="132 + 136 + 140(p) + 144 + 149 + 153 + 157 + 161" ;;
-                            144) chan="132 + 136 + 140 + 144(p) + 149 + 153 + 157 + 161" ;;
-                            149) chan="132 + 136 + 140 + 144 + 149(p) + 153 + 157 + 161" ;;
-                            153) chan="132 + 136 + 140 + 144 + 149 + 153(p) + 157 + 161" ;;
-                            157) chan="132 + 136 + 140 + 144 + 149 + 153 + 157(p) + 161" ;;
-                            161) chan="132 + 136 + 140 + 144 + 149 + 153 + 157 + 161(p)" ;;
-                         esac
+                            36|40|44|48) 
+                                chan=$freq_5210
+                                freq1=5210 ;;
+                            132|136|140|144) 
+                                chan=$freq_5690
+                                freq1=5690 ;;
+                            149|153|157|161)
+                                chan=$freq_5775
+                                freq1=5775 ;;
+                        esac
+                        freq2=$(iwpriv $ifname get_cfreq2 | cut -d: -f2)
+                        if [ "$freq1" -lt "$freq2" ]; then
+                            eval "chan=\"$(echo $chan + \$freq_$freq2)\""
+                        else
+                            eval "chan=\"$(echo \$freq_$freq2 + $chan)\""
+                        fi
+                        chan=$(echo $chan | sed "s/${p_chan}/&(p)/")
                     elif [ -n "$is_160" ]; then
                         case "${p_chan}" in
                             36) chan="36(p) + 40 + 44 + 48 + 52 + 56 + 60 + 64" ;;
@@ -2131,6 +2264,17 @@ post_qcawifi() {
 				rm -f /var/run/wifi-wps-enhc-extn.conf
 				config_foreach setup_wps_enhc wifi-device
 			}
+
+			# Add netgear's VIE
+            if [ "x$(/bin/config get ap_mode)" = "x0" ]; then #router mode
+                wlanconfig ath1 vendorie add len 11 oui 00146c pcap_data 0801010110000000 ftype_map 18
+                wlanconfig ath0 vendorie add len 11 oui 00146c pcap_data 0801010110000000 ftype_map 18
+            fi
+            if [ "x$(/bin/config get ap_mode)" = "x1" ]; then #ap mode
+                wlanconfig ath1 vendorie add len 11 oui 00146c pcap_data 0801020110000000 ftype_map 18
+                wlanconfig ath0 vendorie add len 11 oui 00146c pcap_data 0801020110000000 ftype_map 18
+            fi
+
 		;;
 	esac
 }

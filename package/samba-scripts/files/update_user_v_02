@@ -28,8 +28,8 @@ echo "guest::10957:0:99999:7:::"                        >> $SMB_CONF_DIR/shadow
 # clear smbpasswd file
 echo -n ""	> $SMB_PASSWD_DIR
 
-/usr/bin/smbpasswd admin "$($config get http_passwd)"
-/usr/bin/smbpasswd guest ""
+(echo "$($config get http_passwd)"; echo "$($config get http_passwd)") | smbpasswd -a admin -s
+(echo ""; echo "") | smbpasswd -a guest -s
 
 readycloud_enable=`${config} get readycloud_enable`
 #readycloud_enable=1

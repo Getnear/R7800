@@ -625,20 +625,39 @@ generate_mu_mimo()
     fi
 }
 
+#decide whether enable lbd through config lbd configration file
+generate_lbd()
+{
+    local lbd_enable=
+
+#   eval lbd_conf_onoff=\$`echo $1`_onoff
+
+    if [ x"$lbd_onoff" = x"1" ]; then
+       lbd_enable=1
+    else
+       lbd_enable=0
+    fi
+    uci set lbd.@config[0].Enable=${lbd_enable}
+}
+
 # config driver parameters
 uci set wireless.qcawifi=qcawifi
-if [ "$wl_super_wifi" == "1" ]; then
+uci set wireless.qcawifi.wl_super_wifi=${wl_super_wifi}
+uci set wireless.qcawifi.wla_super_wifi=${wla_super_wifi}
+
+if [ "$wl_super_wifi" == "1" ] ||
+   ([ "$wlg_power_limit" == "0" ] && [ "$wlg_tpscale" == "0" ]); then
     uci set wireless.qcawifi.wl_tpscale=-1
 else
     uci set wireless.qcawifi.wl_tpscale=${wlg_tpscale}
 fi
-if [ "$wla_super_wifi" == "1" ]; then
+
+if [ "$wla_super_wifi" == "1" ] ||
+   ([ "$wla_power_limit" == "0" ] && [ "$wla_tpscale" == "0" ]); then
     uci set wireless.qcawifi.wla_tpscale=-1
 else
     uci set wireless.qcawifi.wla_tpscale=${wla_tpscale}
 fi
-
-[ -n "$specified_BDF" ] && uci set wireless.qcawifi.specified_BDF=$specified_BDF
 
 if [ "$wl_cb_if_onoff" != "on" ]; then
     uci set wireless.qcawifi.atf_mode=0
@@ -691,6 +710,13 @@ if [ "$_tmp_wlg_onoff" = "on" ]; then
     generate_puren "wlg"
     generate_doth "wlg"
     generate_disablecoext "wlg"
+    if [ "x$(config get enable_11k)" = "x1" ]; then
+        uci set wireless.wlg.rrm='1'
+        uci set wireless.wlg.nrshareflag='3'
+        uci set wireless.wlg.scanentryage='600'
+    else 
+        uci set wireless.wlg.rrm='0'
+    fi
     generate_security "wlg"
     generate_protocol_setting "wlg"
     generate_acl "wlg"
@@ -717,6 +743,13 @@ if [ "$_tmp_wla_onoff" = "on" ]; then
     generate_puren "wla"
     #generate_doth "wla"
     generate_disablecoext "wla"
+    if [ "x$(config get enable_11k)" = "x1" ]; then
+        uci set wireless.wla.rrm='1'
+        uci set wireless.wla.nrshareflag='3'
+        uci set wireless.wla.scanentryage='600'
+    else 
+        uci set wireless.wla.rrm='0'
+    fi
     generate_security "wla"
     generate_protocol_setting "wla"
     generate_acl "wla"
@@ -790,4 +823,8 @@ fi
 
 
 uci commit wireless
+sync
+
+generate_lbd "lbd"
+uci commit lbd
 sync

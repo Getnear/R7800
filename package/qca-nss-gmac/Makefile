@@ -16,7 +16,7 @@ endif
 
 include $(INCLUDE_DIR)/package.mk
 
-ENET_AUTOLOAD:= qca-nss-gmac
+ENET_AUTOLOAD:= qca-nss-gmac dni_enet
 
 define KernelPackage/qca-nss-gmac
   SECTION:=kernel
@@ -24,7 +24,7 @@ define KernelPackage/qca-nss-gmac
   SUBMENU:=Network Devices
   DEPENDS:=@TARGET_ipq806x
   TITLE:=Kernel driver for NSS gmac
-  FILES:=$(PKG_BUILD_DIR)/ipq806x/qca-nss-gmac.ko
+  FILES:=$(PKG_BUILD_DIR)/ipq806x/qca-nss-gmac.ko $(PKG_BUILD_DIR)/ipq806x/dni_enet.ko
   AUTOLOAD:=$(call AutoLoad,31,$(ENET_AUTOLOAD))
 endef
 
@@ -44,7 +44,7 @@ EXTRA_CFLAGS+= \
 
 define Build/Prepare
 	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) ./src/* $(PKG_BUILD_DIR)/	
+	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
 define Build/Compile

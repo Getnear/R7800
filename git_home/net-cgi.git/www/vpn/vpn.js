@@ -1,3 +1,49 @@
+function handle_on_updating() {
+	var cf = document.forms[0];
+	if(on_updating == "1") {
+		if(!!cf.ForWindows) {
+			cf.ForWindows.className = "window1_bt";
+			cf.ForWindows.disabled = true;
+		}
+		if(!!cf.ForNonWindows) {
+			cf.ForNonWindows.className = "non_window1_bt";
+			cf.ForNonWindows.disabled = true;
+		}
+		if(!!cf.ForSmartPhone) {
+			cf.ForSmartPhone.className = "non_window1_bt";
+			cf.ForSmartPhone.disabled = true;
+		}
+		if(!!cf.Apply) {
+			cf.Apply.className = "apply1_bt";
+			cf.Apply.disabled = true;
+		}
+		if(!!document.getElementById("updating_tip")) {
+			document.getElementById("updating_tip").style.display = "";
+		}
+	}
+	else {
+		if(!!cf.ForWindows) {
+			cf.ForWindows.className = "window_bt";
+			cf.ForWindows.disabled = false;
+		}
+		if(!!cf.ForNonWindows) {
+			cf.ForNonWindows.className = "non_window_bt";
+			cf.ForNonWindows.disabled = false;
+		}
+		if(!!cf.ForSmartPhone) {
+			cf.ForSmartPhone.className = "non_window_bt";
+			cf.ForSmartPhone.disabled = false;
+		}
+		if(!!cf.Apply) {
+			cf.Apply.className = "apply_bt";
+			cf.Apply.disabled = false;
+		}
+		if(!!document.getElementById("updating_tip")) {
+			document.getElementById("updating_tip").style.display = "none";
+		}
+	}
+}
+
 function checkvpn(cf)
 {
 	var count =0;

@@ -123,7 +123,7 @@ void send_packet(int usd, struct ntptime *udp_send_ntp)
 	__u32 data[12];
 	struct timeval now;
 #define LI 0
-#define VN 3
+#define VN 4
 #define MODE 3
 #define STRATUM 0
 #define POLL 4 
@@ -413,6 +413,10 @@ int rfc1305print(char *data, struct ntptime *arrival, struct ntptime *udp_send_n
 	daylight_saving_setting();
 #endif
 #endif
+	/*
+	 * Update guest wifi schedule after get time
+	 */
+	 system("/sbin/guest_sched.sh update");
 
 	/* 
 	 * When time updates, and selects "Per Schedule" for "Block Sites" && "Block Services",
@@ -485,7 +489,7 @@ int stuff_net_addr(struct in_addr *p, char *hostname)
 	return 1;
 }
 
-int setup_receive(int usd, unsigned int interface, short port)
+int setup_receive(int usd, unsigned int interface, unsigned short port)
 {
 	struct sockaddr_in sa_rcvr;
 
@@ -509,7 +513,7 @@ int setup_receive(int usd, unsigned int interface, short port)
 	return 1;
 }
 
-int setup_transmit(int usd, char *host, short port)
+int setup_transmit(int usd, char *host, unsigned short port)
 {
 	struct sockaddr_in sa_dest;
 	
@@ -556,8 +560,9 @@ void primary_loop(int usd, int num_probes, int cycle_time)
 			if ((to.tv_sec == 0) || (to.tv_sec == cycle_time) 
 					|| (to.tv_sec == DAY_TIME)) {
 				if (steady_state != 1 
-					&& probes_sent >= num_probes && num_probes != 0) 
+					&& probes_sent >= num_probes && num_probes != 0) {
 					break;
+				}
 				
 				steady_state = 0;
 				send_packet(usd, &udp_send_ntp);
@@ -587,8 +592,9 @@ void primary_loop(int usd, int num_probes, int cycle_time)
 		if (steady_state == 1) {
 			to.tv_sec = DAY_TIME;
 			to.tv_usec = 0;
-		} else if (probes_sent >= num_probes && num_probes != 0) 
+		} else if (probes_sent >= num_probes && num_probes != 0) {
 			break;
+		}
 	}
 	/*when program is out of primary loop,the NTP server is fail,so delete the file.*/
 	system("rm -f /tmp/ntp_updated");
@@ -817,13 +823,50 @@ static void select_ntp_servers(char **primary, char **secondary)
 	*primary = ntpsvrs[tmzone].primary;
 	*secondary = ntpsvrs[tmzone].secondary;
 }
+/*	
+ *	@brief  get a random and availdable port
+ *		it's for switching port fot NTPv4,because some ISP will 
+ *		block NTP's src port packet. 
+ *	@return if success, return a port value,
+ *		if failed ,while() in the funciton.
+ * */
+unsigned short get_random_port(void)
+{
+	int sockfd = 0;
+	struct sockaddr_in addr;
+	unsigned short port = 0;
+	int addr_len = sizeof(struct sockaddr_in);
+	do{
+	    while((sockfd = socket(AF_INET,SOCK_DGRAM,0)) < 0)
+	    {
+		    perror("socket for switching port");
+		    sleep(1);
+	    }
+	    addr.sin_family = AF_INET;
+	    addr.sin_port = htons(port);
+	    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	    while(bind(sockfd,(struct sockaddr*)&addr,sizeof(addr))< 0)
+	    {
+		    perror("bind for switching port");
+		    sleep(1);
+	    }
+	    while(getsockname(sockfd,(struct sockaddr*)&addr,&addr_len)!= 0)
+	    {
+		    perror("ntp get sock name error");
+		    sleep(1);
+	    }
+	    port = ntohs(addr.sin_port);
+	    close(sockfd);
+	}while(port<1024);
+	return(port);
+}
 
 int main(int argc, char *argv[]) {
 	int usd;  /* socket */
 	int c;
 	/* These parameters are settable from the command line
 	   the initializations here provide default behavior */
-	short int udp_local_port = 0;   /* default of 0 means kernel chooses */
+	unsigned short udp_local_port = 0;   /* default of 0 means kernel chooses */
 	int probe_count = 1;            /* default of 0 means loop forever */
 	int cycle_time = 15;          /* request timeout in seconds */
 	int min_interval = 0;
@@ -834,6 +877,11 @@ int main(int argc, char *argv[]) {
 	char *ntps = "0.0.0.0";
 	struct timeval to;
 	FILE *fp = NULL;
+	char *manual_ntp = NULL;
+	char manual_ntp_server_tmp[128]={0};  // The length of manual server have checked with GUI,it's less than 128 bytes.
+	unsigned int retry_count = 0;
+	unsigned short use_default_server = 1;
+	char ntpportnum[8];
 
 	unsigned long seed;
 	seed = time(0);
@@ -845,8 +893,20 @@ int main(int argc, char *argv[]) {
 		probe_count = 1;
 		min_interval = 15;
 		max_interval = 60;
-//		udp_local_port = 123;
-		select_ntp_servers(&hostname, &sec_host);
+		udp_local_port = 123;
+		/* select ntpserver by default or by manual through NET-CGI */
+		manual_ntp = config_get("ntp_server_type");
+		if(strcmp(manual_ntp,"1") != 0){
+			select_ntp_servers(&hostname, &sec_host);
+			use_default_server=1;
+		}
+		else{
+			hostname = config_get("manual_ntp_server");
+			strcpy(manual_ntp_server_tmp,hostname);
+			hostname=manual_ntp_server_tmp;
+			sec_host=hostname;
+			use_default_server=0;
+		}
 #ifdef ENABLE_BOOT_RELAY
 		boot_relay = 0;
 #endif
@@ -958,8 +1018,49 @@ int main(int argc, char *argv[]) {
 #endif
 
 	while(1) {
-		ntps = (strcmp(ntps, hostname) == 0) ? sec_host : hostname;
-
+		/* if use default server, client's requests should like following
+		 *  |  NTP Server   time-e.netgear.com  |
+		 *  |  local port    123                |
+		 *  |  NTP Server   time-f.netgear.com  |
+		 *  |  local port    123                |
+		 *  |  NTP Server   time-e.netgear.com  |
+		 *  |  local port    random-port        |
+		 *  |  NTP Server   time-f.netgear.com  |
+		 *  |  local port    random-port        |
+		 * * * 
+		 * */
+		if(use_default_server){
+			if((retry_count/2)%2){
+				while((retry_count%4)==2){
+					udp_local_port=get_random_port();
+					break;
+				}
+				ntps = (strcmp(ntps, hostname) == 0) ? sec_host : hostname;
+			}
+			else{
+				udp_local_port=NTP_PORT;
+				ntps = (strcmp(ntps, hostname) == 0) ? sec_host : hostname;
+			}
+			retry_count++;
+		}
+		/* if use manual server, client's requests should like following
+		 *  |  NTP Server   manual-server       |
+		 *  |  local port    123                |
+		 *  |  NTP Server   manual-server       |
+		 *  |  local port    random-port        |
+		 * * * 
+		 * */
+		else
+		{
+			if(retry_count%2){
+				udp_local_port=get_random_port();
+			}
+			else{
+				udp_local_port=NTP_PORT;
+			}
+			ntps = hostname;
+			retry_count++;
+		}
 		if (debug) {
 			printf("Configuration:\n"
 				"  Probe count          %d\n"
@@ -971,6 +1072,8 @@ int main(int argc, char *argv[]) {
 				probe_count, debug, ntps, cycle_time, 
 				udp_local_port, set_clock);
 		}
+		sprintf(ntpportnum, "%d", udp_local_port);
+		config_set("ntpPortNumber",ntpportnum);
 
 		/* Startup sequence */
 		if ((usd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
@@ -980,6 +1083,7 @@ int main(int argc, char *argv[]) {
 
 		if (!wan_conn_up() && config_match("ap_mode", "0") && config_match("bridge_mode", "0")) {
 			/* printf("The WAN connection is NOT up!\n"); */
+			config_set("ntpFailReason", "1");
 			close(usd);
 			goto cont;
 		}
@@ -1003,11 +1107,13 @@ int main(int argc, char *argv[]) {
 		primary_loop(usd, probe_count, cycle_time);
 		close(usd);
 	loop:
+		config_set("ntpFailReason", "2");
 		/* [NETGEAR Spec 8.6]:Subsequent queries will double the preceding query interval 
 		 * until the interval has exceeded the steady state query interval, at which point 
 		 * and new random interval between 15.00 and 60.00 seconds is selected and the 
 		 * process repeats.
 		 */
+
 		if ((cycle_time * 2) > DAY_TIME)
 			cycle_time = min_interval + rand()%(max_interval-min_interval+1);
 		else

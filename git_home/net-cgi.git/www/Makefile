@@ -247,6 +247,12 @@ endif
 ifeq ($(GREEN_DOWNLOAD),1)
   opt_folders+=green_download
 endif
+ifeq ($(HAVE_FUNJSQ),1)
+  opt_folders+=funjsq
+endif
+ifeq ($(HAVE_FUNJSQ_MUL),1)
+  opt_folders+=funjsq_mul
+endif
 ifeq ($(AP_MODE_DETECTION),1)
   opt_folders+=browser_hijack_ap
 endif
@@ -274,7 +280,8 @@ endef
 virtual_cgis:=apply.cgi func.cgi upgrade_check.cgi upgrade.cgi \
 	backup.cgi brs_backup.cgi restore.cgi langupg.cgi \
 	ubootupg.cgi unauth.cgi recover.cgi debug_cloud.cgi \
-	debug.cgi green_upg.cgi bt_file.cgi mobile_install.cgi
+	debug.cgi green_upg.cgi bt_file.cgi mobile_install.cgi \
+	admin.cgi
 
 .PHONY: all install clean
 all:

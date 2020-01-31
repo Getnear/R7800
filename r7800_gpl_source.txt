@@ -28,6 +28,11 @@ User application
         DNI
         DNI
         Binary
+[at]
+		at
+		http://packages.debian.org/stable/at
+		GPL
+		Source Code
 [avahi]
         avahi-0.6.31
         http://avahi.org/download/
@@ -38,6 +43,11 @@ User application
         http://avahi.org/download/
         GPL
         Source Code
+[aws-iot]
+		aws-iot
+		DNI
+		DNI
+		Binary
 [base-files]
         base-files
         DNI
@@ -128,6 +138,11 @@ User application
         ftp://ftp.samba.org/pub/ppp
         GPL
         Source Code
+[dni-openvpn-client]
+		dni-openvpn-client
+		DNI
+		GPL
+		Source Code
 [dni-ripd]
         dni-ripd
         DNI
@@ -188,16 +203,16 @@ User application
         http://ffmpeg.org/releases
         GPL
         Source Code
-[forked-daapd]
-		forked-daapd-23.0-dni1.tar.bz2
-        https://github.com/jasonmc/forked-daapd
-        GPL
-        Source Code
 [fbwifi]
 		fbwifi
 		netgear
 		netgear
 		Binary
+[forked-daapd]
+		forked-daapd
+		https://github.com/jasonmc/forked-daapd
+		GPL
+		Source Code
 [gdbm]
         gdbm-1.8.3
         ftp://ftp.gnu.org/gnu/gdbm
@@ -213,6 +228,11 @@ User application
         DNI
         DNI
         Binary
+[heimdal]
+		heimdal
+		http://www.h5l.org/dist/src/
+		GPL
+		Source Code
 [hd-idle]
         hd-idle-1.04.tgz
         http://hd-idle.sourceforge.net/
@@ -534,7 +554,7 @@ User application
         GPL
         Source Code
 [openvpn]
-        openvpn-2.3.2.tar.gz
+        openvpn-2.4.5.tar.gz
         http://openvpn.net
         GPL
         Source Code
@@ -568,6 +588,11 @@ User application
         http://open.oray.com/doc/phddns-sdk-1.0.4.17314.tar.gz
         GPL
         Source Code
+[python]
+		python
+		https://www.python.org/ftp/python
+		GPL
+		Source Code
 [popt]
         popt-1.7.tar.gz
         http://rpm5.org/files/popt/
@@ -684,6 +709,11 @@ User application
         Atheros
         Atheros
         Source Code
+[soapclient]
+	soapclient
+	DNI
+	DNI
+	Binary
 [sqlite3]
         sqlite-3.6.16
         http://www.sqlite.org

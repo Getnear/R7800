@@ -1,7 +1,7 @@
 body{ background: url(../image/oneline.gif) 0 -80px repeat-x #e5e5e5; margin:auto; }/* to fix bug  23323 */
 
-.container_center{_width: 1440px; min-width: 820px; min-height:460px; _height: 800px; position:absolute; top:97px; bottom:0; left: 20px; right: 20px; }
-#top{_width: 1440px; min-width: 820px; height: 97px; position: absolute; left: 20px; right: 20px; }
+.container_center{_width: 1440px; min-width: 820px; min-height:500px; _height: 800px; position:absolute; top:97px; bottom:0; left: 20px; right: 20px; }
+#top{_width: 1440px; min-width: 960px; height: 97px; position: absolute; left: 20px; right: 20px; }
 #topframe{width: 100%; height: 97px; }
 
 #middle{ width: 100%; min-height:455px; _height: 795px; position:absolute; top:5px; bottom:0px; left: 0; right: 0; }
@@ -61,7 +61,7 @@ dl{ margin: 0px; padding: 5px 0 8px 0; float: left; position: absolute }
 
 .advanced_white_open_button span, .advanced_white_close_button span, .advanced_white_open_button_double span, .advanced_white_close_button_double span{ display:-moz-inline-box; display:inline-block; width:140px; position: absolute; left: 20px; line-height:15px; top: 6px;}
 
-#formframe_div{float: left; min-width: 625px; _width: 1245px; position:absolute; top:0; bottom:45px; left:200px; right: 0; }
+#formframe_div{float: left; min-width: 760px; _width: 1245px; position:absolute; top:0; bottom:45px; left:200px; right: 0; }
 #formframe{float: left; position:absolute; top:0; bottom:45px; overflow: hidden;}
 
 .footer{ width: 100%; height: 43px; float: left; color: #ffffff; position:absolute; bottom:0; }

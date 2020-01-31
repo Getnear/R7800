@@ -128,6 +128,12 @@ function loadvalue()
 {
 	var form = document.forms[0];
 	change_size();
+
+	if(document.location.search.indexOf('vpn_on_updating=1') !== -1) {
+		goto_formframe('vpn_upgrade_process.htm');
+		return;
+	}
+
 	if(lang_select == "Auto" && browser_lang != gui_region)
 	{
 		if(bgn_pr_wds_support_wpa == 1 || an_pr_wds_support_wpa == 1 || dis_lang_crl == "0" )
@@ -214,6 +220,7 @@ function loadvalue()
 		<dt id="attached" class="sub_back"><a  target="formframe" onclick="click_adv_action('attached');"><b><span name="attached" id="admin_attached">$attach_device</span></b></a></dt>
 		<dt id="bak_set" class="sub_back"><a  target="formframe" onclick="click_adv_action('bak_set');"><b><span name="bak_set" id="admin_bakup">$backup_head</span></b></a></dt>
 		<dt id="passwd" class="sub_back"><a  target="formframe" onclick="click_adv_action('passwd');"><b><span name="passwd" id="admin_setpassword">$passwd_head</span></b></a></dt>
+		<dt id="ntp" class="sub_back"><a  target="formframe" onclick="click_adv_action('ntp');"><b><span name="ntp_debug" id="ntp_debug">$ntp_settings</span></b></a></dt>
 		<dt id="upgrade" class="sub_back"><a  target="formframe" onclick="click_adv_action('upgrade');"><b><span name="upgrade" id="admin_upgrade">$firm_upgrade</span></b></a></dt>
 		<% advanced_sub_menu("mobile_upg", "sub_back", "mobile_upgrade", "admin_mobileupg") %>
 	</dl>	
@@ -244,6 +251,7 @@ function loadvalue()
 		<% advanced_sub_menu("fbwifi", "sub_back", "facebook_head", "advanced_fbwifi")%>
 		<% advanced_sub_menu("priozone", "sub_back", "priority_zone", "advanced_priozone")%>
 		<% advanced_sub_menu("devmode", "sub_back", "dsl_device_mode", "advanced_devmode")%>
+		<% advanced_sub_menu("vpn_client", "sub_back", "vpn_client", "adv_vpn_client")%>
 
 	</dl>	
 	</div>	

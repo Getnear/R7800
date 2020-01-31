@@ -14,6 +14,8 @@ start()
     [ -f $DEFAULT ] && . $DEFAULT
 
     mkdir -p /var/log/samba
+    mkdir -p /var/lib/samba
+    mkdir -p /var/cache/samba
     #mount -t tmpfs tmpfs /home -o size=64K
     mkdir -p $SMB_CONF_DIR
     cp -f /usr/config/smb.conf $SMB_CONF_DIR

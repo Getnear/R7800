@@ -27,8 +27,8 @@ wep_auth_type_1="shared"
 wep_auth_type_2="auto"
 
 preamble_0="auto"
-preamble_1="short"
-preamble_2="long"
+preamble_1="long"
+preamble_2="short"
 
 [ -f /etc/ath/wifi.conf ] && . /etc/ath/wifi.conf
 if [ "$wla_exist" = "on" ]; then
@@ -214,12 +214,19 @@ if [ -n "$DNI_CONFIG" ]; then
 
         # wireless region is NA and mode is 1733M, when enable HT160, change mode to HT80_80
         # wireless region is EU and mode is 1733M, when enable HT160, change mode to HT160
+        # wireless region is JP and mode is 1733M, when enable HT160, change mode to HT160
         wla_country=`dniconfig get wl_country`
         wl_ht160=`dniconfig get wla_ht160`
         if [ "$wl_ht160" = "1" -a "$wla_country" = "4" -a "$wla_chmode" = "9" ]; then 
             wla_chmode="11"
+        elif [ "$wl_ht160" = "1" -a "$wla_country" = "6" -a "$wla_chmode" = "9" ]; then
+            wla_chmode="11"
+        elif [ "$wl_ht160" = "1" -a "$wla_country" = "7" -a "$wla_chmode" = "9" ]; then
+            wla_chmode="11"
         elif [ "$wl_ht160" = "1" -a "$wla_country" = "10" -a "$wla_chmode" = "9" ]; then
             wla_chmode="10"
+        elif [ "$wl_ht160" = "1" -a "$wla_country" = "11" -a "$wla_chmode" = "9" ]; then
+            wla_chmode="12"
         fi
 
         case "${wla_chmode}" in
@@ -289,6 +296,16 @@ if [ -n "$DNI_CONFIG" ]; then
             11)
                 wla_hwmode=11ac;
                 wla_htmode=HT160;
+                ;;
+            12)
+                wla_hwmode=11ac;
+                wla_htmode=HT160;
+                case "$wla_channel" in
+                    149|153|157|161)
+			wla_htmode=HT80_80
+                        wla_cfreq2=5210;
+                        ;;
+                esac
                 ;;
             *)
                 wla_hwmode=11na;
@@ -393,9 +410,6 @@ if [ -n "$DNI_CONFIG" ]; then
 
     eval country_code=\$country_code_`dniconfig get wl_country`
 
-    if [ "$country_code" = "156" ]; then
-        specified_BDF=PR
-    fi
     wps_device_name=`dniconfig get netbiosname`
     wl_dtim_wo_guest=`dniconfig get wl_dtim_wo_guest`
     wl_dtim_w_guest=`dniconfig get wl_dtim_w_guest`
@@ -404,6 +418,7 @@ if [ -n "$DNI_CONFIG" ]; then
     wl_dtim_w_guest=${wl_dtim_w_guest:-2}
     wl_guest_dtim=${wl_guest_dtim:-2}
 
+    lbd_onoff=`dniconfig get enable_smart_connect`
 
     eval wig_if_onoff=\$onoff_`dniconfig get endis_wig_radio`
     if [ "$wig_exist" = "on" ]; then
@@ -430,6 +445,9 @@ load_wep_config()
         if [ -n $_trans ]; then
             sed -i -e "s/$_wl/$_trans/g" /tmp/wepkey-$$
         fi
+
+        #pass special character
+        sed  -i -e "s/'/'\\\''/g" /tmp/wepkey-$$
 
         sed -i -e "s/=/='/g" /tmp/wepkey-$$
         sed -i -e "s/$/'/g" /tmp/wepkey-$$
@@ -591,17 +609,37 @@ dni_config_set()
                     fi
                     ;;
                 sched_status)
-                    if [ "$2" = "11g" ]; then
-                        eval `dniconfig set wlg_onoff_sched=$3`
+                    is_guest=$4
+                    if [ "$is_guest" = "1" ]; then
+                        if [ "$2" = "11g" ]; then
+                            dniconfig set wlg1_schedule=0
+                            dniconfig set wlg_guest_target_time=0
+                        elif [ "$2" = "11a" ]; then
+                            dniconfig set wla1_schedule=0
+                            dniconfig set wla_guest_target_time=0
+                        fi
                     else
-                        eval `dniconfig set wla_onoff_sched=$3`
+                        if [ "$2" = "11g" ]; then
+                            eval `dniconfig set wlg_onoff_sched=$3`
+                        elif [ "$2" = "11a" ]; then
+                            eval `dniconfig set wla_onoff_sched=$3`
+                        fi
                     fi
                     ;;
                 wl_onoff)
+                    is_guest=$4
                     if [ "$2" = "11g" ]; then
-                        eval `dniconfig set endis_wl_radio=$3`
+                        if [ "$is_guest" = "1" ]; then
+                            eval `dniconfig set wlg1_endis_guestNet=$3`
+                        else
+                            eval `dniconfig set endis_wl_radio=$3`
+                        fi
                     else
-                        eval `dniconfig set endis_wla_radio=$3`
+                        if [ "$is_guest" = "1" ]; then
+                            eval `dniconfig set wla1_endis_guestNet=$3`
+                        else
+                            eval `dniconfig set endis_wla_radio=$3`
+                        fi
                     fi
                     ;;
                 *)
